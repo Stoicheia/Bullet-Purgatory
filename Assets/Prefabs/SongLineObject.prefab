@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6097827448286221089
+--- !u!1 &8777586663610399648
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,42 +8,38 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4323704698253145594}
-  - component: {fileID: -2615233402773865145}
+  - component: {fileID: 5462533904053393553}
+  - component: {fileID: -7883346898767752093}
   m_Layer: 0
-  m_Name: Default Shooter
+  m_Name: SongLineObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4323704698253145594
+--- !u!4 &5462533904053393553
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6097827448286221089}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.8507667, y: -0.06169253, z: -10.755827}
-  m_LocalScale: {x: 1.5423055, y: 1.5423055, z: 1.5423055}
+  m_GameObject: {fileID: 8777586663610399648}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.287107, y: 2.508287, z: -18.326069}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-2615233402773865145
+--- !u!114 &-7883346898767752093
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6097827448286221089}
+  m_GameObject: {fileID: 8777586663610399648}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c21271c6f55ae748b5b9b13ccc26f87, type: 3}
+  m_Script: {fileID: 11500000, guid: 209861dbe6333d34ca0a8b1b62b9789f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 6044408016063265481, guid: dfdbb45e022537b449f815e9398b42ee, type: 3}
-  bulletSpeed: 20
-  shootEnabled: 1
-  shootInterval: 200

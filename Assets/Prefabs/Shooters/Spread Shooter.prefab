@@ -1,0 +1,102 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &2910794019690692724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1752113567479489085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8b7eb1d1208b344bb96fddff092227a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 0}
+  bulletSpeed: 30
+  shootEnabled: 1
+  friendly: 1
+  numberOfBullets: 5
+  minAngle: -50
+  maxAngle: 50
+--- !u!1001 &5534668580588351772
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -2873323096585375163, guid: a5599719cbc5a6c4c86d342edfeee906,
+        type: 3}
+      propertyPath: part
+      value: Sub
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323704698253145594, guid: a5599719cbc5a6c4c86d342edfeee906,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.8507667
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323704698253145594, guid: a5599719cbc5a6c4c86d342edfeee906,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.06169253
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323704698253145594, guid: a5599719cbc5a6c4c86d342edfeee906,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10.755827
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323704698253145594, guid: a5599719cbc5a6c4c86d342edfeee906,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323704698253145594, guid: a5599719cbc5a6c4c86d342edfeee906,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323704698253145594, guid: a5599719cbc5a6c4c86d342edfeee906,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323704698253145594, guid: a5599719cbc5a6c4c86d342edfeee906,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323704698253145594, guid: a5599719cbc5a6c4c86d342edfeee906,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323704698253145594, guid: a5599719cbc5a6c4c86d342edfeee906,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323704698253145594, guid: a5599719cbc5a6c4c86d342edfeee906,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323704698253145594, guid: a5599719cbc5a6c4c86d342edfeee906,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6097827448286221089, guid: a5599719cbc5a6c4c86d342edfeee906,
+        type: 3}
+      propertyPath: m_Name
+      value: Spread Shooter
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: -2615233402773865145, guid: a5599719cbc5a6c4c86d342edfeee906, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: a5599719cbc5a6c4c86d342edfeee906, type: 3}
+--- !u!1 &1752113567479489085 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6097827448286221089, guid: a5599719cbc5a6c4c86d342edfeee906,
+    type: 3}
+  m_PrefabInstance: {fileID: 5534668580588351772}
+  m_PrefabAsset: {fileID: 0}

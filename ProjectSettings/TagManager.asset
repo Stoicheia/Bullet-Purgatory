@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Processor
   - Stage
+  - Rhythm
   layers:
   - Default
   - TransparentFX

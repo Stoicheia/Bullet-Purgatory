@@ -2,16 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shooter : MonoBehaviour
+public abstract class Shooter : MonoBehaviour
 {
+	ShooterRhythm rhythm;
+
 	public Bullet bullet;
 	public float bulletSpeed;
 
 	public bool shootEnabled;
-	bool friendly = false;
-	//temp
-	public float shootInterval;
-	float nextShootTime;
+	public bool friendly = false;
 
     void Start()
     {
@@ -21,19 +20,11 @@ public class Shooter : MonoBehaviour
 
     void Update()
     {
-        if(enabled&&Time.time>nextShootTime){
-        	nextShootTime = Time.time + shootInterval/1000;
-        	Shoot();
-        }
+       
     }
 
-    protected virtual void Shoot(){
-    	Bullet b = Instantiate(bullet, transform.position, transform.rotation) as Bullet;
-        b.SetSpeed(bulletSpeed);
-        b.friendly = friendly;
-    }
-
-    public void SetFriendly(bool f){
-    	friendly = f;
+    public abstract void Shoot();
+    public virtual void Change(int i){
+    	Debug.Log(i);
     }
 }
