@@ -44,7 +44,7 @@ public class SongLine : MonoBehaviour
     {
     	if(lineClip.time>=nextTickTime){
     		ReadCommand();
-	    	breakIntervalSeconds = (breakInterval>MAX_INTERVAL)? 0 : 60/(breakInterval*bpm);
+	    	breakIntervalSeconds = (breakInterval>MAX_INTERVAL)? 0 : BeatsToSeconds(breakInterval, bpm);
 	    	nextTickTime = nextTickTime + breakIntervalSeconds;
 	    }
     }
@@ -58,7 +58,9 @@ public class SongLine : MonoBehaviour
     }
 
     void ReadCommand(){
-    	string command = commands[currentCommand%commands.Length];
+        int commandToRead = (currentCommand>=commands.Length) ?
+            3+(currentCommand-commands.Length)%(commands.Length-3) : currentCommand%commands.Length;
+    	string command = commands[commandToRead];
     	string[] commandParts = command.Split(',');
     	if(commandParts.Length!=1){
     		string issue = commandParts[0];
@@ -78,7 +80,7 @@ public class SongLine : MonoBehaviour
                     Switch(currentStyle);
                     break;
     			default:
-    				breakInterval = 60000/(val*bpm);
+    				breakInterval = SecondsToBeats(val/1000, bpm);
     				break;
     		}
     	}
@@ -100,5 +102,13 @@ public class SongLine : MonoBehaviour
     		breakInterval = val;
     	}
     	currentCommand++;
+    }
+
+    float BeatsToSeconds(float b, float bpm){
+        return 60/(b*bpm);
+    }
+
+    float SecondsToBeats(float s, float bpm){ //these are the same function. repeated so names are more descriptive
+        return 60/(s*bpm);
     }
 }

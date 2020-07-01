@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Shooter : MonoBehaviour
+public abstract class RhythmicObject : MonoBehaviour 
 {
-	ShooterRhythm rhythm;
+	public Bullet[] toSpawn;
+	protected int currentStyle;
 
-	public Bullet bullet;
 	public float bulletSpeed;
 
 	public bool shootEnabled;
@@ -14,6 +14,7 @@ public abstract class Shooter : MonoBehaviour
 
     void Start()
     {
+    	currentStyle = 0;
         shootEnabled = true;
     }
 
@@ -24,7 +25,11 @@ public abstract class Shooter : MonoBehaviour
     }
 
     public abstract void Shoot();
-    public virtual void Change(int i){
-    	Debug.Log(i);
+    public virtual void Change(int i){ 
+    	currentStyle = i;
+    }
+
+    protected Bullet GetBullet(){
+    	return toSpawn[currentStyle%toSpawn.Length];
     }
 }

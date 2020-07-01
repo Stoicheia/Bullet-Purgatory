@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DefaultShooter : Shooter
+public class DefaultShooter : RhythmicObject
 {
     public override void Shoot(){
-    	Bullet b = Instantiate(bullet, transform.position, transform.rotation) as Bullet;
+    	if(!shootEnabled) return;
+
+    	Bullet b = Instantiate(GetBullet(), transform.position, transform.rotation) as Bullet;
         b.SetSpeed(bulletSpeed);
         b.SetFriendly(friendly);
         FindObjectOfType<SFXManager>().Play("Shot");

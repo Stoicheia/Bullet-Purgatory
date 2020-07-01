@@ -2,21 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Shooter))]
-public class ShooterRhythm : MonoBehaviour
+[RequireComponent(typeof(RhythmicObject))]
+public class RhythmListener : MonoBehaviour
 {
 	RhythmMap map;
 	public string part;
 	SongLine line;
-	Shooter shooter;
+	RhythmicObject responder;
 
     void Start()
     {
-    	shooter = GetComponent<Shooter>();
+    	responder = GetComponent<RhythmicObject>();
         map = Object.FindObjectOfType(typeof(RhythmMap)) as RhythmMap;
         line = map.GetLine(part);
         line.Tick += Act;
-        line.Switch += ChangeStyle;
+        line.Switch += ChangeStyle; 
     }
 
     void OnDisable(){
@@ -31,10 +31,10 @@ public class ShooterRhythm : MonoBehaviour
     }
 
     public void Act(){
-    	shooter.Shoot();
+    	responder.Shoot();
     }
 
     public void ChangeStyle(int i){
-    	shooter.Change(i);
+    	responder.Change(i);
     }
 }

@@ -57,7 +57,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4941d9835af419148bb3a35ecc70bbe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 6044408016063265481, guid: dfdbb45e022537b449f815e9398b42ee, type: 3}
+  toSpawn:
+  - {fileID: 2983321234769858639, guid: 7df9ccd7787737e45abdf8daa254f7c0, type: 3}
   bulletSpeed: 10
   shootEnabled: 1
   friendly: 1

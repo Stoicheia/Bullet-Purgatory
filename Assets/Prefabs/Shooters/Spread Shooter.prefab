@@ -12,13 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8b7eb1d1208b344bb96fddff092227a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 0}
+  toSpawn:
+  - {fileID: 6044408016063265481, guid: dfdbb45e022537b449f815e9398b42ee, type: 3}
+  - {fileID: 3019724905180029601, guid: 69029467ddcc6fa49a5c054ff1ef8861, type: 3}
+  - {fileID: 550560849030835489, guid: 70566cea160673f408aefeba38ae73da, type: 3}
+  - {fileID: 5992236626473070446, guid: 37319e92487a7c045ad723a635b11b34, type: 3}
   bulletSpeed: 30
   shootEnabled: 1
   friendly: 1
   numberOfBullets: 5
   minAngle: -50
   maxAngle: 50
+  randomSpread: 0
 --- !u!1001 &5534668580588351772
 PrefabInstance:
   m_ObjectHideFlags: 0

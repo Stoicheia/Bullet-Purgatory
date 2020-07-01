@@ -34,6 +34,10 @@ public class Bullet : MonoBehaviour
     	}
     }
 
+    void CheckCollisions(){
+
+    }
+
     public void SetSpeed(float s){
     	speed = s;
     }
