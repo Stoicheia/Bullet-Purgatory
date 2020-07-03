@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(SpreadShooter))]
-public class Rotator : MonoBehaviour
+public class ArmRotator : MonoBehaviour
 {
 	SpreadShooter shooter;
 

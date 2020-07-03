@@ -15,8 +15,9 @@ public class SpreadShooter : RhythmicObject
     	float interval = (numberOfBullets!=1)? (trueMaxAngle-minAngle)/(numberOfBullets-1) : (trueMaxAngle-minAngle)/2;
     	for(int i=0;i<numberOfBullets;i++){
     		float angleToShoot = randomSpread? Random.Range(minAngle,trueMaxAngle):interval*i+minAngle;
-    		Bullet b = Instantiate(GetBullet(), transform.position, Quaternion.Euler(0,0,angleToShoot)*transform.rotation)
-    						 as Bullet;
+            Bullet toSpawn = GetBullet();
+    		Bullet b = pooler.Spawn(toSpawn.gameObject, toSpawn.poolTag, transform.position, Quaternion.Euler(0,0,angleToShoot)*transform.rotation)
+    						 .GetComponent<Bullet>();
         	b.SetSpeed(bulletSpeed);
        	    b.SetFriendly(friendly);
     	}

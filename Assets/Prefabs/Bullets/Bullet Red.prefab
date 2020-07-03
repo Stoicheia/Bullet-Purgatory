@@ -10,7 +10,12 @@ PrefabInstance:
     - target: {fileID: 1359697939675327204, guid: dfdbb45e022537b449f815e9398b42ee,
         type: 3}
       propertyPath: m_Name
-      value: Normal Bullet Variant
+      value: Bullet Red
+      objectReference: {fileID: 0}
+    - target: {fileID: 6044408016063265481, guid: dfdbb45e022537b449f815e9398b42ee,
+        type: 3}
+      propertyPath: poolTag
+      value: red
       objectReference: {fileID: 0}
     - target: {fileID: 6726513195188915161, guid: dfdbb45e022537b449f815e9398b42ee,
         type: 3}

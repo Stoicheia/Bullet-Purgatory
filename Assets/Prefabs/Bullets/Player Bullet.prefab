@@ -7,6 +7,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 550560849030835489, guid: 70566cea160673f408aefeba38ae73da,
+        type: 3}
+      propertyPath: poolTag
+      value: player
+      objectReference: {fileID: 0}
     - target: {fileID: 655433316492090417, guid: 70566cea160673f408aefeba38ae73da,
         type: 3}
       propertyPath: m_Sprite

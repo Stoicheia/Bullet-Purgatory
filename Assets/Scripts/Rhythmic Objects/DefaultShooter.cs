@@ -7,7 +7,8 @@ public class DefaultShooter : RhythmicObject
     public override void Shoot(){
     	if(!shootEnabled) return;
 
-    	Bullet b = Instantiate(GetBullet(), transform.position, transform.rotation) as Bullet;
+    	Bullet toSpawn = GetBullet();
+    	Bullet b = pooler.Spawn(toSpawn.gameObject, toSpawn.poolTag, transform.position, transform.rotation).GetComponent<Bullet>();
         b.SetSpeed(bulletSpeed);
         b.SetFriendly(friendly);
         FindObjectOfType<SFXManager>().Play("Shot");

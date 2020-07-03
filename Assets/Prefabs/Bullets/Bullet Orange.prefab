@@ -68,10 +68,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: a525c7454389c5646af7a0f74c911184,
         type: 3}
+    - target: {fileID: 2983321234769858639, guid: 7df9ccd7787737e45abdf8daa254f7c0,
+        type: 3}
+      propertyPath: poolTag
+      value: orange
+      objectReference: {fileID: 0}
     - target: {fileID: 7519447708084633698, guid: 7df9ccd7787737e45abdf8daa254f7c0,
         type: 3}
       propertyPath: m_Name
-      value: Normal Bullet Variant 2
+      value: Bullet Orange
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7df9ccd7787737e45abdf8daa254f7c0, type: 3}

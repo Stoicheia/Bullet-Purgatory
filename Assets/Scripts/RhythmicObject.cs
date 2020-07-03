@@ -12,8 +12,12 @@ public abstract class RhythmicObject : MonoBehaviour
 	public bool shootEnabled;
 	public bool friendly = false;
 
+    protected ObjectPooler pooler;
+
     void Start()
     {
+        pooler = FindObjectOfType(typeof(ObjectPooler)) as ObjectPooler;
+
     	currentStyle = 0;
         shootEnabled = true;
     }
