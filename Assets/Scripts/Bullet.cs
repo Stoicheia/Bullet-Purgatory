@@ -65,4 +65,6 @@ public class Bullet : MonoBehaviour
     public void SetFriendly(bool f){
     	friendly = f;
     }
+
+
 }

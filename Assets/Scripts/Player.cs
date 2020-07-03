@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
 	public KeyCode crawlButton;
 	int moveState;
 
-	public RhythmicObject startingShooter;
+	public Shooter startingShooter;
 
     void Start(){
     	controller = GetComponent<Controller>();
@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
     	speed = defSpeed;
         moveState = 0;
 
-        RhythmicObject shooter = Instantiate(startingShooter,transform.position,transform.rotation) as RhythmicObject;
+        Shooter shooter = Instantiate(startingShooter,transform.position,transform.rotation) as Shooter;
         shooter.transform.parent = transform;
     }
 

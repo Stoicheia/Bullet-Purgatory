@@ -591,7 +591,7 @@ MonoBehaviour:
   bulletSpeed: 0
   shootEnabled: 1
   friendly: 1
-  alternateStyle: 0
+  alternateStyle: 1
 --- !u!114 &1262249352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -619,7 +619,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   oscillationMagnitude: 66
   oscillationPeriodSeconds: 1.84
-  constantRotation: 1
+  constantRotation: 0
 --- !u!1 &1422784667
 GameObject:
   m_ObjectHideFlags: 0
@@ -703,7 +703,7 @@ MonoBehaviour:
   bulletSpeed: 10
   shootEnabled: 1
   friendly: 0
-  numberOfBullets: 1
+  numberOfBullets: 8
   minAngle: -50
   maxAngle: 50
   randomSpread: 0

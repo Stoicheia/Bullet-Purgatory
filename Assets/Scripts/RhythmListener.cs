@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(RhythmicObject))]
 public class RhythmListener : MonoBehaviour
 {
-	RhythmMap map;
+	RhythmMapsManager mapManager;
 	public string part;
 	SongLine line;
 	RhythmicObject responder;
@@ -13,8 +13,8 @@ public class RhythmListener : MonoBehaviour
     void Start()
     {
     	responder = GetComponent<RhythmicObject>();
-        map = Object.FindObjectOfType(typeof(RhythmMap)) as RhythmMap;
-        line = map.GetLine(part);
+        mapManager = Object.FindObjectOfType(typeof(RhythmMapsManager)) as RhythmMapsManager;
+        line = mapManager.GetActiveMap().GetLine(part);
         line.Tick += Act;
         line.Switch += ChangeStyle; 
     }
@@ -22,12 +22,6 @@ public class RhythmListener : MonoBehaviour
     void OnDisable(){
     	line.Tick -= Act;
     	line.Switch -= ChangeStyle;
-    }
-
-
-    void Update()
-    {
-        
     }
 
     public void Act(){

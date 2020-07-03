@@ -5,8 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(RhythmicObject))]
 public class Oscillator : MonoBehaviour
 {
-	RhythmicObject shooter;
-
 	[Range(0,360)]
     public float oscillationMagnitude;
     [Range(0.01f,10)]
@@ -17,7 +15,7 @@ public class Oscillator : MonoBehaviour
     {
     	float angleToRotate;
     	if(!constantRotation){
-	        angleToRotate = Time.deltaTime*Mathf.PI*oscillationMagnitude/oscillationPeriodSeconds
+	        angleToRotate = Time.fixedDeltaTime*Mathf.PI*oscillationMagnitude/oscillationPeriodSeconds
 	        	*Mathf.Cos(Time.time*2*Mathf.PI/oscillationPeriodSeconds); //simple calculs
     	}
 	    else{

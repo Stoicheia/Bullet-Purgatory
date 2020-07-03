@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpreadShooter : RhythmicObject
+public class SpreadShooter : Shooter
 {
 	public int numberOfBullets;
 	public float minAngle; public float maxAngle;

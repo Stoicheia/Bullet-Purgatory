@@ -12,7 +12,7 @@ public class RhythmMap : MonoBehaviour
     public SongLine lineObjectPrefab;
     string mapData;
     Dictionary<string, SongLine> songLines; //the point of this class: mapDataFile -> mapData -> songLines and sync with audio
-    
+
     void Awake(){
     	songPlayer = GetComponent<AudioSource>();
         songPlayer.clip = musicClip;
@@ -50,9 +50,17 @@ public class RhythmMap : MonoBehaviour
         return songLines[l];
     }
 
-    void RestartSong(){
+    public void RestartSong(){
         songPlayer.Play();
         foreach(var line in songLines.Values)
             line.StartRhythm();
+    }
+
+    public void Pause(){
+        songPlayer.Pause();
+    }
+
+    public void Unpause(){
+        songPlayer.UnPause();
     }
 }

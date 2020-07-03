@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DefaultShooter : RhythmicObject
+public class DefaultShooter : Shooter
 {
     public override void Shoot(){
     	if(!shootEnabled) return;
