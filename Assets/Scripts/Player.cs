@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Controller))]
-public class Player : MonoBehaviour
+[RequireComponent(typeof(Rigidbody2D))]
+public class Player : MonoBehaviour, IDamageable
 {
 	Controller controller;
 
@@ -18,7 +19,7 @@ public class Player : MonoBehaviour
 	public KeyCode crawlButton;
 	int moveState;
 
-	public Shooter startingShooter;
+	public RhythmicObject startingShooter;
 
     void Start(){
     	controller = GetComponent<Controller>();
@@ -27,7 +28,7 @@ public class Player : MonoBehaviour
     	speed = defSpeed;
         moveState = 0;
 
-        Shooter shooter = Instantiate(startingShooter,transform.position,transform.rotation) as Shooter;
+        RhythmicObject shooter = Instantiate(startingShooter,transform.position,transform.rotation) as RhythmicObject;
         shooter.transform.parent = transform;
     }
 
@@ -54,5 +55,13 @@ public class Player : MonoBehaviour
 
     void UpdateSpeed(){
     	speed = defSpeed * speedMultplier;
+    }
+
+    public void TakeHit(float damage, Collision2D col){
+        
+    }
+
+    public bool IsFriendly(){
+        return true;
     }
 }

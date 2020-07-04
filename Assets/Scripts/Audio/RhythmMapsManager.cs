@@ -18,14 +18,15 @@ public class RhythmMapsManager : MonoBehaviour
         activeMap = maps[startingActiveMapNumber];
     }
 
-    public void ChangeSong(RhythmMap map, bool restart){
+    public void ChangeSong(RhythmMap map){
     	activeMap.Pause();
-    	if(restart){
-    		map.RestartSong();
-    	}
-    	else{
-    		map.Unpause();
-    	}
+    	map.Unpause();
+    	activeMap = map;
+    }
+
+    public void ChangeSongRestart(RhythmMap map){
+    	activeMap.Pause();
+    	map.RestartSong();
     	activeMap = map;
     }
 

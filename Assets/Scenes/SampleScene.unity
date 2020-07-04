@@ -121,6 +121,51 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &43252730
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 43252732}
+  - component: {fileID: 43252731}
+  m_Layer: 0
+  m_Name: Rhythm Maps
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &43252731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43252730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fb9d530f9bc3714a86434cbfaaf8573, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingActiveMapNumber: 0
+--- !u!4 &43252732
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43252730}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.6706975, y: -1.0600717, z: -8.75}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1774863095}
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,13 +430,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8b7eb1d1208b344bb96fddff092227a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shootEnabled: 1
   toSpawn:
   - {fileID: 6044408016063265481, guid: dfdbb45e022537b449f815e9398b42ee, type: 3}
   - {fileID: 3019724905180029601, guid: 69029467ddcc6fa49a5c054ff1ef8861, type: 3}
   - {fileID: 550560849030835489, guid: 70566cea160673f408aefeba38ae73da, type: 3}
   - {fileID: 5992236626473070446, guid: 37319e92487a7c045ad723a635b11b34, type: 3}
   bulletSpeed: 10
-  shootEnabled: 1
   friendly: 0
   numberOfBullets: 5
   minAngle: -50
@@ -587,10 +632,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fb1d2bb1cfbf654d9dc74b2546e4f4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toSpawn: []
-  bulletSpeed: 0
   shootEnabled: 1
-  friendly: 1
   alternateStyle: 1
 --- !u!114 &1262249352
 MonoBehaviour:
@@ -629,9 +671,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1422784668}
-  - component: {fileID: 1422784671}
-  - component: {fileID: 1422784670}
   - component: {fileID: 1422784669}
+  - component: {fileID: 1422784670}
   m_Layer: 0
   m_Name: test enemy shooter (1)
   m_TagString: Untagged
@@ -676,37 +717,26 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1422784667}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50c54f5502ce00e41b493809219626e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotateSpeed: 10
-  spreadChangeSpeed: 2
---- !u!114 &1422784671
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1422784667}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8b7eb1d1208b344bb96fddff092227a, type: 3}
+  m_Script: {fileID: 11500000, guid: 9232d02d21c61e54fb40c8fa59d26839, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shootEnabled: 1
   toSpawn:
   - {fileID: 6044408016063265481, guid: dfdbb45e022537b449f815e9398b42ee, type: 3}
   - {fileID: 3019724905180029601, guid: 69029467ddcc6fa49a5c054ff1ef8861, type: 3}
   - {fileID: 550560849030835489, guid: 70566cea160673f408aefeba38ae73da, type: 3}
   - {fileID: 5992236626473070446, guid: 37319e92487a7c045ad723a635b11b34, type: 3}
   bulletSpeed: 10
-  shootEnabled: 1
   friendly: 0
-  numberOfBullets: 8
-  minAngle: -50
-  maxAngle: 50
-  randomSpread: 0
+  shotAngles:
+  - angle: 116
+    angularVel: 360
+  - angle: 180
+    angularVel: 0
+  - angle: 239
+    angularVel: -360
 --- !u!1 &1632420007 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7455017761125283534, guid: f87a8dc988698a24389ff02f4885a681,
@@ -741,7 +771,7 @@ GameObject:
   - component: {fileID: 1774863093}
   - component: {fileID: 1774863094}
   m_Layer: 0
-  m_Name: Rhythm Manager
+  m_Name: Rhythm Map
   m_TagString: Rhythm
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -866,12 +896,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1774863092}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.91, y: 0.04, z: -18.014286}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -5.2393026, y: 1.1000717, z: -9.264286}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_Father: {fileID: 43252732}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1985370141
 GameObject:
@@ -940,7 +970,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2170415400109319734
 PrefabInstance:
@@ -1062,7 +1092,7 @@ PrefabInstance:
     - target: {fileID: 1730810258605989658, guid: 69029467ddcc6fa49a5c054ff1ef8861,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1730810258605989658, guid: 69029467ddcc6fa49a5c054ff1ef8861,
         type: 3}

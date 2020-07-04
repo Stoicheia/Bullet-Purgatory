@@ -8,6 +8,20 @@ public class SFXManager : MonoBehaviour
 
 	public static SFXManager instance;
 
+    void OnEnable()
+    {
+        SpreadShooter.OnShoot += ()=>Play("Shot");
+        DefaultShooter.OnShoot += ()=>Play("Shot");
+        CustomSpreadShooter.OnShoot += ()=>Play("Shot");
+    }
+
+    void OnDisable()
+    {
+        SpreadShooter.OnShoot -= ()=>Play("Shot");
+        DefaultShooter.OnShoot -= ()=>Play("Shot");
+        CustomSpreadShooter.OnShoot -= ()=>Play("Shot");
+    }    
+
     void Awake()
     {
     	if(instance==null)

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class DefaultShooter : Shooter
 {
+	public delegate void ShootAction();
+	public static event ShootAction OnShoot;
+
     public override void Shoot(){
     	if(!shootEnabled) return;
 
@@ -11,6 +14,7 @@ public class DefaultShooter : Shooter
     	Bullet b = pooler.Spawn(toSpawn.gameObject, toSpawn.poolTag, transform.position, transform.rotation).GetComponent<Bullet>();
         b.SetSpeed(bulletSpeed);
         b.SetFriendly(friendly);
-        FindObjectOfType<SFXManager>().Play("Shot");
+        if(OnShoot!=null)
+        	OnShoot();
     }
 }

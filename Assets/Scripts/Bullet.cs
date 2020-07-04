@@ -50,7 +50,10 @@ public class Bullet : MonoBehaviour
     void OnHit(Collision2D hit){
         IDamageable hitObject = hit.gameObject.GetComponent<IDamageable>();
         if(hitObject!=null){
-            hitObject.TakeHit(damage, hit);
+            if(hitObject.IsFriendly()!=friendly){
+                hitObject.TakeHit(damage, hit);
+                pooler.Despawn(gameObject, poolTag);
+            }
         }
     }
 

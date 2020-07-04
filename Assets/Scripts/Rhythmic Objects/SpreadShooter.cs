@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class SpreadShooter : Shooter
 {
+    public delegate void ShootAction();
+    public static event ShootAction OnShoot;
+
 	public int numberOfBullets;
 	public float minAngle; public float maxAngle;
     public bool randomSpread;
@@ -12,16 +15,13 @@ public class SpreadShooter : Shooter
         if(!shootEnabled) return;
 
         float trueMaxAngle = (maxAngle>minAngle)? maxAngle:maxAngle+360;
-    	float interval = (numberOfBullets!=1)? (trueMaxAngle-minAngle)/(numberOfBullets-1) : (trueMaxAngle-minAngle)/2;
+    	float interval = (numberOfBullets>1)? (trueMaxAngle-minAngle)/(numberOfBullets-1) : (trueMaxAngle-minAngle)/2;
     	for(int i=0;i<numberOfBullets;i++){
     		float angleToShoot = randomSpread? Random.Range(minAngle,trueMaxAngle):interval*i+minAngle;
-            Bullet toSpawn = GetBullet();
-    		Bullet b = pooler.Spawn(toSpawn.gameObject, toSpawn.poolTag, transform.position, Quaternion.Euler(0,0,angleToShoot)*transform.rotation)
-    						 .GetComponent<Bullet>();
-        	b.SetSpeed(bulletSpeed);
-       	    b.SetFriendly(friendly);
+            SpawnFromPoolAtAngle(angleToShoot);
     	}
-        FindObjectOfType<SFXManager>().Play("Shot");
+        if(OnShoot!=null)
+            OnShoot();
         ReadjustShootAngles(ref minAngle, ref maxAngle);
     }
 
@@ -36,11 +36,9 @@ public class SpreadShooter : Shooter
     }
 
     void ReadjustShootAngles(ref float min, ref float max){
-        min %= 360;
-        max %= 360;
+        min = (min%360+360)%360;
+        max = (max%360+360)%360;
     }
 
-    public void AdjustRandom(bool r){
-        randomSpread = r;
-    }
+    public void AdjustRandom(bool r) => randomSpread = r;
 }

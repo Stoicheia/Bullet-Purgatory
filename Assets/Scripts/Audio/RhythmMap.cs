@@ -21,16 +21,8 @@ public class RhythmMap : MonoBehaviour
         string[] lines = mapData.Split('#');
 
         songLines = new Dictionary<string, SongLine>();
-        foreach(var nameAndDatas in lines){
-            string[] nameAndData = nameAndDatas.Split(':');
-
-            SongLine line = Instantiate(lineObjectPrefab, transform.position, transform.rotation) as SongLine;
-            line.transform.parent = transform;
-            line.name = line.part = nameAndData[0];
-            line.SetMap(nameAndData[1]);
-            line.SetAudioSource(songPlayer);
-
-            songLines.Add(nameAndData[0],line);
+        foreach(var nameAndDataStrings in lines){
+            CreateLineFromData(nameAndDataStrings);
         }
     }
 
@@ -44,6 +36,18 @@ public class RhythmMap : MonoBehaviour
         if(!songPlayer.isPlaying){
             RestartSong();
         }
+    }
+
+    void CreateLineFromData(string data){
+        string[] nameAndData = data.Split(':');
+
+        SongLine line = Instantiate(lineObjectPrefab, transform.position, transform.rotation) as SongLine;
+        line.transform.parent = transform;
+        line.name = line.part = nameAndData[0];
+        line.SetMap(nameAndData[1]);
+        line.SetAudioSource(songPlayer);
+
+        songLines.Add(nameAndData[0],line);        
     }
 
     public SongLine GetLine(string l){

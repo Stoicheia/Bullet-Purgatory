@@ -3,4 +3,5 @@
 public interface IDamageable
 {	
     void TakeHit(float damage, Collision2D col);
+    bool IsFriendly();
 }
