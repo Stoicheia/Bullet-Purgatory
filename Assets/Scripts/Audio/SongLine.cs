@@ -37,7 +37,7 @@ public class SongLine : MonoBehaviour
     	currentCommand = 0;
     	nextTickTime = 0;
         currentStyle = 0;
-    	breakInterval = 100000;
+    	breakInterval = 100000;      
     }
 
     void Update()
@@ -55,6 +55,14 @@ public class SongLine : MonoBehaviour
 
     public void SetAudioSource(AudioSource c){
     	lineClip = c;
+    }
+
+    public float GetNextAudioTickTime(){
+        return nextTickTime;
+    }
+
+    public float GetBPM(){
+        return bpm;
     }
 
     void ReadCommand(){

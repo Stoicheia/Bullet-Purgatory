@@ -10,12 +10,13 @@ public class RhythmMapsManager : MonoBehaviour
 
     void Awake(){
     	startingActiveMapNumber = 0;
+        maps = GetComponentsInChildren<RhythmMap>();
+        activeMap = maps[startingActiveMapNumber];        
     }
 
     void Start()
     {
-        maps = GetComponentsInChildren<RhythmMap>();
-        activeMap = maps[startingActiveMapNumber];
+
     }
 
     public void ChangeSong(RhythmMap map){

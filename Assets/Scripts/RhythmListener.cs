@@ -12,11 +12,19 @@ public class RhythmListener : MonoBehaviour
 
     void Start()
     {
-    	responder = GetComponent<RhythmicObject>();
+    	responder = GetComponent<RhythmicObject>();  
         mapManager = Object.FindObjectOfType(typeof(RhythmMapsManager)) as RhythmMapsManager;
         line = mapManager.GetActiveMap().GetLine(part);
         line.Tick += Act;
         line.Switch += ChangeStyle; 
+    }
+
+    void OnEnable()
+    {
+        if(line!=null){
+            line.Tick += Act;
+            line.Switch += ChangeStyle;
+        }      
     }
 
     void OnDisable(){
@@ -30,5 +38,13 @@ public class RhythmListener : MonoBehaviour
 
     public void ChangeStyle(int i){
     	responder.Change(i);
+    }
+
+    public float GetNextTickTime(){
+        return line.GetNextAudioTickTime();
+    }
+
+    public float GetOneBeatTime(){
+        return 60/line.GetBPM();
     }
 }

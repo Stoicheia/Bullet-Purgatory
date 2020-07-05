@@ -21,6 +21,8 @@ public class TickAlternater : RhythmicObject
 	}
 
     public override void Shoot(){
+    	if(!shootEnabled)
+    		return;
     	alternatingShooters[currentAlternation%alternatingShooters.Count].Shoot();
     	if(!alternateStyle)
     		currentAlternation++;
