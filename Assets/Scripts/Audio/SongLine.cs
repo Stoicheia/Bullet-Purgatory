@@ -31,9 +31,12 @@ public class SongLine : MonoBehaviour
     	nextTickTime = 0;
     }
 
+    void Start(){
+        commands = map.Split(' ');
+    }
+
     public void StartRhythm()
     {
-    	commands = map.Split(' ');
     	currentCommand = 0;
     	nextTickTime = 0;
         currentStyle = 0;
@@ -85,7 +88,8 @@ public class SongLine : MonoBehaviour
                 case "S":
                     currentStyle = (int)val;
                     breakInterval = 100000;
-                    Switch(currentStyle);
+                    if(Switch!=null)
+                        Switch(currentStyle);
                     break;
     			default:
     				breakInterval = SecondsToBeats(val/1000, bpm);

@@ -6,6 +6,9 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class RhythmMap : MonoBehaviour
 {
+    public delegate void SongAction(RhythmMap map);
+    public static event SongAction OnSongEnd;
+
     AudioSource songPlayer;
     public AudioClip musicClip;
     public TextAsset mapDataFile;
@@ -28,13 +31,14 @@ public class RhythmMap : MonoBehaviour
 
     void Start()
     {
-        RestartSong();
+        //RestartSongAfter(0.5f);
     }
 
     void Update()
     {
-        if(!songPlayer.isPlaying){
-            RestartSong();
+        if(songPlayer.time>=songPlayer.clip.length){
+            if(OnSongEnd!=null)
+                OnSongEnd(this);
         }
     }
 
@@ -54,11 +58,19 @@ public class RhythmMap : MonoBehaviour
         return songLines[l];
     }
 
-    public void RestartSong(){
+    void RestartSong(){
         songPlayer.Play();
         foreach(var line in songLines.Values)
             line.StartRhythm();
     }
+
+    public void RestartSongAfter(float s){
+        StartCoroutine(StartSongAfterSeconds(0.5f));
+    }
+
+    public void UnpauseSongAfter(float s){
+        StartCoroutine(UnpauseSongAfterSeconds(0.5f));
+    }    
 
     public void Pause(){
         songPlayer.Pause();
@@ -66,5 +78,16 @@ public class RhythmMap : MonoBehaviour
 
     public void Unpause(){
         songPlayer.UnPause();
+    }    
+
+    IEnumerator StartSongAfterSeconds(float s){
+        yield return new WaitForSeconds(s);
+        RestartSong();
     }
+
+    IEnumerator UnpauseSongAfterSeconds(float s){
+        yield return new WaitForSeconds(s);
+        Unpause();
+    }    
+
 }

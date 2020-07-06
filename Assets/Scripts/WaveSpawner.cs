@@ -5,11 +5,19 @@ using UnityEngine;
 
 public class WaveSpawner : RhythmicObject
 {
+	public delegate void StateChangeAction(LevelState state);
+	public static event StateChangeAction GoToState; 
+
 	RhythmListener listener;
 	int enemiesOnScreen = 0;
 	public Wave[] waves;
 	int currentWave;
 	int nextWave;
+	int totalWaves;
+
+	Wave activeWave;
+
+	bool spawnStarted = false;
 
 	protected override void Awake(){
 		base.Awake();
@@ -18,10 +26,12 @@ public class WaveSpawner : RhythmicObject
 			listener = gameObject.AddComponent<RhythmListener>();
 			listener.part = "Wave";
 		}
+		totalWaves = waves.Length;
 	}
 
 	void OnEnable(){
 		Enemy.OnDeath += KilledOneEnemy;
+		RhythmMap.OnSongEnd += (RhythmMap m) => Debug.Log("hm"); //TODO: delete this
 	}
 
 	void OnDisable(){
@@ -37,7 +47,7 @@ public class WaveSpawner : RhythmicObject
 
     void Update()
     {
-        if(enemiesOnScreen <= 0)
+        if(enemiesOnScreen <= 0 && spawnStarted)
         	SpawnNextWave();
     }
 
@@ -47,14 +57,26 @@ public class WaveSpawner : RhythmicObject
 
     public void SpawnNextWave(){
     	currentWave++; nextWave++;
-    	Wave waveToSpawn = waves[currentWave%waves.Length];
-    	waveToSpawn.Spawn();
-    	enemiesOnScreen += waveToSpawn.GetEnemyCount();
+    	if(currentWave==totalWaves){
+    		GoToState(LevelState.ENDSCREEN);
+    		return;
+    	}
+    	activeWave = waves[currentWave%totalWaves];
+    	activeWave.Spawn();
+    	enemiesOnScreen += activeWave.GetEnemyCount();
     }
 
     void KilledOneEnemy(string tagOfDead){
-		Debug.Log(enemiesOnScreen);
     	enemiesOnScreen--;
+    	Debug.Log(enemiesOnScreen);
+    }
+
+    public void StartSpawning(){
+    	spawnStarted = true;
+    }
+
+    public void StopSpawning(){
+    	spawnStarted = false;
     }
 
 
