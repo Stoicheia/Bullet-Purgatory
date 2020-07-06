@@ -11,6 +11,7 @@ public class LevelStateManager : MonoBehaviour
 	WaveSpawner waveSpawner;
 	RhythmMapsManager rhythmManager;
 	DialogueManager dialogueManager;
+	UIManager uiManager;
 
 	void Awake()
 	{
@@ -18,6 +19,7 @@ public class LevelStateManager : MonoBehaviour
 		waveSpawner = FindObjectOfType<WaveSpawner>();
 		rhythmManager = FindObjectOfType<RhythmMapsManager>();
 		dialogueManager = FindObjectOfType<DialogueManager>();
+		uiManager = FindObjectOfType<UIManager>();
 	}
 
 	void Start()
@@ -71,7 +73,7 @@ public class LevelStateManager : MonoBehaviour
     			rhythmManager.EnterRhythm();
     			break;
     		case LevelState.ENDSCREEN:
-    			Debug.Log("You win");
+    			uiManager.EnterEndscreen();
     			break;
     		case LevelState.FAILSCREEN:
     			Debug.Log("You fail");
