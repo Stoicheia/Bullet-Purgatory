@@ -18,3 +18,5 @@ Planned Cool Features:
  - Actual art (made in inkscape).
  
  Game (specifically the wave system) somewhat inspired by Bullet Heaven by kupogames.
+ 
+ To experience the "feel" of the game, play [this game](https://stoicheia.github.io/game/game.html) on my website.
