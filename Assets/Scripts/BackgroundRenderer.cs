@@ -8,6 +8,7 @@ public class BackgroundRenderer : MonoBehaviour
 	public float scrollSpeed;
 
 	const float SCROLL_LENIENCY = 1f;
+    const float GAP_FILL = 0.01f;
 	MeshCollider myCollider;
 	List<SpriteRenderer> scrollingImages;
 
@@ -25,7 +26,7 @@ public class BackgroundRenderer : MonoBehaviour
             Vector3 toScale = myBackground.transform.localScale;
 	        toScale *= scale;
             myBackground.transform.localScale = toScale;
-	        myBackground.transform.Translate(new Vector3(0,i*myBackground.bounds.size.y,10));
+	        myBackground.transform.Translate(new Vector3(0,(i*(1-GAP_FILL))*myBackground.bounds.size.y,10));
 	        scrollingImages.Add(myBackground);
    		}
     }
@@ -35,7 +36,7 @@ public class BackgroundRenderer : MonoBehaviour
         foreach(SpriteRenderer si in scrollingImages){
         	si.transform.Translate(new Vector3(0,-scrollSpeed*Time.deltaTime,0));
         	if(si.bounds.max.y<myCollider.bounds.min.y-SCROLL_LENIENCY){
-        		si.transform.Translate(new Vector3(0,3*si.bounds.size.y,0));
+        		si.transform.Translate(new Vector3(0,3*si.bounds.size.y-4*GAP_FILL*si.bounds.size.y,0));
         	}
         }
     }
