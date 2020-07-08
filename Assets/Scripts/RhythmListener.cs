@@ -30,8 +30,10 @@ public class RhythmListener : MonoBehaviour
 
     void OnDisable(){
         RhythmMapsManager.NewSong -= ChangeSong;
-        line.Tick -= Act;
-        line.Switch -= ChangeStyle;        
+        if(line!=null){
+            line.Tick -= Act;
+            line.Switch -= ChangeStyle;        
+        }
     }
 
     public void Act(){

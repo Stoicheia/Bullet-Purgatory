@@ -1,5 +1,88 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!60 &3666694488399107065
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7519447708084633698}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 7.4, y: 15.46}
+    newSize: {x: 0.8, y: 0.8}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.22, y: -7.29}
+      - {x: 0.28, y: -7.16}
+      - {x: 0.56, y: -6.56}
+      - {x: 0.62, y: -6.43}
+      - {x: 0.9, y: -5.83}
+      - {x: 0.96, y: -5.7}
+      - {x: 1.31, y: -4.95}
+      - {x: 1.37, y: -4.8199997}
+      - {x: 1.65, y: -4.22}
+      - {x: 1.78, y: -3.9399998}
+      - {x: 1.99, y: -3.49}
+      - {x: 2.05, y: -3.36}
+      - {x: 2.3999999, y: -2.61}
+      - {x: 2.46, y: -2.48}
+      - {x: 2.74, y: -1.88}
+      - {x: 2.8, y: -1.75}
+      - {x: 3.1499999, y: -1}
+      - {x: 3.21, y: -0.87}
+      - {x: 3.49, y: -0.26999998}
+      - {x: 3.55, y: -0.14}
+      - {x: 3.6899998, y: 0.16}
+      - {x: 3.6999998, y: 0.17999999}
+      - {x: 3.6999998, y: 0.28}
+      - {x: 3.56, y: 0.58}
+      - {x: 2.48, y: 2.86}
+      - {x: 2.3799999, y: 3.07}
+      - {x: 0.76, y: 6.49}
+      - {x: 0.65999997, y: 6.7}
+      - {x: 0.48, y: 7.06}
+      - {x: 0.48, y: 7.08}
+      - {x: 0.29999998, y: 7.46}
+      - {x: 0.17999999, y: 7.72}
+      - {x: 0.16, y: 7.73}
+      - {x: 0.12, y: 7.73}
+      - {x: 0.06, y: 7.62}
+      - {x: -0.34, y: 6.87}
+      - {x: -1.5699999, y: 4.56}
+      - {x: -2.06, y: 3.6399999}
+      - {x: -2.3899999, y: 3.02}
+      - {x: -2.47, y: 2.87}
+      - {x: -2.56, y: 2.7}
+      - {x: -2.8799999, y: 2.1}
+      - {x: -2.97, y: 1.93}
+      - {x: -3.29, y: 1.3299999}
+      - {x: -3.3799999, y: 1.16}
+      - {x: -3.62, y: 0.71}
+      - {x: -3.6999998, y: 0.55}
+      - {x: -3.6999998, y: 0.45}
+      - {x: -3.6499999, y: 0.34}
+      - {x: -3.57, y: 0.16}
+      - {x: -2.1399999, y: -3.03}
+      - {x: -1.8399999, y: -3.6999998}
+      - {x: -0.28, y: -7.18}
+      - {x: -0.099999994, y: -7.58}
+      - {x: -0.03, y: -7.73}
+      - {x: 0, y: -7.73}
+      - {x: 0.02, y: -7.72}
+      - {x: 0.08, y: -7.5899997}
 --- !u!1001 &3370133944659754350
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16,17 +99,22 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 7d44c2bc419f08945ab26fee30b93eae,
+      objectReference: {fileID: 21300000, guid: e043931f9ed716f43a8f3b566ec84e8b,
         type: 3}
+    - target: {fileID: 1594225128455137996, guid: 70566cea160673f408aefeba38ae73da,
+        type: 3}
+      propertyPath: m_Radius
+      value: 3.28
+      objectReference: {fileID: 0}
     - target: {fileID: 3913303870592274586, guid: 70566cea160673f408aefeba38ae73da,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.7368333
+      value: 1.524
       objectReference: {fileID: 0}
     - target: {fileID: 3913303870592274586, guid: 70566cea160673f408aefeba38ae73da,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.3955036
+      value: -0.95
       objectReference: {fileID: 0}
     - target: {fileID: 3913303870592274586, guid: 70566cea160673f408aefeba38ae73da,
         type: 3}
@@ -73,10 +161,32 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3913303870592274586, guid: 70566cea160673f408aefeba38ae73da,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.07696616
+      objectReference: {fileID: 0}
+    - target: {fileID: 3913303870592274586, guid: 70566cea160673f408aefeba38ae73da,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.07696616
+      objectReference: {fileID: 0}
+    - target: {fileID: 3913303870592274586, guid: 70566cea160673f408aefeba38ae73da,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.07696616
+      objectReference: {fileID: 0}
     - target: {fileID: 5088908348442328332, guid: 70566cea160673f408aefeba38ae73da,
         type: 3}
       propertyPath: m_Name
       value: Player Bullet
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1594225128455137996, guid: 70566cea160673f408aefeba38ae73da, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 70566cea160673f408aefeba38ae73da, type: 3}
+--- !u!1 &7519447708084633698 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5088908348442328332, guid: 70566cea160673f408aefeba38ae73da,
+    type: 3}
+  m_PrefabInstance: {fileID: 3370133944659754350}
+  m_PrefabAsset: {fileID: 0}

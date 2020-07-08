@@ -31,7 +31,6 @@ public class WaveSpawner : RhythmicObject
 
 	void OnEnable(){
 		Enemy.OnDeath += KilledOneEnemy;
-		RhythmMap.OnSongEnd += (RhythmMap m) => Debug.Log("hm"); //TODO: delete this
 	}
 
 	void OnDisable(){

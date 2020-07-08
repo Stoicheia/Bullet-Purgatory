@@ -76,7 +76,7 @@ public class LevelStateManager : MonoBehaviour
     			uiManager.EnterEndscreen();
     			break;
     		case LevelState.FAILSCREEN:
-    			Debug.Log("You fail");
+    			uiManager.EnterFailScreen();
     			break;
     	}
 

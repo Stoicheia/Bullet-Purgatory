@@ -63,8 +63,10 @@ public class RhythmMapsManager : MonoBehaviour
     void SetFinished(RhythmMap map){
         mapsFinished[map] = true;
         foreach(var b in mapsFinished){
-            if(!b.Value) ChangeSong(b.Key, 0.5f);
-            return;
+            if(!b.Value) {
+                ChangeSong(b.Key, 0.5f);
+                return;
+            }
         }
         GoToState(LevelState.FAILSCREEN);
     }

@@ -10,8 +10,16 @@ public class UIManager : MonoBehaviour
 	public EndScreenDisplay endScreenDisplay;
 	EndScreenDisplay myEndScreenDisplay;
 
+	public FailScreenDisplay failScreenDisplay;
+	FailScreenDisplay myFailScreenDisplay;
+
 	public void EnterEndscreen()
 	{
     	myEndScreenDisplay = Instantiate(endScreenDisplay, transform.position, transform.rotation);
+	}
+
+	public void EnterFailScreen()
+	{
+		myFailScreenDisplay = Instantiate(failScreenDisplay, transform.position, transform.rotation);
 	}
 }

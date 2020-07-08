@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -2873323096585375163}
   - component: {fileID: -2615233402773865145}
   m_Layer: 0
-  m_Name: Default Shooter
+  m_Name: Chapl's Shooter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7accd553cea10f547bcee3c5d2406fbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  part: Sub
+  part: Constant_2
 --- !u!114 &-2615233402773865145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57,8 +57,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4941d9835af419148bb3a35ecc70bbe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shootEnabled: 1
   toSpawn:
   - {fileID: 2983321234769858639, guid: 7df9ccd7787737e45abdf8daa254f7c0, type: 3}
   bulletSpeed: 10
-  shootEnabled: 1
   friendly: 1

@@ -10,10 +10,7 @@ public class DefaultShooter : Shooter
     public override void Shoot(){
     	if(!shootEnabled) return;
 
-    	Bullet toSpawn = GetBullet();
-    	Bullet b = pooler.Spawn(toSpawn.gameObject, toSpawn.poolTag, transform.position, transform.rotation).GetComponent<Bullet>();
-        b.SetSpeed(bulletSpeed);
-        b.SetFriendly(friendly);
+    	Bullet b = SpawnFromPoolAtAngle(0);
         if(OnShoot!=null)
         	OnShoot();
     }

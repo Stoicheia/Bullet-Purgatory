@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
-[RequireComponent(typeof(CircleCollider2D))]
+[RequireComponent(typeof(Collider2D))]
 public class Bullet : MonoBehaviour
 {
     public float damage = 1;
@@ -59,6 +59,10 @@ public class Bullet : MonoBehaviour
 
     public void SetSpeed(float s){
     	speed = s;
+    }
+
+    public void ChangeSpeed(float v){
+        speed += v;
     }
 
     public void Rotate(float r){

@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(MeshCollider))]
 public class BackgroundRenderer : MonoBehaviour
 {
 	public SpriteRenderer backgroundImage;
 	public float scrollSpeed;
+
 	const float SCROLL_LENIENCY = 1f;
 	MeshCollider myCollider;
 	List<SpriteRenderer> scrollingImages;
 
 	void Awake(){
-		myCollider = GetComponent<MeshCollider>();
+		myCollider = transform.parent.GetComponent<MeshCollider>();
     	scrollingImages = new List<SpriteRenderer>();
 	}
 
@@ -22,8 +22,10 @@ public class BackgroundRenderer : MonoBehaviour
 	        SpriteRenderer myBackground = Instantiate(backgroundImage, transform.position, Quaternion.identity) as SpriteRenderer;
 	        myBackground.transform.parent = transform;
 	        float scale = myCollider.bounds.size.x/myBackground.bounds.size.x;
-	        myBackground.transform.localScale *= scale;
-	        myBackground.transform.Translate(new Vector3(0,i*myBackground.bounds.size.y,0));
+            Vector3 toScale = myBackground.transform.localScale;
+	        toScale *= scale;
+            myBackground.transform.localScale = toScale;
+	        myBackground.transform.Translate(new Vector3(0,i*myBackground.bounds.size.y,10));
 	        scrollingImages.Add(myBackground);
    		}
     }
