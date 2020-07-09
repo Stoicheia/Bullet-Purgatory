@@ -58,7 +58,7 @@ public class RhythmListener : MonoBehaviour
         return line.GetNextAudioTickTime();
     }
 
-    public float GetOneBeatTime(){
-        return 60/line.GetBPM();
+    public float BeatsToSeconds(float b){
+        return b*60/line.GetBPM();
     }
 }

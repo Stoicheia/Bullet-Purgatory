@@ -12,7 +12,7 @@ public class EnemyAnimations : MonoBehaviour
     void Start()
     {
         if(sprite==null)
-        	sprite = GetComponentInChildren<Animator>();
+        	sprite = GetComponentsInChildren<Animator>()[1];
     }
 
     public void PlayHit()

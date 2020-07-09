@@ -57,12 +57,19 @@ public class WaveSpawner : RhythmicObject
     public void SpawnNextWave(){
     	currentWave++; nextWave++;
     	if(currentWave==totalWaves){
-    		GoToState(LevelState.ENDSCREEN);
+    		StartCoroutine(WinSequence());
     		return;
     	}
     	activeWave = waves[currentWave%totalWaves];
     	activeWave.Spawn();
     	enemiesOnScreen += activeWave.GetEnemyCount();
+    }
+
+    IEnumerator WinSequence()
+    {
+        StopSpawning();
+        yield return new WaitForSeconds(listener.BeatsToSeconds(4));
+        GoToState(LevelState.ENDSCREEN);
     }
 
     void KilledOneEnemy(string tagOfDead){
