@@ -2,38 +2,43 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
 public class Enemy : MonoBehaviour, IDamageable
 {
-    public delegate void DieAction(string tag);
-    public static event DieAction OnDeath;
+    public delegate void HitAction(string tag);
+    public static event HitAction OnDeath;
+    public static event HitAction OnHit;
 
     public string enemyTag;
 	public float maxHP;
 	float hp;
-	public RhythmicObject shooter;
 	public bool shooting;
-	RhythmicObject myShooter;
+	RhythmicObject[] myShooters;
 
 	Bounds myBounds;
 	Bounds stageBounds;
 	Animator animator;
 
+    EnemyAnimations spriteAnimations;
+
     void Start()
     {
     	hp = maxHP;
-    	myShooter = Instantiate(shooter,transform.position,transform.rotation) as RhythmicObject;
-        myShooter.transform.parent = transform;   
 
-        myBounds = GetComponent<SpriteRenderer>().bounds;
+    	myShooters = GetComponentsInChildren<RhythmicObject>();
+
+        myBounds = GetComponent<Collider2D>().bounds;
         stageBounds = GameObject.FindGameObjectWithTag("Stage").GetComponent<MeshCollider>().bounds;
+
         animator = GetComponent<Animator>();
+        spriteAnimations = GetComponent<EnemyAnimations>();
     }
 
     void Update()
     {
-        myShooter.shootEnabled = shooting;
+        foreach(RhythmicObject shooter in myShooters)
+            shooter.shootEnabled = shooting;
         if(!animator.GetCurrentAnimatorStateInfo(0).IsName("Spawning"))
         	CheckOutOfBounds();
     }
@@ -50,20 +55,39 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public void TakeHit(float damage, Collision2D col){
         hp -= damage;
-        if(hp<=0)
-        	Die();
+        if(OnHit!=null)
+            OnHit(enemyTag);
+        if(hp<=0){
+            Die();
+            return;
+        }
+        if(spriteAnimations!=null)
+            spriteAnimations.PlayHit();
     }
 
     public void Die(){
     	if(OnDeath!=null)
     		OnDeath(enemyTag);
-        Deactivate();
+        StartCoroutine(DeathSequence());
     }
 
     public void Leave(){
     	if(OnDeath!=null)
     		OnDeath(enemyTag);
-    	Deactivate();
+       Deactivate();
+    }
+
+    IEnumerator DeathSequence(){
+        DisableCollisions();
+        if(spriteAnimations!=null){
+            spriteAnimations.PlayDeath();
+            yield return new WaitForSeconds(spriteAnimations.DeathAnimDuration());
+        }
+        Deactivate();
+    }
+
+    void DisableCollisions(){
+        GetComponent<Collider2D>().enabled = false;
     }
 
     void Deactivate(){

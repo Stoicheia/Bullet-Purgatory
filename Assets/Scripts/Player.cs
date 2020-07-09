@@ -7,7 +7,11 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class Player : MonoBehaviour, IDamageable
 {
+    public delegate void DieAction();
+    public static event DieAction OnPlayerHit;
+
 	Controller controller;
+    Collider2D hitbox;
     public Animator animator;
 
     RhythmicObject shooter;
@@ -29,10 +33,15 @@ public class Player : MonoBehaviour, IDamageable
 	public KeyCode crawlButton;
 	int moveState;
 
+    bool invulnerable;
+    float invulnTimeLeft;
+    public float invulnerabilityPeriod = 2f;
+
 	public RhythmicObject startingShooter;
 
     void Start(){
     	controller = GetComponent<Controller>();
+        hitbox = GetComponent<Collider2D>();
 
     	moveVector = targetMoveVector = new Vector3(0,0,0);
     	speed = defSpeed;
@@ -40,6 +49,8 @@ public class Player : MonoBehaviour, IDamageable
 
         shooter = Instantiate(startingShooter,transform.position,transform.rotation) as RhythmicObject;
         shooter.transform.parent = transform;
+
+        invulnerable = false;
     }
 
     void Update()
@@ -48,6 +59,7 @@ public class Player : MonoBehaviour, IDamageable
         UpdateSpeedMultiplier();
         CalculateMoveVector(inputVector);
         UpdateShooterRotation();
+        UpdateInvulnerability();
         UpdateAnimatorParams();
 
         controller.Move(moveVector);
@@ -74,8 +86,15 @@ public class Player : MonoBehaviour, IDamageable
     void UpdateAnimatorParams()
     {
         animator.SetFloat("horzSpeed", inputVector.x);
+        animator.SetBool("invulnerable", invulnerable);
     }
 
+    void UpdateInvulnerability()
+    {
+        invulnTimeLeft -= Time.deltaTime;
+        invulnerable = invulnTimeLeft > 0;
+        hitbox.enabled = !invulnerable;
+    }
 
     void UpdateMoveState(KeyCode a, KeyCode b){
     	moveState = 0;
@@ -91,7 +110,9 @@ public class Player : MonoBehaviour, IDamageable
     }
 
     public void TakeHit(float damage, Collision2D col){
-        
+        invulnTimeLeft = invulnerabilityPeriod;
+        if(OnPlayerHit!=null)
+            OnPlayerHit();
     }
 
     public bool IsFriendly(){
