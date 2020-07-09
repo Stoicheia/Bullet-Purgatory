@@ -29,8 +29,8 @@ public class Player : MonoBehaviour, IDamageable
 
 	public float moveSmoothing;
 	public float sprintMod;
-	public KeyCode sprintButton;
-	public KeyCode crawlButton;
+	KeyCode sprintButton = KeyCode.LeftShift;
+	KeyCode strafeButton = KeyCode.Space;
 	int moveState;
 
     bool invulnerable;
@@ -46,6 +46,9 @@ public class Player : MonoBehaviour, IDamageable
     	moveVector = targetMoveVector = new Vector3(0,0,0);
     	speed = defSpeed;
         moveState = 0;
+
+        sprintButton = Keybinds.instance.keys["Sprint"];
+        strafeButton = Keybinds.instance.keys["Strafe"];
 
         shooter = Instantiate(startingShooter,transform.position,transform.rotation) as RhythmicObject;
         shooter.transform.parent = transform;
@@ -68,7 +71,7 @@ public class Player : MonoBehaviour, IDamageable
     void GetMoveInputs()
     {
         inputVector = new Vector3(Input.GetAxisRaw("Horizontal"),Input.GetAxisRaw("Vertical"),0).normalized;
-        UpdateMoveState(sprintButton, crawlButton);
+        UpdateMoveState(sprintButton, strafeButton);
     }
 
     void CalculateMoveVector(Vector3 inVec)

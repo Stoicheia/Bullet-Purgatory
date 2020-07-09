@@ -102,7 +102,7 @@ public class SongLine : MonoBehaviour
     			currentCommand++;
     			return;
     		}
-    		if(Tick!=null)
+    		if(Tick!=null&&currentStyle>=0)
     			Tick();
     		string interval = commandParts[0];
     		string[] divisors = interval.Split('/');

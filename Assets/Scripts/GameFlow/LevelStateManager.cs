@@ -60,7 +60,7 @@ public class LevelStateManager : MonoBehaviour
     			dialogueManager.ExitDialogue();
     			break;
     		case LevelState.PLAYING:
-    			waveSpawner.StopSpawning();
+    			//waveSpawner.StopSpawning();
     			break;
     	}
     	levelState = newState;
