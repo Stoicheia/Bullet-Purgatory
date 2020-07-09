@@ -17,8 +17,8 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 7.4, y: 15.46}
-    newSize: {x: 0.8, y: 0.8}
+    oldSize: {x: 15.65, y: 22.84}
+    newSize: {x: 15.65, y: 22.84}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -99,8 +99,18 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: e043931f9ed716f43a8f3b566ec84e8b,
+      objectReference: {fileID: -5478657149572160243, guid: cea629ad4a39a1e4aabe1d8f521d7231,
         type: 3}
+    - target: {fileID: 655433316492090417, guid: 70566cea160673f408aefeba38ae73da,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 15.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 655433316492090417, guid: 70566cea160673f408aefeba38ae73da,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 22.84
+      objectReference: {fileID: 0}
     - target: {fileID: 1594225128455137996, guid: 70566cea160673f408aefeba38ae73da,
         type: 3}
       propertyPath: m_Radius
@@ -164,22 +174,22 @@ PrefabInstance:
     - target: {fileID: 3913303870592274586, guid: 70566cea160673f408aefeba38ae73da,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.07696616
+      value: 0.045679417
       objectReference: {fileID: 0}
     - target: {fileID: 3913303870592274586, guid: 70566cea160673f408aefeba38ae73da,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.07696616
+      value: 0.045679417
       objectReference: {fileID: 0}
     - target: {fileID: 3913303870592274586, guid: 70566cea160673f408aefeba38ae73da,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.07696616
+      value: 0.045679417
       objectReference: {fileID: 0}
     - target: {fileID: 5088908348442328332, guid: 70566cea160673f408aefeba38ae73da,
         type: 3}
       propertyPath: m_Name
-      value: Player Bullet
+      value: Chapl's Bullet
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1594225128455137996, guid: 70566cea160673f408aefeba38ae73da, type: 3}
