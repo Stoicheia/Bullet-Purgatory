@@ -13,6 +13,10 @@ public class RhythmMap : MonoBehaviour
     public AudioClip musicClip;
     public TextAsset mapDataFile;
     public SongLine lineObjectPrefab;
+
+    public float fadeOutTime = 0;
+    bool fading;
+
     string mapData;
     Dictionary<string, SongLine> songLines; //the point of this class: mapDataFile -> mapData -> songLines and sync with audio
 
@@ -27,6 +31,8 @@ public class RhythmMap : MonoBehaviour
         foreach(var nameAndDataStrings in lines){
             CreateLineFromData(nameAndDataStrings);
         }
+
+        fading = false;
     }
 
     void Start()
@@ -36,6 +42,10 @@ public class RhythmMap : MonoBehaviour
 
     void Update()
     {
+        if(songPlayer.time>=songPlayer.clip.length-fadeOutTime && !fading){
+            transform.parent.GetComponent<RhythmMapsManager>().FadeOutIn(Mathf.Max(0,fadeOutTime-0.1f), 0.1f);
+            fading = true;
+        }
         if(songPlayer.time>=songPlayer.clip.length){
             if(OnSongEnd!=null)
                 OnSongEnd(this);
@@ -89,5 +99,7 @@ public class RhythmMap : MonoBehaviour
         yield return new WaitForSeconds(s);
         Unpause();
     }    
+
+
 
 }

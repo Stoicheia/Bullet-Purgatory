@@ -16,14 +16,19 @@ public class Enemy : MonoBehaviour, IDamageable
 	public bool shooting;
 	RhythmicObject[] myShooters;
 
+    bool dead;
+
 	Bounds myBounds;
 	Bounds stageBounds;
 	Animator animator;
+
+    AnimatorStateInfo spawnState;
 
     EnemyAnimations spriteAnimations;
 
     void Start()
     {
+        dead = false;
     	hp = maxHP;
 
     	myShooters = GetComponentsInChildren<RhythmicObject>();
@@ -37,9 +42,10 @@ public class Enemy : MonoBehaviour, IDamageable
 
     void Update()
     {
+        spawnState = animator.GetCurrentAnimatorStateInfo(0);
         foreach(RhythmicObject shooter in myShooters)
             shooter.shootEnabled = shooting;
-        if(!animator.GetCurrentAnimatorStateInfo(0).IsName("Spawning"))
+        if(!spawnState.IsName("Spawning"))
         	CheckOutOfBounds();
     }
 
@@ -66,18 +72,21 @@ public class Enemy : MonoBehaviour, IDamageable
     }
 
     public void Die(){
+        if(dead) return;
     	if(OnDeath!=null)
     		OnDeath(enemyTag);
         StartCoroutine(DeathSequence());
     }
 
     public void Leave(){
+        if(dead) return;
     	if(OnDeath!=null)
     		OnDeath(enemyTag);
        Deactivate();
     }
 
     IEnumerator DeathSequence(){
+        dead = true;
         DisableCollisions();
         if(spriteAnimations!=null){
             spriteAnimations.PlayDeath();
@@ -88,6 +97,11 @@ public class Enemy : MonoBehaviour, IDamageable
 
     void DisableCollisions(){
         GetComponent<Collider2D>().enabled = false;
+        foreach(Transform child in transform){
+            if(child.GetComponent<RhythmicObject>()!=null){
+                child.gameObject.SetActive(false);
+            }
+        }
     }
 
     void Deactivate(){
@@ -98,5 +112,9 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public bool IsFriendly(){
         return false;
+    }
+
+    public bool IsSpawning(){
+        return spawnState.IsName("Spawning");
     }
 }

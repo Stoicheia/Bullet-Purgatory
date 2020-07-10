@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  poolTag: red
+  poolTag: slime
 --- !u!58 &279246302708903617
 CircleCollider2D:
   m_ObjectHideFlags: 0

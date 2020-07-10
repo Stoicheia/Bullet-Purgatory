@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5785200509432423349}
   - component: {fileID: 5785200509432423350}
   m_Layer: 0
-  m_Name: Level Song
+  m_Name: TSLove
   m_TagString: Rhythm
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,7 +41,8 @@ AudioSource:
   m_GameObject: {fileID: 5785200509432423348}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 854afd8c2dd635b49b618f1c89fb9f8d,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: a2aa2a85076ce344da28cfc773648956, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.384

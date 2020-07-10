@@ -61,8 +61,14 @@ public class WaveSpawner : RhythmicObject
     		return;
     	}
     	activeWave = waves[currentWave%totalWaves];
-    	activeWave.Spawn();
+    	StartCoroutine(SpawnActiveWaveAfter(listener.BeatsToSeconds(2)));
     	enemiesOnScreen += activeWave.GetEnemyCount();
+    }
+
+    IEnumerator SpawnActiveWaveAfter(float wait)
+    {
+        yield return new WaitForSeconds(wait);
+        activeWave.Spawn();
     }
 
     IEnumerator WinSequence()

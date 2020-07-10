@@ -108,6 +108,17 @@ public class Player : MonoBehaviour, IDamageable
     }
 
     void UpdateSpeedMultiplier(){
+        /*switch(moveState){
+            case -1:
+                speedMultplier = 1/sprintMod;
+                break;
+            case 0:
+                speedMultplier = 1;
+                break;
+            case 1:
+                speedMultplier = sprintMod;
+                break;
+        }*/
         speedMultplier = Mathf.Pow(sprintMod, moveState);
     	speed = defSpeed * speedMultplier;
     }
@@ -120,5 +131,9 @@ public class Player : MonoBehaviour, IDamageable
 
     public bool IsFriendly(){
         return true;
+    }
+
+    public int GetMoveState(){
+        return moveState;
     }
 }

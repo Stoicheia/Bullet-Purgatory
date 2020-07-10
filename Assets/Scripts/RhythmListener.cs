@@ -10,21 +10,16 @@ public class RhythmListener : MonoBehaviour
 	SongLine line;
 	RhythmicObject responder;
 
-    void Start()
+    void Awake()
     {
-    	responder = GetComponent<RhythmicObject>();      
+        mapManager = FindObjectOfType<RhythmMapsManager>();
+    	responder = GetComponent<RhythmicObject>();          
     }
 
 
     void OnEnable()
-    {
-        mapManager = Object.FindObjectOfType(typeof(RhythmMapsManager)) as RhythmMapsManager;
-        RhythmMap mapOnSpawn = mapManager.GetActiveMap();
-        if(mapOnSpawn!=null){
-            line = mapOnSpawn.GetLine(part);
-            line.Tick += Act;
-            line.Switch += ChangeStyle;
-        }            
+    {   
+        ChangeSong();   
         RhythmMapsManager.NewSong += ChangeSong;
     }
 
@@ -49,9 +44,13 @@ public class RhythmListener : MonoBehaviour
             line.Tick -= Act;
             line.Switch -= ChangeStyle;
         }
-        line = mapManager.GetActiveMap().GetLine(part);
-        line.Tick += Act;
-        line.Switch += ChangeStyle;
+        RhythmMap activeMap = mapManager.GetActiveMap();
+        if(activeMap!=null)
+            line = activeMap.GetLine(part);
+        if(line!=null){
+            line.Tick += Act;
+            line.Switch += ChangeStyle;
+        }
     }
 
     public float GetNextTickTime(){
@@ -59,6 +58,7 @@ public class RhythmListener : MonoBehaviour
     }
 
     public float BeatsToSeconds(float b){
+        if(line==null) return 0;
         return b*60/line.GetBPM();
     }
 }

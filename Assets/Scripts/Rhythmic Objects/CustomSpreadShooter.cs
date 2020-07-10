@@ -10,6 +10,8 @@ public class CustomSpreadShooter : Shooter
     public AngleSpeedPair[] shotAngles;
     
     public override void Shoot(){
+        if(!shootEnabled)return;
+        
     	foreach(AngleSpeedPair asp in shotAngles){
     		SpawnFromPoolAtAngle(asp.angle);	
     		ReadjustShootAngle(ref asp.angle);	

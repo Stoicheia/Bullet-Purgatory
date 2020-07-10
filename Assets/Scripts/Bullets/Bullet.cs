@@ -7,8 +7,10 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public float damage = 1;
+    public float speedModifier = 1;
 
 	float speed;
+    float actualSpeed;
 	Vector3 moveVector;
 	bool friendly = false;
 
@@ -30,7 +32,8 @@ public class Bullet : MonoBehaviour
 
     void Update()
     {
-        float moveDistance = speed*Time.deltaTime;
+        actualSpeed = speed*speedModifier;
+        float moveDistance = actualSpeed*Time.deltaTime;
     	moveVector = new Vector3(0,1,0)*moveDistance;
         Move(moveVector);
     }

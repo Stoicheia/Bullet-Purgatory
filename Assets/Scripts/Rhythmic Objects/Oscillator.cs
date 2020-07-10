@@ -9,14 +9,28 @@ public class Oscillator : MonoBehaviour
     public float oscillationMagnitude;
     [Range(0.01f,10)]
     public float oscillationPeriodSeconds;
+
+    public bool stationaryCenterOfRotation;
     public bool constantRotation;
+
+    float fixedCenterOfRotation;
+
+    void Start(){
+        fixedCenterOfRotation = transform.eulerAngles.z;
+    }
 
     void FixedUpdate()
     {
     	float angleToRotate;
-    	if(!constantRotation){
+        if(stationaryCenterOfRotation){
+            float targetAngle;
+            targetAngle = fixedCenterOfRotation+oscillationMagnitude/2*Mathf.Sin(Time.fixedTime*2*Mathf.PI/oscillationPeriodSeconds);
+            transform.rotation = Quaternion.Euler(0,0,targetAngle);
+            return;
+        }
+    	else if(!constantRotation){
 	        angleToRotate = Time.fixedDeltaTime*Mathf.PI*oscillationMagnitude/oscillationPeriodSeconds
-	        	*Mathf.Cos(Time.time*2*Mathf.PI/oscillationPeriodSeconds); //simple calculs
+	        	*Mathf.Cos(Time.fixedTime*2*Mathf.PI/oscillationPeriodSeconds); //simple calculs
     	}
 	    else{
 	    	angleToRotate = Time.fixedDeltaTime*360/oscillationPeriodSeconds;

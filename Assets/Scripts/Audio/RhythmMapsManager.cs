@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class RhythmMapsManager : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class RhythmMapsManager : MonoBehaviour
     public delegate void SongChangeAction();
     public static event SongChangeAction NewSong;
 
+    public AudioMixer audioMixer;
+
     RhythmMap[] maps;
     public int startingActiveMapNumber;
     RhythmMap activeMap;
@@ -18,15 +21,15 @@ public class RhythmMapsManager : MonoBehaviour
 
     void Awake(){
     	startingActiveMapNumber = 0;
-        maps = GetComponentsInChildren<RhythmMap>();
-        mapsFinished = new Dictionary<RhythmMap, bool>();
-        foreach(var map in maps)
-            mapsFinished.Add(map, false);      
     }
 
     void OnEnable()
     {
         RhythmMap.OnSongEnd += SetFinished;
+        maps = GetComponentsInChildren<RhythmMap>();
+        mapsFinished = new Dictionary<RhythmMap, bool>();
+        foreach(var map in maps)
+            mapsFinished.Add(map, false);            
     }
 
     void OnDisable()
@@ -40,21 +43,57 @@ public class RhythmMapsManager : MonoBehaviour
     }
 
     public void ChangeSong(RhythmMap map, float delay){
-        if(activeMap!=null)
-    	   activeMap.Pause();
-    	map.UnpauseSongAfter(delay);
-    	activeMap = map;
-        NewSong();
+        StartCoroutine(SongChangeSequence(map, delay, delay/2, delay));
     }
 
     public void ChangeSongRestart(RhythmMap map, float delay){
+        StartCoroutine(SongChangeRestartSequence(map, delay, delay/2, delay));
+    }    
+
+    public void ChangeSong(RhythmMap map, float fadeout, float wait, float fadein){
+        StartCoroutine(SongChangeSequence(map, fadeout, wait, fadein));
+    }
+
+    public void ChangeSongRestart(RhythmMap map, float fadeout, float wait, float fadein){
+        StartCoroutine(SongChangeRestartSequence(map, fadeout, wait, fadein));
+    }
+
+    public void FadeOutIn(float fadeout, float fadein){
+        StartCoroutine(FadeOutInSequence(fadeout, fadein));
+    }
+
+    IEnumerator SongChangeSequence(RhythmMap map, float fadeout, float wait, float fadein){
+        VolumeFadeOut(fadeout);
+        yield return new WaitForSeconds(fadeout);
         if(activeMap!=null)
            activeMap.Pause();
-    	map.RestartSongAfter(delay);
+        map.UnpauseSongAfter(wait);
+        yield return new WaitForSeconds(wait);
+        VolumeFadeIn(fadein);
         mapsFinished[map] = false;
-    	activeMap = map;
-        NewSong();
+        activeMap = map;
+        NewSong();       
     }
+
+    IEnumerator SongChangeRestartSequence(RhythmMap map, float fadeout, float wait, float fadein){
+        VolumeFadeOut(fadeout);
+        yield return new WaitForSeconds(fadeout);
+        if(activeMap!=null)
+           activeMap.Pause();
+        map.RestartSongAfter(wait);
+        yield return new WaitForSeconds(wait);
+        VolumeFadeIn(fadein);
+        mapsFinished[map] = false;
+        activeMap = map;
+        NewSong();   
+    }
+
+    IEnumerator FadeOutInSequence(float fadeout, float fadein){
+        VolumeFadeOut(fadeout);
+        yield return new WaitForSeconds(fadeout);
+        VolumeFadeIn(fadein);
+    }
+
 
     public RhythmMap GetActiveMap(){
     	return activeMap;
@@ -64,14 +103,23 @@ public class RhythmMapsManager : MonoBehaviour
         mapsFinished[map] = true;
         foreach(var b in mapsFinished){
             if(!b.Value) {
-                ChangeSong(b.Key, 0.5f);
+                ChangeSong(b.Key, 0.1f, 0.5f, 2f);
                 return;
             }
         }
         GoToState(LevelState.FAILSCREEN);
     }
 
-    public void EnterRhythm(){
-        ChangeSongRestart(maps[startingActiveMapNumber], 0.5f);
+    void VolumeFadeIn(float duration){
+        StartCoroutine(FadeAudioMixer.StartFade(audioMixer, "vol", duration, 1));
     }
+
+    void VolumeFadeOut(float duration){
+        StartCoroutine(FadeAudioMixer.StartFade(audioMixer, "vol", duration, 0));
+    }
+
+    public void EnterRhythm(){
+        ChangeSongRestart(maps[startingActiveMapNumber], 0.1f, 0.5f, 2f);
+    }
+    
 }
