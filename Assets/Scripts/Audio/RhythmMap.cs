@@ -19,6 +19,7 @@ public class RhythmMap : MonoBehaviour
     [SerializeField]
     private float fadeOutTime = 0;
     bool fading;
+    bool finished;
 
     string mapData;
     Dictionary<string, SongLine> songLines; //the point of this class: mapDataFile -> mapData -> songLines and sync with audio
@@ -36,6 +37,7 @@ public class RhythmMap : MonoBehaviour
         }
 
         fading = false;
+        finished = false;
     }
 
     void Start()
@@ -46,11 +48,15 @@ public class RhythmMap : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(songPlayer.name + ": " + songPlayer.time + "("+(songPlayer.time+Time.deltaTime)+")"+ "... " + songPlayer.clip.length);
         if(songPlayer.time>=songPlayer.clip.length-fadeOutTime && !fading){
+            Debug.Log("fade");
             theManager.VolumeFadeOut(Mathf.Max(0,fadeOutTime));
             fading = true;
         }
-        if(songPlayer.time>=songPlayer.clip.length){
+        if(fading && songPlayer.time == 0 && !finished){
+            Debug.Log("end");
+            finished = true;
             if(OnSongEnd!=null)
                 OnSongEnd(this);
         }
@@ -73,24 +79,29 @@ public class RhythmMap : MonoBehaviour
     }
 
     public void RestartSong(){
+        fading = false;
+        finished = false;
+        theManager.SetPause(false);        
         songPlayer.Play();
         foreach(var line in songLines.Values)
             line.StartRhythm();
     }
 
     public void RestartSongAfter(float s){
-        StartCoroutine(StartSongAfterSeconds(0.5f));
+        StartCoroutine(StartSongAfterSeconds(s));
     }
 
     public void UnpauseSongAfter(float s){
-        StartCoroutine(UnpauseSongAfterSeconds(0.5f));
+        StartCoroutine(UnpauseSongAfterSeconds(s));
     }    
 
     public void Pause(){
+        theManager.SetPause(true);
         songPlayer.Pause();
     }
 
     public void Unpause(){
+        theManager.SetPause(false);        
         songPlayer.UnPause();
     }    
 

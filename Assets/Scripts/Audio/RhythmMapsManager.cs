@@ -42,8 +42,7 @@ public class RhythmMapsManager : MonoBehaviour
 
     void Update()
     {   
-        if(activeMap!=null)
-            Debug.Log(activeMap.name); 
+
     }
 
     public void ChangeSong(RhythmMap map, float delay){
@@ -74,10 +73,8 @@ public class RhythmMapsManager : MonoBehaviour
     IEnumerator SongChangeSequence(RhythmMap map, float wait, float fadein){
         if(activeMap!=null)
            activeMap.Pause();
-        paused = true;
         map.UnpauseSongAfter(wait);
         yield return new WaitForSeconds(wait);
-        paused = false;
         VolumeFadeIn(fadein);
         mapsFinished[map] = false;
         activeMap = map;
@@ -87,10 +84,8 @@ public class RhythmMapsManager : MonoBehaviour
     IEnumerator SongChangeRestartSequence(RhythmMap map, float wait, float fadein){
         if(activeMap!=null)
            activeMap.Pause();  
-        paused = true;
         map.RestartSongAfter(wait);
         yield return new WaitForSeconds(wait);
-        paused = false;
         VolumeFadeIn(fadein);
         mapsFinished[map] = false;
         activeMap = map;
@@ -100,6 +95,7 @@ public class RhythmMapsManager : MonoBehaviour
     void SetFinished(RhythmMap map){
         mapsFinished[map] = true;
         foreach(var b in mapsFinished){
+            Debug.Log(b.Key + ": " + b.Value);
             if(!b.Value) {
                 ChangeSong(b.Key, 0.5f, 2f);
                 return;
@@ -122,6 +118,10 @@ public class RhythmMapsManager : MonoBehaviour
 
     public bool IsPaused(){
         return paused;
+    }
+
+    public void SetPause(bool p){
+        paused = p;
     }
     
      public RhythmMap GetActiveMap(){

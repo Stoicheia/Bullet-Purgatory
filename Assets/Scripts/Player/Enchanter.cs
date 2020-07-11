@@ -65,6 +65,7 @@ public class Enchanter : MonoBehaviour
 
     bool EnchantConditionsMet()
     {
+        if(rhythmMaps.IsPaused()) Debug.Log("Enchant missed!");
         return currentEnchantment<totalEnchantments&&stateManager.levelState==LevelState.PLAYING&&Time.time>=nextEnchantTime&&!rhythmMaps.IsPaused();
     }
 
