@@ -12,8 +12,6 @@ GameObject:
   - component: {fileID: 6770461472962170640}
   - component: {fileID: 6002999076129291776}
   - component: {fileID: 3620627973714985996}
-  - component: {fileID: 2297996357227997654}
-  - component: {fileID: 4611987722465059922}
   m_Layer: 0
   m_Name: Blobe Bullet 2
   m_TagString: Untagged
@@ -30,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 1329262107811376685}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.235, y: 0.13635623, z: 0}
-  m_LocalScale: {x: 0.09585819, y: 0.09585819, z: 0.09585819}
+  m_LocalScale: {x: 0.0630031, y: 0.0630031, z: 0.0630031}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -99,6 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+  speedModifier: 1
   poolTag: blobe2
 --- !u!61 &3620627973714985996
 BoxCollider2D:
@@ -113,7 +112,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.026030362, y: 0.94576085}
+  m_Offset: {x: -0.10438216, y: 0.5197501}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -124,57 +123,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.3900857, y: 2.869017}
-  m_EdgeRadius: 0
---- !u!61 &2297996357227997654
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1329262107811376685}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -2.0043235, y: 0.11279705}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 9.8, y: 6.6}
-    newSize: {x: 9.8, y: 6.6}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.5918245, y: 1.7931061}
-  m_EdgeRadius: 0
---- !u!61 &4611987722465059922
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1329262107811376685}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 2.1084418, y: -0.008675456}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 9.8, y: 6.6}
-    newSize: {x: 9.8, y: 6.6}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.7306538, y: 1.8972244}
+  m_Size: {x: 4.354952, y: 2.8516285}
   m_EdgeRadius: 0

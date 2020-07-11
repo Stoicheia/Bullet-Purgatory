@@ -16,16 +16,19 @@ public class RhythmMapsManager : MonoBehaviour
     RhythmMap[] maps;
     public int startingActiveMapNumber;
     RhythmMap activeMap;
+    bool paused;
 
     Dictionary<RhythmMap, bool> mapsFinished;
 
     void Awake(){
     	startingActiveMapNumber = 0;
+        paused = true;
     }
 
     void OnEnable()
     {
         RhythmMap.OnSongEnd += SetFinished;
+
         maps = GetComponentsInChildren<RhythmMap>();
         mapsFinished = new Dictionary<RhythmMap, bool>();
         foreach(var map in maps)
@@ -37,89 +40,91 @@ public class RhythmMapsManager : MonoBehaviour
         RhythmMap.OnSongEnd -= SetFinished;
     }
 
-    void Start()
-    {
-        
+    void Update()
+    {   
+        if(activeMap!=null)
+            Debug.Log(activeMap.name); 
     }
 
     public void ChangeSong(RhythmMap map, float delay){
-        StartCoroutine(SongChangeSequence(map, delay, delay/2, delay));
+        StartCoroutine(SongChangeSequence(map, delay, delay));
     }
 
     public void ChangeSongRestart(RhythmMap map, float delay){
-        StartCoroutine(SongChangeRestartSequence(map, delay, delay/2, delay));
+        StartCoroutine(SongChangeRestartSequence(map, delay, delay));
     }    
 
-    public void ChangeSong(RhythmMap map, float fadeout, float wait, float fadein){
-        StartCoroutine(SongChangeSequence(map, fadeout, wait, fadein));
+    public void ChangeSong(RhythmMap map, float wait, float fadein){
+        StartCoroutine(SongChangeSequence(map, wait, fadein));
     }
 
-    public void ChangeSongRestart(RhythmMap map, float fadeout, float wait, float fadein){
-        StartCoroutine(SongChangeRestartSequence(map, fadeout, wait, fadein));
+    public void ChangeSongRestart(RhythmMap map, float wait, float fadein){
+        StartCoroutine(SongChangeRestartSequence(map, wait, fadein));
     }
 
-    public void FadeOutIn(float fadeout, float fadein){
-        StartCoroutine(FadeOutInSequence(fadeout, fadein));
+    public void ChangeSongImmediate(RhythmMap map){
+        paused = false;
+        if(activeMap!=null) activeMap.Pause();
+        map.RestartSong();
+        mapsFinished[map] = false;
+        activeMap = map;
+        NewSong();
     }
 
-    IEnumerator SongChangeSequence(RhythmMap map, float fadeout, float wait, float fadein){
-        VolumeFadeOut(fadeout);
-        yield return new WaitForSeconds(fadeout);
+    IEnumerator SongChangeSequence(RhythmMap map, float wait, float fadein){
         if(activeMap!=null)
            activeMap.Pause();
+        paused = true;
         map.UnpauseSongAfter(wait);
         yield return new WaitForSeconds(wait);
+        paused = false;
         VolumeFadeIn(fadein);
         mapsFinished[map] = false;
         activeMap = map;
         NewSong();       
     }
 
-    IEnumerator SongChangeRestartSequence(RhythmMap map, float fadeout, float wait, float fadein){
-        VolumeFadeOut(fadeout);
-        yield return new WaitForSeconds(fadeout);
+    IEnumerator SongChangeRestartSequence(RhythmMap map, float wait, float fadein){
         if(activeMap!=null)
-           activeMap.Pause();
+           activeMap.Pause();  
+        paused = true;
         map.RestartSongAfter(wait);
         yield return new WaitForSeconds(wait);
+        paused = false;
         VolumeFadeIn(fadein);
         mapsFinished[map] = false;
         activeMap = map;
-        NewSong();   
-    }
-
-    IEnumerator FadeOutInSequence(float fadeout, float fadein){
-        VolumeFadeOut(fadeout);
-        yield return new WaitForSeconds(fadeout);
-        VolumeFadeIn(fadein);
-    }
-
-
-    public RhythmMap GetActiveMap(){
-    	return activeMap;
+        NewSong();  
     }
 
     void SetFinished(RhythmMap map){
         mapsFinished[map] = true;
         foreach(var b in mapsFinished){
             if(!b.Value) {
-                ChangeSong(b.Key, 0.1f, 0.5f, 2f);
+                ChangeSong(b.Key, 0.5f, 2f);
                 return;
             }
         }
         GoToState(LevelState.FAILSCREEN);
     }
 
-    void VolumeFadeIn(float duration){
+    public void VolumeFadeIn(float duration){
         StartCoroutine(FadeAudioMixer.StartFade(audioMixer, "vol", duration, 1));
     }
 
-    void VolumeFadeOut(float duration){
+    public void VolumeFadeOut(float duration){
         StartCoroutine(FadeAudioMixer.StartFade(audioMixer, "vol", duration, 0));
     }
 
     public void EnterRhythm(){
-        ChangeSongRestart(maps[startingActiveMapNumber], 0.1f, 0.5f, 2f);
+        ChangeSongRestart(maps[startingActiveMapNumber], 0.5f);
+    }
+
+    public bool IsPaused(){
+        return paused;
     }
     
+     public RhythmMap GetActiveMap(){
+        return activeMap;
+    }
 }

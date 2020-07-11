@@ -14,7 +14,10 @@ public class RhythmMap : MonoBehaviour
     public TextAsset mapDataFile;
     public SongLine lineObjectPrefab;
 
-    public float fadeOutTime = 0;
+    RhythmMapsManager theManager;
+
+    [SerializeField]
+    private float fadeOutTime = 0;
     bool fading;
 
     string mapData;
@@ -37,13 +40,14 @@ public class RhythmMap : MonoBehaviour
 
     void Start()
     {
+        theManager = transform.parent.GetComponent<RhythmMapsManager>();
         //RestartSongAfter(0.5f);
     }
 
     void Update()
     {
         if(songPlayer.time>=songPlayer.clip.length-fadeOutTime && !fading){
-            transform.parent.GetComponent<RhythmMapsManager>().FadeOutIn(Mathf.Max(0,fadeOutTime-0.1f), 0.1f);
+            theManager.VolumeFadeOut(Mathf.Max(0,fadeOutTime));
             fading = true;
         }
         if(songPlayer.time>=songPlayer.clip.length){
@@ -68,7 +72,7 @@ public class RhythmMap : MonoBehaviour
         return songLines[l];
     }
 
-    void RestartSong(){
+    public void RestartSong(){
         songPlayer.Play();
         foreach(var line in songLines.Values)
             line.StartRhythm();

@@ -27,7 +27,8 @@ public class Player : MonoBehaviour, IDamageable
     float rotationSmoothing = 10;
     Quaternion targetShooterRotation;
 
-	public float moveSmoothing;
+    [SerializeField]
+	private float moveSmoothing = 50;
 	public float sprintMod;
 	KeyCode sprintButton = KeyCode.LeftShift;
 	KeyCode strafeButton = KeyCode.Space;
@@ -37,7 +38,8 @@ public class Player : MonoBehaviour, IDamageable
     float invulnTimeLeft;
     public float invulnerabilityPeriod = 2f;
 
-	public RhythmicObject startingShooter;
+	//public RhythmicObject startingShooter;
+    public RhythmicObject[] shooters;
 
     void Start(){
     	controller = GetComponent<Controller>();
@@ -50,8 +52,8 @@ public class Player : MonoBehaviour, IDamageable
         sprintButton = Keybinds.instance.keys["Sprint"];
         strafeButton = Keybinds.instance.keys["Strafe"];
 
-        shooter = Instantiate(startingShooter,transform.position,transform.rotation) as RhythmicObject;
-        shooter.transform.parent = transform;
+        //shooter = Instantiate(startingShooter,transform.position,transform.rotation) as RhythmicObject;
+        //shooter.transform.parent = transform;
 
         invulnerable = false;
     }
@@ -82,8 +84,10 @@ public class Player : MonoBehaviour, IDamageable
 
     void UpdateShooterRotation()
     {
-        targetShooterRotation = Quaternion.Euler(new Vector3(0,0,-180/Mathf.PI*Mathf.Atan(moveVector.x/Time.deltaTime*rotationFactor))); 
-        shooter.transform.rotation = Quaternion.Slerp(shooter.transform.rotation, targetShooterRotation, rotationSmoothing*Time.deltaTime);
+        foreach(RhythmicObject shooter in shooters){
+            targetShooterRotation = Quaternion.Euler(new Vector3(0,0,-180/Mathf.PI*Mathf.Atan(moveVector.x/Time.deltaTime*rotationFactor))); 
+            shooter.transform.rotation = Quaternion.Slerp(shooter.transform.rotation, targetShooterRotation, rotationSmoothing*Time.deltaTime);
+        }
     }
 
     void UpdateAnimatorParams()
