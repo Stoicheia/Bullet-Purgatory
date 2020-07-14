@@ -18,6 +18,7 @@ public class RhythmMap : MonoBehaviour
 
     [SerializeField]
     private float fadeOutTime = 0;
+    float fadeInTime = 0;
     bool finished;
 
     string mapData;
@@ -46,12 +47,8 @@ public class RhythmMap : MonoBehaviour
 
     void Update()
     {
-        if(songPlayer.time>=songPlayer.clip.length-fadeOutTime){
-            theManager.audioMixer.SetFloat("vol", -80*(1-(songPlayer.clip.length-songPlayer.time)/fadeOutTime));
-        }
-        else{
-            theManager.audioMixer.SetFloat("vol", 0);
-        }
+        if(theManager.GetActiveMap()==this)
+            ApplyFadeEffects();
         //Debug.Log(songPlayer.name + ": " + songPlayer.time + "("+(songPlayer.time+Time.deltaTime)+")"+ "... " + songPlayer.clip.length);
         if(songPlayer.time>=songPlayer.clip.length-2*Time.deltaTime){
             songPlayer.time = 0;
@@ -108,6 +105,10 @@ public class RhythmMap : MonoBehaviour
             line.StartRhythm();
     }
 
+    public void FadeIn(float f){
+        fadeInTime = f;
+    }
+
     IEnumerator StartSongAfterSeconds(float s){
         yield return new WaitForSeconds(s);
         RestartSong();
@@ -117,6 +118,18 @@ public class RhythmMap : MonoBehaviour
         yield return new WaitForSeconds(s);
         Debug.Log("ok");
         Unpause();
-    }    
+    }
+
+    void ApplyFadeEffects(){
+        if(songPlayer.time>=songPlayer.clip.length-fadeOutTime){
+            theManager.audioMixer.SetFloat("vol", -80*Mathf.Pow((1-(songPlayer.clip.length-songPlayer.time)/fadeOutTime),2));
+        }
+        else if(songPlayer.time<=fadeInTime){
+            theManager.audioMixer.SetFloat("vol", -80*Mathf.Pow((1-songPlayer.time/fadeInTime),2));
+        }
+        else{
+            theManager.audioMixer.SetFloat("vol", 0);
+        }
+    }
 
 }

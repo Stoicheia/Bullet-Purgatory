@@ -70,6 +70,7 @@ public class RhythmMapsManager : MonoBehaviour
         }
         activeMap = null;
         map.UnpauseSongAfter(wait);
+        map.FadeIn(fadein);
         yield return new WaitForSeconds(wait);
         activeMap = map;
         mapsFinished[map] = false;
@@ -82,6 +83,7 @@ public class RhythmMapsManager : MonoBehaviour
         }
         activeMap = null;
         map.RestartSongAfter(wait);
+        map.FadeIn(fadein);
         yield return new WaitForSeconds(wait);
         activeMap = map;
         mapsFinished[map] = false;
@@ -93,7 +95,7 @@ public class RhythmMapsManager : MonoBehaviour
         foreach(var b in mapsFinished){
             Debug.Log(b.Key + ": " + b.Value);
             if(!b.Value) {
-                ChangeSong(b.Key, 0.5f, 2f);
+                ChangeSong(b.Key, 0.5f, 1f);
                 return;
             }
         }
@@ -101,7 +103,7 @@ public class RhythmMapsManager : MonoBehaviour
     }
 
     public void EnterRhythm(){
-        ChangeSongRestart(startingMap, 0.5f);
+        ChangeSongRestart(startingMap, 0.5f, 1f);
     }
 
     public void PauseActive(){
