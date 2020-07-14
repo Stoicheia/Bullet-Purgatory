@@ -145,4 +145,4 @@ MonoBehaviour:
   mapDataFile: {fileID: 4900000, guid: 24b6d54d66132e84bbe4a02ba7bdb6fc, type: 3}
   lineObjectPrefab: {fileID: -7883346898767752093, guid: be85d705704129a49a784479c157f722,
     type: 3}
-  fadeOutTime: 3
+  fadeOutTime: 1

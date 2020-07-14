@@ -9,6 +9,7 @@ public class Player : MonoBehaviour, IDamageable
 {
     public delegate void DieAction();
     public static event DieAction OnPlayerHit;
+    public static event DieAction OnPlayerDeath;
 
 	Controller controller;
     Collider2D hitbox;
@@ -30,27 +31,29 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField]
 	private float moveSmoothing = 50;
 	public float sprintMod;
-	KeyCode sprintButton = KeyCode.LeftShift;
-	KeyCode strafeButton = KeyCode.Space;
 	int moveState;
 
     bool invulnerable;
     float invulnTimeLeft;
     public float invulnerabilityPeriod = 2f;
 
+    public int maxLives = 3;
+    int lives;
+
+    private bool godMode = true;
+
 	//public RhythmicObject startingShooter;
     public RhythmicObject[] shooters;
 
     void Start(){
+        lives = maxLives;
+
     	controller = GetComponent<Controller>();
         hitbox = GetComponent<Collider2D>();
 
     	moveVector = targetMoveVector = new Vector3(0,0,0);
     	speed = defSpeed;
         moveState = 0;
-
-        sprintButton = Keybinds.instance.keys["Sprint"];
-        strafeButton = Keybinds.instance.keys["Strafe"];
 
         //shooter = Instantiate(startingShooter,transform.position,transform.rotation) as RhythmicObject;
         //shooter.transform.parent = transform;
@@ -72,8 +75,9 @@ public class Player : MonoBehaviour, IDamageable
 
     void GetMoveInputs()
     {
-        inputVector = new Vector3(Input.GetAxisRaw("Horizontal"),Input.GetAxisRaw("Vertical"),0).normalized;
-        UpdateMoveState(sprintButton, strafeButton);
+        Vector2 inputAxis = Keybinds.instance.GetInputAxis();
+        inputVector = new Vector3(inputAxis.x, inputAxis.y, 0).normalized;
+        UpdateMoveState();
     }
 
     void CalculateMoveVector(Vector3 inVec)
@@ -103,11 +107,11 @@ public class Player : MonoBehaviour, IDamageable
         hitbox.enabled = !invulnerable;
     }
 
-    void UpdateMoveState(KeyCode a, KeyCode b){
+    void UpdateMoveState(){
     	moveState = 0;
-    	if(Input.GetKey(a))
+    	if(Keybinds.instance.GetInput("Sprint"))
     		moveState++;
-    	if(Input.GetKey(b))
+    	if(Keybinds.instance.GetInput("Strafe"))
     		moveState--;
     }
 
@@ -129,8 +133,25 @@ public class Player : MonoBehaviour, IDamageable
 
     public void TakeHit(float damage, Collision2D col){
         invulnTimeLeft = invulnerabilityPeriod;
+        if(!invulnerable)
+            GetHit();
+        if(lives<=0&&!godMode)
+            GetKilled();
+        UpdateInvulnerability();
+    }
+
+    void GetHit(){
         if(OnPlayerHit!=null)
             OnPlayerHit();
+        lives=Mathf.Max(lives-1,0);
+        animator.SetTrigger("onHit");
+        Debug.Log("what");
+    }
+
+    void GetKilled(){
+        if(OnPlayerDeath!=null)
+            OnPlayerDeath();
+        animator.SetTrigger("onDie");
     }
 
     public bool IsFriendly(){

@@ -13,26 +13,18 @@ public class RhythmMapsManager : MonoBehaviour
 
     public AudioMixer audioMixer;
 
-    RhythmMap[] maps;
-    public int startingActiveMapNumber;
+    public RhythmMap startingMap;
     RhythmMap activeMap;
-    bool paused;
 
     Dictionary<RhythmMap, bool> mapsFinished;
 
     void Awake(){
-    	startingActiveMapNumber = 0;
-        paused = true;
+
     }
 
     void OnEnable()
     {
         RhythmMap.OnSongEnd += SetFinished;
-
-        maps = GetComponentsInChildren<RhythmMap>();
-        mapsFinished = new Dictionary<RhythmMap, bool>();
-        foreach(var map in maps)
-            mapsFinished.Add(map, false);            
     }
 
     void OnDisable()
@@ -40,9 +32,12 @@ public class RhythmMapsManager : MonoBehaviour
         RhythmMap.OnSongEnd -= SetFinished;
     }
 
-    void Update()
+    void Start()
     {   
-
+        RhythmMap[] startingMaps = GetComponentsInChildren<RhythmMap>();
+        mapsFinished = new Dictionary<RhythmMap, bool>();
+        foreach(var map in startingMaps)
+            mapsFinished.Add(map, false);  
     }
 
     public void ChangeSong(RhythmMap map, float delay){
@@ -62,33 +57,34 @@ public class RhythmMapsManager : MonoBehaviour
     }
 
     public void ChangeSongImmediate(RhythmMap map){
-        paused = false;
-        if(activeMap!=null) activeMap.Pause();
+        if(activeMap!=null) {activeMap.Pause();}
+        activeMap = map;
         map.RestartSong();
         mapsFinished[map] = false;
-        activeMap = map;
         NewSong();
     }
 
     IEnumerator SongChangeSequence(RhythmMap map, float wait, float fadein){
-        if(activeMap!=null)
+        if(activeMap!=null){
            activeMap.Pause();
+        }
+        activeMap = null;
         map.UnpauseSongAfter(wait);
         yield return new WaitForSeconds(wait);
-        VolumeFadeIn(fadein);
-        mapsFinished[map] = false;
         activeMap = map;
+        mapsFinished[map] = false;
         NewSong();       
     }
 
     IEnumerator SongChangeRestartSequence(RhythmMap map, float wait, float fadein){
-        if(activeMap!=null)
+        if(activeMap!=null){
            activeMap.Pause();  
+        }
+        activeMap = null;
         map.RestartSongAfter(wait);
         yield return new WaitForSeconds(wait);
-        VolumeFadeIn(fadein);
-        mapsFinished[map] = false;
         activeMap = map;
+        mapsFinished[map] = false;
         NewSong();  
     }
 
@@ -104,27 +100,32 @@ public class RhythmMapsManager : MonoBehaviour
         GoToState(LevelState.FAILSCREEN);
     }
 
-    public void VolumeFadeIn(float duration){
-        StartCoroutine(FadeAudioMixer.StartFade(audioMixer, "vol", duration, 1));
-    }
-
-    public void VolumeFadeOut(float duration){
-        StartCoroutine(FadeAudioMixer.StartFade(audioMixer, "vol", duration, 0));
-    }
-
     public void EnterRhythm(){
-        ChangeSongRestart(maps[startingActiveMapNumber], 0.5f);
+        ChangeSongRestart(startingMap, 0.5f);
     }
 
-    public bool IsPaused(){
-        return paused;
+    public void PauseActive(){
+        if(activeMap!=null)
+            activeMap.Pause();
+        else
+            Debug.LogWarning("No current active map");
     }
 
-    public void SetPause(bool p){
-        paused = p;
+    public void UnpauseActive(){
+        if(activeMap!=null)
+            activeMap.Unpause();
+        else
+            Debug.LogWarning("No current active map");            
     }
     
-     public RhythmMap GetActiveMap(){
+    public RhythmMap GetActiveMap(){
         return activeMap;
+    }
+
+    public RhythmMap AddMap(RhythmMap map){
+        RhythmMap myMap = Instantiate(map);
+        myMap.transform.parent = transform;
+        mapsFinished.Add(myMap, false);
+        return myMap;
     }
 }

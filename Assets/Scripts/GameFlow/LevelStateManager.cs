@@ -6,7 +6,11 @@ public enum LevelState{PRE, DIALOGUE, PLAYING, PAUSED, ENDSCREEN, FAILSCREEN}
 
 public class LevelStateManager : MonoBehaviour
 {
+    public delegate void StateChangeAction(LevelState state);
+    public static event StateChangeAction OnStateChange;
+
 	public LevelState levelState {get; private set;}
+    public LevelState lastState {get; private set;}
 
 	WaveSpawner waveSpawner;
 	RhythmMapsManager rhythmManager;
@@ -25,10 +29,19 @@ public class LevelStateManager : MonoBehaviour
 	void Start()
 	{
 		SetLevelState(LevelState.DIALOGUE);
+
+        Bullet.SetStage(GameObject.FindGameObjectWithTag("Stage").GetComponent<MeshCollider>());
+        Bullet.SetPooler(FindObjectOfType(typeof(ObjectPooler)) as ObjectPooler);
 	}
 
 	void Update(){
-
+        if(Keybinds.instance.GetInputDown("Pause")){
+            Debug.Log(levelState + " " + lastState);
+            if(levelState!=LevelState.PAUSED)
+                SetLevelState(LevelState.PAUSED);
+            else
+                SetLevelState(lastState);
+        }
 	}
 
 	void OnEnable()
@@ -36,6 +49,7 @@ public class LevelStateManager : MonoBehaviour
 		DialogueManager.GoToState += SetLevelState;
 		RhythmMapsManager.GoToState += SetLevelState;
 		WaveSpawner.GoToState += SetLevelState;
+        Player.OnPlayerDeath += Fail;
 	}
 
 	void OnDisable()
@@ -43,35 +57,69 @@ public class LevelStateManager : MonoBehaviour
 		DialogueManager.GoToState -= SetLevelState;
 		RhythmMapsManager.GoToState -= SetLevelState;
 		WaveSpawner.GoToState -= SetLevelState;
+        Player.OnPlayerDeath -= Fail;
 	}
 
+    void Fail(){
+        SetLevelState(LevelState.FAILSCREEN);
+    }
+
     public void SetLevelState(LevelState newState){
+        if(newState==levelState) return;
+
     	LevelState prevState = levelState;
+        lastState = prevState;
 
+        //Exit
     	switch(prevState){
-    		case LevelState.ENDSCREEN:
-    		case LevelState.FAILSCREEN:
-    			return;
-    	}
-
-
-    	switch(prevState){
+            case LevelState.ENDSCREEN:
+            case LevelState.FAILSCREEN:
+                return;
+            case LevelState.PRE:
+                switch(newState){
+                    case LevelState.DIALOGUE:
+                        dialogueManager.EnterDialogue();
+                        break;
+                }
+                break;
     		case LevelState.DIALOGUE:
-    			dialogueManager.ExitDialogue();
-    			break;
+                switch(newState){
+        			case LevelState.PLAYING:
+                        dialogueManager.ExitDialogue();          
+                        rhythmManager.EnterRhythm();
+                        break;
+                }
+                break;
     		case LevelState.PLAYING:
-    			//waveSpawner.StopSpawning();
-    			break;
+                switch(newState){
+                    case LevelState.ENDSCREEN:
+                    case LevelState.FAILSCREEN:
+            			waveSpawner.StopSpawning();
+            			break;
+                }
+                break;
+            case LevelState.PAUSED:
+                uiManager.ExitPause();
+                break;
     	}
     	levelState = newState;
+
+        //Enter
     	switch(newState){
     		case LevelState.DIALOGUE:
-    			dialogueManager.EnterDialogue();
+                Keybinds.instance.SetDialogueBinds();
     			break;
     		case LevelState.PLAYING:
-    			waveSpawner.StartSpawning();    		
-    			rhythmManager.EnterRhythm();
+                Keybinds.instance.SetPlayBinds();
+    			waveSpawner.StartSpawning();    
+                rhythmManager.UnpauseActive();		
     			break;
+            case LevelState.PAUSED:
+                Keybinds.instance.DisableAll();
+                waveSpawner.StopSpawning();
+                rhythmManager.PauseActive();
+                uiManager.EnterPause();
+                break;
     		case LevelState.ENDSCREEN:
     			uiManager.EnterEndscreen();
     			break;
@@ -79,6 +127,6 @@ public class LevelStateManager : MonoBehaviour
     			uiManager.EnterFailScreen();
     			break;
     	}
-
+        OnStateChange(levelState);
     }
 }

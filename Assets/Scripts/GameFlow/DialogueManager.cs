@@ -19,14 +19,10 @@ public class DialogueManager : MonoBehaviour
 
     }
 
-    void OnEnable()
+    void Update()
     {
-    	DialogueDisplay.Skip += NextSentence;
-    }
-
-    void OnDisable()
-    {
-    	DialogueDisplay.Skip -= NextSentence;    	
+        if(Keybinds.instance.GetInputDown("SkipDialogue"))
+            NextSentence();
     }
 
     public void NextSentence()

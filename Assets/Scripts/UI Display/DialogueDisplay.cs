@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class DialogueDisplay : MonoBehaviour
 {
-	public delegate void SkipAction();
-	public static event SkipAction Skip;
 
 	public DialogueSentence dialogue;
 
@@ -22,8 +20,7 @@ public class DialogueDisplay : MonoBehaviour
 
     void Update()
     {
-    	if(Input.GetKeyDown("space"))
-    		Skip();
+
     }
 
     public void SetDialogue(DialogueSentence d)

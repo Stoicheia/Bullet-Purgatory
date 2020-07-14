@@ -6,7 +6,6 @@ public class Enchanter : MonoBehaviour
 {
 	LevelStateManager stateManager;
 	RhythmMapsManager rhythmMaps;
-	KeyCode enchantButton = KeyCode.G;
 
 	public RhythmMap[] enchantSongs;
 	List<RhythmMap> myEnchantSongs;
@@ -27,13 +26,11 @@ public class Enchanter : MonoBehaviour
 
     void Start()
     {
-        enchantButton = Keybinds.instance.keys["Enchant"];
         stateManager = FindObjectOfType<LevelStateManager>();
         rhythmMaps = FindObjectOfType<RhythmMapsManager>();
 
         foreach(RhythmMap enchantSong in enchantSongs){
-            RhythmMap myEnchantSong = Instantiate(enchantSong, transform.position, transform.rotation);
-            myEnchantSong.transform.parent = rhythmMaps.transform;
+            RhythmMap myEnchantSong = rhythmMaps.AddMap(enchantSong);
             myEnchantSongs.Add(myEnchantSong);
         }
         totalEnchantments = myEnchantSongs.Count;
@@ -50,7 +47,7 @@ public class Enchanter : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(enchantButton)){
+        if(Keybinds.instance.GetInputDown("Enchant")){
         	Activate();
         }
     }
@@ -65,8 +62,8 @@ public class Enchanter : MonoBehaviour
 
     bool EnchantConditionsMet()
     {
-        if(rhythmMaps.IsPaused()) Debug.Log("Enchant missed!");
-        return currentEnchantment<totalEnchantments&&stateManager.levelState==LevelState.PLAYING&&Time.time>=nextEnchantTime&&!rhythmMaps.IsPaused();
+        return currentEnchantment<totalEnchantments&&stateManager.levelState==LevelState.PLAYING
+                    &&Time.time>=nextEnchantTime&&rhythmMaps.GetActiveMap()!=null;
     }
 
     void CheckAutoUse()

@@ -14,18 +14,17 @@ public class Bullet : MonoBehaviour
 	Vector3 moveVector;
 	bool friendly = false;
 
-	MeshCollider stage;
+	static MeshCollider stage;
     public string poolTag = "";
-    ObjectPooler pooler;
+    static ObjectPooler pooler;
 	SpriteRenderer render;
 
 
     void Start()
     {
+        gameObject.layer = friendly? 8:9;
         if(poolTag=="")
             poolTag = name;
-        stage = GameObject.FindGameObjectWithTag("Stage").GetComponent<MeshCollider>();
-        pooler = FindObjectOfType(typeof(ObjectPooler)) as ObjectPooler;
         render = GetComponent<SpriteRenderer>();
     }
 
@@ -76,5 +75,12 @@ public class Bullet : MonoBehaviour
     	friendly = f;
     }
 
+    public static void SetStage(MeshCollider s){
+        stage = s;
+    }
+
+    public static void SetPooler(ObjectPooler p){
+        pooler = p;
+    }
 
 }

@@ -18,11 +18,12 @@ public class RhythmMap : MonoBehaviour
 
     [SerializeField]
     private float fadeOutTime = 0;
-    bool fading;
     bool finished;
 
     string mapData;
     Dictionary<string, SongLine> songLines; //the point of this class: mapDataFile -> mapData -> songLines and sync with audio
+
+    IEnumerator songStartRoutine;
 
     void Awake(){
     	songPlayer = GetComponent<AudioSource>();
@@ -35,9 +36,6 @@ public class RhythmMap : MonoBehaviour
         foreach(var nameAndDataStrings in lines){
             CreateLineFromData(nameAndDataStrings);
         }
-
-        fading = false;
-        finished = false;
     }
 
     void Start()
@@ -48,15 +46,17 @@ public class RhythmMap : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(songPlayer.name + ": " + songPlayer.time + "("+(songPlayer.time+Time.deltaTime)+")"+ "... " + songPlayer.clip.length);
-        if(songPlayer.time>=songPlayer.clip.length-fadeOutTime && !fading){
-            Debug.Log("fade");
-            theManager.VolumeFadeOut(Mathf.Max(0,fadeOutTime));
-            fading = true;
+        if(songPlayer.time>=songPlayer.clip.length-fadeOutTime){
+            theManager.audioMixer.SetFloat("vol", -80*(1-(songPlayer.clip.length-songPlayer.time)/fadeOutTime));
         }
-        if(fading && songPlayer.time == 0 && !finished){
+        else{
+            theManager.audioMixer.SetFloat("vol", 0);
+        }
+        //Debug.Log(songPlayer.name + ": " + songPlayer.time + "("+(songPlayer.time+Time.deltaTime)+")"+ "... " + songPlayer.clip.length);
+        if(songPlayer.time>=songPlayer.clip.length-2*Time.deltaTime){
+            songPlayer.time = 0;
+            Pause();
             Debug.Log("end");
-            finished = true;
             if(OnSongEnd!=null)
                 OnSongEnd(this);
         }
@@ -78,32 +78,35 @@ public class RhythmMap : MonoBehaviour
         return songLines[l];
     }
 
-    public void RestartSong(){
-        fading = false;
-        finished = false;
-        theManager.SetPause(false);        
-        songPlayer.Play();
-        foreach(var line in songLines.Values)
-            line.StartRhythm();
-    }
-
     public void RestartSongAfter(float s){
-        StartCoroutine(StartSongAfterSeconds(s));
+        if(songStartRoutine!=null)
+            StopCoroutine(songStartRoutine);
+        songStartRoutine = StartSongAfterSeconds(s);
+        StartCoroutine(songStartRoutine);
     }
 
     public void UnpauseSongAfter(float s){
-        StartCoroutine(UnpauseSongAfterSeconds(s));
+        if(songStartRoutine!=null)
+            StopCoroutine(songStartRoutine);        
+        songStartRoutine = UnpauseSongAfterSeconds(s);
+        StartCoroutine(songStartRoutine);
     }    
 
     public void Pause(){
-        theManager.SetPause(true);
+        if(songStartRoutine!=null)
+            StopCoroutine(songStartRoutine);        
         songPlayer.Pause();
     }
 
     public void Unpause(){
-        theManager.SetPause(false);        
         songPlayer.UnPause();
     }    
+
+    public void RestartSong(){
+        songPlayer.Play();
+        foreach(var line in songLines.Values)
+            line.StartRhythm();
+    }
 
     IEnumerator StartSongAfterSeconds(float s){
         yield return new WaitForSeconds(s);
@@ -112,9 +115,8 @@ public class RhythmMap : MonoBehaviour
 
     IEnumerator UnpauseSongAfterSeconds(float s){
         yield return new WaitForSeconds(s);
+        Debug.Log("ok");
         Unpause();
     }    
-
-
 
 }
