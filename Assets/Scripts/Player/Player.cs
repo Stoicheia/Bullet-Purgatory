@@ -40,6 +40,7 @@ public class Player : MonoBehaviour, IDamageable
     public int maxLives = 3;
     int lives;
 
+    [SerializeField]
     private bool godMode = true;
 
 	//public RhythmicObject startingShooter;
@@ -145,13 +146,21 @@ public class Player : MonoBehaviour, IDamageable
             OnPlayerHit();
         lives=Mathf.Max(lives-1,0);
         animator.SetTrigger("onHit");
-        Debug.Log("what");
     }
 
     void GetKilled(){
         if(OnPlayerDeath!=null)
             OnPlayerDeath();
         animator.SetTrigger("onDie");
+        foreach(RhythmicObject shooter in shooters){
+            shooter.gameObject.SetActive(false);
+        }
+        StartCoroutine(DisableAfterSeconds(Mathf.Max(invulnerabilityPeriod-Time.deltaTime,0)));
+    }
+
+    IEnumerator DisableAfterSeconds(float s){
+        yield return new WaitForSeconds(s);
+        gameObject.SetActive(false);
     }
 
     public bool IsFriendly(){
