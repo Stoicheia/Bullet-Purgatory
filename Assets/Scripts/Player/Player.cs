@@ -10,6 +10,7 @@ public class Player : MonoBehaviour, IDamageable
     public delegate void DieAction();
     public static event DieAction OnPlayerHit;
     public static event DieAction OnPlayerDeath;
+    public static event DieAction OnLivesChange;
 
 	Controller controller;
     Collider2D hitbox;
@@ -39,6 +40,7 @@ public class Player : MonoBehaviour, IDamageable
 
     public int maxLives = 3;
     int lives;
+    public int Lives {get{return lives;} private set{lives = value;}}
 
     [SerializeField]
     private bool godMode = true;
@@ -117,17 +119,6 @@ public class Player : MonoBehaviour, IDamageable
     }
 
     void UpdateSpeedMultiplier(){
-        /*switch(moveState){
-            case -1:
-                speedMultplier = 1/sprintMod;
-                break;
-            case 0:
-                speedMultplier = 1;
-                break;
-            case 1:
-                speedMultplier = sprintMod;
-                break;
-        }*/
         speedMultplier = Mathf.Pow(sprintMod, moveState);
     	speed = defSpeed * speedMultplier;
     }
@@ -144,7 +135,7 @@ public class Player : MonoBehaviour, IDamageable
     void GetHit(){
         if(OnPlayerHit!=null)
             OnPlayerHit();
-        lives=Mathf.Max(lives-1,0);
+        ChangeLives(-1);
         animator.SetTrigger("onHit");
     }
 
@@ -161,6 +152,12 @@ public class Player : MonoBehaviour, IDamageable
     IEnumerator DisableAfterSeconds(float s){
         yield return new WaitForSeconds(s);
         gameObject.SetActive(false);
+    }
+
+    void ChangeLives(int lv){
+        lives=Mathf.Max(lives+lv,0);
+        if(OnLivesChange!=null)
+            OnLivesChange();
     }
 
     public bool IsFriendly(){

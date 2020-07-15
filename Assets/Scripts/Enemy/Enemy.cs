@@ -10,9 +10,14 @@ public class Enemy : MonoBehaviour, IDamageable
     public static event HitAction OnDeath;
     public static event HitAction OnHit;
 
+    public delegate void LocalHitAction();
+    public LocalHitAction OnThisDeath;
+    public LocalHitAction OnThisHit;
+
     public string enemyTag;
 	public float maxHP;
 	float hp;
+    public float HP{get{return hp;} private set{hp=value;}}
 	public bool shooting;
 	RhythmicObject[] myShooters;
 
@@ -25,6 +30,26 @@ public class Enemy : MonoBehaviour, IDamageable
     AnimatorStateInfo spawnState;
 
     EnemyAnimations spriteAnimations;
+
+    void OnEnable()
+    {
+        OnThisDeath += InvokeDeathEvent;
+        OnThisHit += InvokeHitEvent;
+    }
+
+    void OnDisable()
+    {
+        OnThisDeath -= InvokeDeathEvent;
+        OnThisHit -= InvokeHitEvent;
+    }
+
+    void InvokeDeathEvent(){
+        if(OnDeath!=null) OnDeath(enemyTag);
+    }
+
+    void InvokeHitEvent(){
+        if(OnHit!=null) OnHit(enemyTag);
+    }
 
     void Start()
     {
@@ -61,8 +86,8 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public void TakeHit(float damage, Collision2D col){
         hp -= damage;
-        if(OnHit!=null)
-            OnHit(enemyTag);
+        if(OnThisHit!=null)
+            OnThisHit();
         if(hp<=0){
             Die();
             return;
@@ -73,15 +98,15 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public void Die(){
         if(dead) return;
-    	if(OnDeath!=null)
-    		OnDeath(enemyTag);
+    	if(OnThisDeath!=null)
+    		OnThisDeath();
         StartCoroutine(DeathSequence());
     }
 
     public void Leave(){
         if(dead) return;
-    	if(OnDeath!=null)
-    		OnDeath(enemyTag);
+    	if(OnThisDeath!=null)
+    		OnThisDeath();
        Deactivate();
     }
 

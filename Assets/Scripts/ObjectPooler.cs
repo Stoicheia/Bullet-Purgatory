@@ -31,10 +31,12 @@ public class ObjectPooler : MonoBehaviour
 	}
 
 	public Dictionary<string, Pool> pools;
+    public Dictionary<GameObject, bool> onScreen;
 
     void Awake()
     {
         pools = new Dictionary<string, Pool>();
+        onScreen = new Dictionary<GameObject, bool>();
     }
 
     private void CreatePool(string tag, GameObject prefab){
@@ -51,6 +53,7 @@ public class ObjectPooler : MonoBehaviour
         toSpawn.SetActive(true);
         toSpawn.transform.position = pos;
         toSpawn.transform.rotation = rot;
+        onScreen[toSpawn] = true;
         return toSpawn;
     }
 
@@ -58,5 +61,15 @@ public class ObjectPooler : MonoBehaviour
         if(!pools.ContainsKey(t))
             CreatePool(t, g);    	
     	pools[t].ReturnToPool(g);
-    }    
+        onScreen[g] = false;
+    }
+
+    public List<GameObject> GetAllActive(){
+        List<GameObject> objects = new List<GameObject>();
+        foreach(var kvp in onScreen){
+            if(kvp.Value) objects.Add(kvp.Key);
+        }
+        return objects;
+    }
+
 }

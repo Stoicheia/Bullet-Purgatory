@@ -100,6 +100,7 @@ public class LevelStateManager : MonoBehaviour
                 break;
             case LevelState.PAUSED:
                 uiManager.ExitPause();
+                Bullet.PauseZoom = 1;
                 break;
     	}
     	levelState = newState;
@@ -119,6 +120,7 @@ public class LevelStateManager : MonoBehaviour
                 waveSpawner.StopSpawning();
                 rhythmManager.PauseActive();
                 uiManager.EnterPause();
+                Bullet.PauseZoom = 2;
                 break;
     		case LevelState.ENDSCREEN:
     			uiManager.EnterEndscreen();

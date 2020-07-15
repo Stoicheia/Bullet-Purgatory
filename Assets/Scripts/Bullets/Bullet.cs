@@ -8,6 +8,11 @@ public class Bullet : MonoBehaviour
 {
     public float damage = 1;
     public float speedModifier = 1;
+    
+    static float universalSpeedModifier = 1;
+    public static float UniversalSpeedModifier{get{return universalSpeedModifier;} set{universalSpeedModifier = value;}}
+    static float pauseZoom = 1;
+    public static float PauseZoom{get{return pauseZoom;} set{pauseZoom = value;}}
 
 	float speed;
     float actualSpeed;
@@ -31,7 +36,7 @@ public class Bullet : MonoBehaviour
 
     void Update()
     {
-        actualSpeed = speed*speedModifier;
+        actualSpeed = speed*speedModifier*universalSpeedModifier*pauseZoom;
         float moveDistance = actualSpeed*Time.deltaTime;
     	moveVector = new Vector3(0,1,0)*moveDistance;
         Move(moveVector);
@@ -64,7 +69,7 @@ public class Bullet : MonoBehaviour
     }
 
     public void ChangeSpeed(float v){
-        speed += v;
+        speed *= v;
     }
 
     public void Rotate(float r){

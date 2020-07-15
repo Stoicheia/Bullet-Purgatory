@@ -117,7 +117,10 @@ public class RhythmMap : MonoBehaviour
     IEnumerator UnpauseSongAfterSeconds(float s){
         yield return new WaitForSeconds(s);
         Debug.Log("ok");
-        Unpause();
+        if(songPlayer.time==0)
+            RestartSong();
+        else
+            Unpause();
     }
 
     void ApplyFadeEffects(){

@@ -8,11 +8,11 @@ public class HitboxDisplay : MonoBehaviour
 	public Sprite normalHitbox;
 	public Sprite strafingHitbox;
 	Player player;
-	SpriteRenderer hitboxSprite;
+	[SerializeField]
+    private SpriteRenderer hitboxSprite;
     void Awake()
     {
         player = GetComponent<Player>();
-        hitboxSprite = GetComponent<SpriteRenderer>();
     }
 
 

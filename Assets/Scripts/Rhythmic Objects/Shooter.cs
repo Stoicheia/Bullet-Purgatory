@@ -11,7 +11,7 @@ public abstract class Shooter : RhythmicObject
 
     void Start()
     {
-        pooler = FindObjectOfType(typeof(ObjectPooler)) as ObjectPooler;
+        pooler = FindObjectOfType<ObjectPooler>();
     }
 
     public abstract override void Shoot();
