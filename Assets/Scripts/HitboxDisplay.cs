@@ -13,6 +13,10 @@ public class HitboxDisplay : MonoBehaviour
     void Awake()
     {
         player = GetComponent<Player>();
+        if(hitboxSprite==null){
+            hitboxSprite = GetComponentsInChildren<SpriteRenderer>()[1];
+            Debug.LogWarning("Hitbox not assigned to player. Attempting to auto-assign.");
+        }
     }
 
 

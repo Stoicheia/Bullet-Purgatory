@@ -8,13 +8,14 @@ public class Bullet : MonoBehaviour
 {
     public float damage = 1;
     public float speedModifier = 1;
-    
+
     static float universalSpeedModifier = 1;
     public static float UniversalSpeedModifier{get{return universalSpeedModifier;} set{universalSpeedModifier = value;}}
     static float pauseZoom = 1;
     public static float PauseZoom{get{return pauseZoom;} set{pauseZoom = value;}}
 
 	float speed;
+    public float Speed{get{return speed;} set{speed = value;}}
     float actualSpeed;
 	Vector3 moveVector;
 	bool friendly = false;
@@ -46,7 +47,7 @@ public class Bullet : MonoBehaviour
     	transform.Translate(v);
     	if(Mathf.Abs(transform.position.x-stage.transform.position.x)>stage.bounds.size.x/2+render.bounds.size.x/2||
     		Mathf.Abs(transform.position.y-stage.transform.position.y)>stage.bounds.size.y/2+render.bounds.size.y/2){
-    		pooler.Despawn(gameObject, poolTag);
+    		Despawn();
     	}
     }
 
@@ -59,17 +60,17 @@ public class Bullet : MonoBehaviour
         if(hitObject!=null){
             if(hitObject.IsFriendly()!=friendly){
                 hitObject.TakeHit(damage, hit);
-                pooler.Despawn(gameObject, poolTag);
+                Despawn();
             }
         }
     }
-
-    public void SetSpeed(float s){
-    	speed = s;
+    
+    public void AddSpeed(float a){
+        speed += a;
     }
 
-    public void ChangeSpeed(float v){
-        speed *= v;
+    public void MultiplySpeed(float a){
+        speed *= a;
     }
 
     public void Rotate(float r){
@@ -86,6 +87,10 @@ public class Bullet : MonoBehaviour
 
     public static void SetPooler(ObjectPooler p){
         pooler = p;
+    }
+
+    public void Despawn(){
+        pooler.Despawn(gameObject, poolTag);
     }
 
 }
