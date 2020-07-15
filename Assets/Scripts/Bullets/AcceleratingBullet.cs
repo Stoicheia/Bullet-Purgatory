@@ -11,7 +11,7 @@ public class AcceleratingBullet : MonoBehaviour
 
     public bool repeatSequence;
     [Range(0.1f,20)]
-    public float period;
+    public float duration;
 
     float initialSpeed;
     float targetSpeed;
@@ -26,15 +26,19 @@ public class AcceleratingBullet : MonoBehaviour
     void Start()
     {
     	initialSpeed = bullet.Speed;
-    	targetSpeed = bullet.Speed*accelerateToPercent;
-    	startTime = Time.time;
+    	targetSpeed = bullet.Speed*accelerateToPercent/100;
+    }
+
+    void OnEnable()
+    {
+        startTime = Time.time;
     }
 
     void Update()
     {
     	if(!repeatSequence)
-			bullet.Speed = initialSpeed+(targetSpeed-initialSpeed)*(1-1/(1+Time.time-startTime));
+			bullet.Speed = initialSpeed+(targetSpeed-initialSpeed)*(1-1/(1+(Time.time-startTime)/duration));
 		else
-			bullet.Speed = initialSpeed+(targetSpeed-initialSpeed)*1/2*(1+Mathf.Sin(2*Mathf.PI*(Time.time-startTime)/period));
+			bullet.Speed = initialSpeed+(targetSpeed-initialSpeed)*1/2*(1+Mathf.Sin(2*Mathf.PI*(Time.time-startTime)/duration));
     }
 }

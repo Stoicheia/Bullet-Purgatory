@@ -5,13 +5,20 @@ using UnityEngine;
 [RequireComponent(typeof(Bullet))]
 public class EmptyBullet : MonoBehaviour
 {
-	//Bullet bullet;
-	ObjectPooler pooler;
+	Bullet bullet;
 
-    void Start()
+	void Awake()
+	{
+		bullet = GetComponent<Bullet>();
+	}
+
+    void OnEnable()
     {
-        pooler = FindObjectOfType(typeof(ObjectPooler)) as ObjectPooler;
-        //bullet = GetComponent<Bullet>();
-        pooler.Despawn(gameObject, "empty");
+    	bullet.Despawn();
+    }
+
+    IEnumerator DespawnInstantly(){
+    	yield return new WaitForSeconds(1);
+    	bullet.Despawn();
     }
 }
