@@ -1439,7 +1439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6896a7f0edc8fff4cb4f45cac212c396, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnDelayMs: 0
+  spawnDelayMs: 500
 --- !u!114 &813682858589331559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2504,8 +2504,8 @@ MonoBehaviour:
   - {fileID: 704470413663596513}
   - {fileID: 2539471079537098524}
   m_Bounds:
-    m_Center: {x: -0.0002746582, y: -0.00000047683716, z: 0}
-    m_Extent: {x: 4.394725, y: 2.1, z: 0}
+    m_Center: {x: 0, y: -0.0021204948, z: 0}
+    m_Extent: {x: 4.3949995, y: 2.09788, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &5447884450000659009
@@ -2610,8 +2610,8 @@ MonoBehaviour:
   - {fileID: 2474394263115962818}
   - {fileID: 3467810112416983459}
   m_Bounds:
-    m_Center: {x: -0.00027561188, y: 0.00000023841858, z: 0}
-    m_Extent: {x: 4.394724, y: 2.0999997, z: 0}
+    m_Center: {x: 0, y: -0.0021195412, z: 0}
+    m_Extent: {x: 4.3949995, y: 2.09788, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &5706196475676600087
@@ -2921,8 +2921,8 @@ MonoBehaviour:
   - {fileID: 7112507805476540025}
   - {fileID: 6627227856474330399}
   m_Bounds:
-    m_Center: {x: -0.00027513504, y: 0, z: 0}
-    m_Extent: {x: 4.3947244, y: 2.1, z: 0}
+    m_Center: {x: 0, y: -0.0021197796, z: 0}
+    m_Extent: {x: 4.3949995, y: 2.0978801, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &5896788918615718899
@@ -3177,7 +3177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6896a7f0edc8fff4cb4f45cac212c396, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnDelayMs: 0
+  spawnDelayMs: 500
 --- !u!114 &439736360738250149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4079,8 +4079,8 @@ MonoBehaviour:
   - {fileID: 1154507285156636361}
   - {fileID: 2238630489211580756}
   m_Bounds:
-    m_Center: {x: -0.00027513504, y: 0, z: 0}
-    m_Extent: {x: 4.3947244, y: 2.1, z: 0}
+    m_Center: {x: 0, y: -0.0021190643, z: 0}
+    m_Extent: {x: 4.3949995, y: 2.0978804, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!1 &7825426184874678429

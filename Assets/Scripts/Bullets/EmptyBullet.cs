@@ -17,8 +17,4 @@ public class EmptyBullet : MonoBehaviour
     	bullet.Despawn();
     }
 
-    IEnumerator DespawnInstantly(){
-    	yield return new WaitForSeconds(1);
-    	bullet.Despawn();
-    }
 }

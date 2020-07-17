@@ -118,7 +118,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6824729723227808329}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 469053906785828928}
+        m_MethodName: GoHome
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &490821407170238251
 GameObject:
   m_ObjectHideFlags: 0
@@ -129,6 +140,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3867953478504388345}
   - component: {fileID: -8142030242703934836}
+  - component: {fileID: 469053906785828928}
   m_Layer: 0
   m_Name: Fail Screen
   m_TagString: Untagged
@@ -161,6 +173,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f7e6842a530b404ba53281d439efeae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &469053906785828928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490821407170238251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91049cbe297a0394f86be09c92d65475, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1469980209447166788

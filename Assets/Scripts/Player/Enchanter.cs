@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Enchanter : MonoBehaviour
 {
+    public delegate void UseAction();
+    public static event UseAction OnUsePower;
+
 	LevelStateManager stateManager;
 	RhythmMapsManager rhythmMaps;
 
@@ -11,6 +14,7 @@ public class Enchanter : MonoBehaviour
 	List<RhythmMap> myEnchantSongs;
 
     int currentEnchantment;
+    public int CurrentEnchantment{get{return currentEnchantment;} private set{currentEnchantment = value;}}
     int totalEnchantments;
 
     [SerializeField]
@@ -58,6 +62,8 @@ public class Enchanter : MonoBehaviour
         rhythmMaps.ChangeSongRestart(myEnchantSongs[currentEnchantment], 0.5f, 0.1f);
         currentEnchantment++;
         nextEnchantTime = Time.time + enchantCooldown;
+        if(OnUsePower!=null)
+            OnUsePower();
     }
 
     bool EnchantConditionsMet()

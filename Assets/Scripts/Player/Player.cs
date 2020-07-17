@@ -48,18 +48,17 @@ public class Player : MonoBehaviour, IDamageable
 	//public RhythmicObject startingShooter;
     public RhythmicObject[] shooters;
 
-    void Start(){
+    void Awake(){
         lives = maxLives;
 
-    	controller = GetComponent<Controller>();
+        controller = GetComponent<Controller>();
         hitbox = GetComponent<Collider2D>();
+    }
 
+    void Start(){
     	moveVector = targetMoveVector = new Vector3(0,0,0);
     	speed = defSpeed;
         moveState = 0;
-
-        //shooter = Instantiate(startingShooter,transform.position,transform.rotation) as RhythmicObject;
-        //shooter.transform.parent = transform;
 
         invulnerable = false;
     }
@@ -92,7 +91,7 @@ public class Player : MonoBehaviour, IDamageable
     void UpdateShooterRotation()
     {
         foreach(RhythmicObject shooter in shooters){
-            targetShooterRotation = Quaternion.Euler(new Vector3(0,0,-180/Mathf.PI*Mathf.Atan(moveVector.x/Time.deltaTime*rotationFactor))); 
+            targetShooterRotation = Quaternion.Euler(new Vector3(0,0,-180/Mathf.PI*Mathf.Atan(moveVector.x/Mathf.Max(0.001f,Time.deltaTime)*rotationFactor))); 
             shooter.transform.rotation = Quaternion.Slerp(shooter.transform.rotation, targetShooterRotation, rotationSmoothing*Time.deltaTime);
         }
     }
@@ -133,20 +132,20 @@ public class Player : MonoBehaviour, IDamageable
     }
 
     void GetHit(){
-        if(OnPlayerHit!=null)
-            OnPlayerHit();
         ChangeLives(-1);
         animator.SetTrigger("onHit");
+        if(OnPlayerHit!=null)
+            OnPlayerHit();
     }
 
     void GetKilled(){
-        if(OnPlayerDeath!=null)
-            OnPlayerDeath();
         animator.SetTrigger("onDie");
         foreach(RhythmicObject shooter in shooters){
             shooter.gameObject.SetActive(false);
         }
         StartCoroutine(DisableAfterSeconds(Mathf.Max(invulnerabilityPeriod-Time.deltaTime,0)));
+        if(OnPlayerDeath!=null)
+            OnPlayerDeath();
     }
 
     IEnumerator DisableAfterSeconds(float s){
