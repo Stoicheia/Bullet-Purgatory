@@ -23,6 +23,8 @@ public class DialogueAudio : MonoBehaviour
 
     void ToggleAudio(LevelState state)
     {
+    	if(audioPlayer==null)
+    		audioPlayer = GetComponent<AudioSource>();
     	if(state==LevelState.DIALOGUE)
     		audioPlayer.Play();
     	else

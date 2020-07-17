@@ -7463,7 +7463,8 @@ AudioSource:
   m_GameObject: {fileID: 1883745988}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 854afd8c2dd635b49b618f1c89fb9f8d,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 70eac83471c5df440a93583e95487edc, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -7739,6 +7740,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b26570d220f494344b48772fffe42c78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mixer: {fileID: 0}
   sounds:
   - Name: Shot
     clip: {fileID: 8300000, guid: 9ea3b09e90b8a554ba69cb74fedc6379, type: 3}
@@ -7765,6 +7767,7 @@ MonoBehaviour:
     volume: 0
     pitch: 0
     source: {fileID: 0}
+  sfxVolume: 0.5
 --- !u!4 &1985370143
 Transform:
   m_ObjectHideFlags: 0

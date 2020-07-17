@@ -45,12 +45,15 @@ AudioMixerController:
   m_UpdateMode: 0
   m_ExposedParameters:
   - guid: ca5ae7b6afca9684f98b1f5596b164d1
-    name: vol
+    name: masterVol
   - guid: 6d1b9a63632b7cb4db26a343e4057e86
     name: pitch
+  - guid: 9adce8cee40eba0458736b7d114aa584
+    name: vol
   m_AudioMixerGroupViews:
   - guids:
     - 81778d238ea6be94a915ea38a8780ab8
+    - 8d2b2e70013a9ee4e94ae975881757c9
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -63,7 +66,8 @@ AudioMixerGroupController:
   m_Name: Master
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: 81778d238ea6be94a915ea38a8780ab8
-  m_Children: []
+  m_Children:
+  - {fileID: 274395048960549952}
   m_Volume: ca5ae7b6afca9684f98b1f5596b164d1
   m_Pitch: 181c91f86cb7fe640a360ffadb14e636
   m_Send: 00000000000000000000000000000000
@@ -111,6 +115,39 @@ AudioMixerSnapshotController:
     06728abcfe8185f45a5898bac4df8cf6: 0.1
     94b04d8e03544fc46952a5e68e4234c1: -10
   m_TransitionOverrides: {}
+--- !u!243 &274395048960549952
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Music
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 8d2b2e70013a9ee4e94ae975881757c9
+  m_Children: []
+  m_Volume: 9adce8cee40eba0458736b7d114aa584
+  m_Pitch: 6ddae2a69c0957344acafa3b98ea999b
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: 853166082124521461}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!244 &853166082124521461
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: c8fb1ac66323a784ea55d45c4cdd2b9c
+  m_EffectName: Attenuation
+  m_MixLevel: c7520fb4d042e604f97d3ff6abca5c51
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!244 &4531328751385397747
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
