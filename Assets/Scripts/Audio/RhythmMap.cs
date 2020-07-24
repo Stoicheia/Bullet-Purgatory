@@ -15,6 +15,7 @@ public class RhythmMap : MonoBehaviour
     public SongLine lineObjectPrefab;
 
     RhythmMapsManager theManager;
+    float masterVolume;
 
     [SerializeField]
     private float fadeOutTime = 0;
@@ -42,6 +43,7 @@ public class RhythmMap : MonoBehaviour
     void Start()
     {
         theManager = transform.parent.GetComponent<RhythmMapsManager>();
+        theManager.audioMixer.GetFloat("masterVol", out masterVolume);
         //RestartSongAfter(0.5f);
     }
 
@@ -129,6 +131,7 @@ public class RhythmMap : MonoBehaviour
         }
         else if(songPlayer.time<=fadeInTime){
             theManager.audioMixer.SetFloat("vol", -80*Mathf.Pow((1-songPlayer.time/fadeInTime),2));
+            theManager.audioMixer.SetFloat("masterVol", masterVolume+(masterVolume-80)*Mathf.Pow((1-songPlayer.time/fadeInTime),2));
         }
         else{
             theManager.audioMixer.SetFloat("vol", 0);

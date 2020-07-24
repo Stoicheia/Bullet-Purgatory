@@ -14,6 +14,7 @@ public class Player : MonoBehaviour, IDamageable
 
 	Controller controller;
     Collider2D hitbox;
+    HitboxDisplay hitboxDisplay;
     public Animator animator;
 
     RhythmicObject shooter;
@@ -31,7 +32,7 @@ public class Player : MonoBehaviour, IDamageable
 
     [SerializeField]
 	private float moveSmoothing = 50;
-	public float sprintMod;
+	public float strafeMod;
 	int moveState;
 
     bool invulnerable;
@@ -53,6 +54,7 @@ public class Player : MonoBehaviour, IDamageable
 
         controller = GetComponent<Controller>();
         hitbox = GetComponent<Collider2D>();
+        hitboxDisplay = GetComponent<HitboxDisplay>();
     }
 
     void Start(){
@@ -111,14 +113,12 @@ public class Player : MonoBehaviour, IDamageable
 
     void UpdateMoveState(){
     	moveState = 0;
-    	if(Keybinds.instance.GetInput("Sprint"))
-    		moveState++;
     	if(Keybinds.instance.GetInput("Strafe"))
-    		moveState--;
+    		moveState++;
     }
 
     void UpdateSpeedMultiplier(){
-        speedMultplier = Mathf.Pow(sprintMod, moveState);
+        speedMultplier = Mathf.Pow(strafeMod, moveState);
     	speed = defSpeed * speedMultplier;
     }
 
@@ -140,6 +140,8 @@ public class Player : MonoBehaviour, IDamageable
 
     void GetKilled(){
         animator.SetTrigger("onDie");
+        hitboxDisplay.GetSprite().enabled = false;
+        invulnTimeLeft = 999999;
         foreach(RhythmicObject shooter in shooters){
             shooter.gameObject.SetActive(false);
         }

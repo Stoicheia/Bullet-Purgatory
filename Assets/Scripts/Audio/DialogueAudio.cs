@@ -25,10 +25,19 @@ public class DialogueAudio : MonoBehaviour
     {
     	if(audioPlayer==null)
     		audioPlayer = GetComponent<AudioSource>();
-    	if(state==LevelState.DIALOGUE)
+    	if(state==LevelState.DIALOGUE){
     		audioPlayer.Play();
+            StartCoroutine(FadeInSequence());
+        }
     	else
     		audioPlayer.Stop();
+    }
+
+    IEnumerator FadeInSequence()
+    {
+        audioPlayer.volume = 0.1f;
+        yield return new WaitForSeconds(0.5f);
+        audioPlayer.volume = 1;
     }
 
 }

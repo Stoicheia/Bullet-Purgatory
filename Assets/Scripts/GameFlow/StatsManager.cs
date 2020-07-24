@@ -5,17 +5,18 @@ using UnityEngine;
 public class StatsManager : MonoBehaviour
 {
     public int kills {get; private set;}
+    public string causeOfFail {get; private set;}
 
     void Start()
     {
         kills = 0;
     }
 
-    void IncrementKills (string s) => kills++;
-
     void OnEnable()
     {
     	Enemy.OnDeath += IncrementKills;
+        Player.OnPlayerDeath += SetFailFromDeath;
+        RhythmMapsManager.OnAllSongsFinished += SetFailFromTimeout;
     }
 
     void OnDisable()
@@ -23,8 +24,7 @@ public class StatsManager : MonoBehaviour
     	Enemy.OnDeath -= IncrementKills;
     }
 
-    void Update()
-    {
-        
-    }
+    void IncrementKills (string s) => kills++;
+    void SetFailFromDeath () => causeOfFail = "You died!";
+    void SetFailFromTimeout () => causeOfFail = "You have run out of Songpower!";
 }

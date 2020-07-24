@@ -19,16 +19,20 @@ public class HitboxDisplay : MonoBehaviour
         }
     }
 
-
     void Update()
     {
         switch (player.GetMoveState()){
-        	case -1:
+        	case 1:
         		hitboxSprite.sprite = strafingHitbox;
         		break;
         	default:
         		hitboxSprite.sprite = normalHitbox;
         		break;
         }
+    }
+
+    public SpriteRenderer GetSprite()
+    {
+        return hitboxSprite;
     }
 }

@@ -9,6 +9,7 @@ public class BackgroundRenderer : MonoBehaviour
 
 	const float SCROLL_LENIENCY = 1f;
     const float GAP_FILL = 0.01f;
+    const float SPRITE_DIM = 0.5f;
 	MeshCollider myCollider;
 	List<SpriteRenderer> scrollingImages;
 
@@ -27,6 +28,7 @@ public class BackgroundRenderer : MonoBehaviour
 	        toScale *= scale;
             myBackground.transform.localScale = toScale;
 	        myBackground.transform.Translate(new Vector3(0,(i*(1-GAP_FILL))*myBackground.bounds.size.y,10));
+            myBackground.color = new Color(SPRITE_DIM, SPRITE_DIM, SPRITE_DIM);
 	        scrollingImages.Add(myBackground);
    		}
     }

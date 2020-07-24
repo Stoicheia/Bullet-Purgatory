@@ -10,11 +10,16 @@ public class RhythmMapsManager : MonoBehaviour
 
     public delegate void SongChangeAction();
     public static event SongChangeAction NewSong;
+    public static event SongChangeAction OnAllSongsFinished;
 
     public AudioMixer audioMixer;
 
     public RhythmMap startingMap;
     RhythmMap activeMap;
+
+    [SerializeField]
+    bool loopCurrent = false;
+    public bool startImmediately;
 
     Dictionary<RhythmMap, bool> mapsFinished;
 
@@ -34,6 +39,8 @@ public class RhythmMapsManager : MonoBehaviour
 
     void Start()
     {   
+        if(startImmediately)
+            EnterRhythm();
         RhythmMap[] startingMaps = GetComponentsInChildren<RhythmMap>();
         mapsFinished = new Dictionary<RhythmMap, bool>();
         foreach(var map in startingMaps)
@@ -61,7 +68,8 @@ public class RhythmMapsManager : MonoBehaviour
         activeMap = map;
         map.RestartSong();
         mapsFinished[map] = false;
-        NewSong();
+        if(NewSong!=null)
+            NewSong();
     }
 
     IEnumerator SongChangeSequence(RhythmMap map, float wait, float fadein){
@@ -74,7 +82,8 @@ public class RhythmMapsManager : MonoBehaviour
         yield return new WaitForSeconds(wait);
         activeMap = map;
         mapsFinished[map] = false;
-        NewSong();       
+        if(NewSong!=null)
+            NewSong();    
     }
 
     IEnumerator SongChangeRestartSequence(RhythmMap map, float wait, float fadein){
@@ -87,11 +96,13 @@ public class RhythmMapsManager : MonoBehaviour
         yield return new WaitForSeconds(wait);
         activeMap = map;
         mapsFinished[map] = false;
-        NewSong();  
+        if(NewSong!=null)
+            NewSong();
     }
 
     void SetFinished(RhythmMap map){
-        mapsFinished[map] = true;
+        if(!loopCurrent)
+            mapsFinished[map] = true;
         foreach(var b in mapsFinished){
             Debug.Log(b.Key + ": " + b.Value);
             if(!b.Value) {
@@ -99,6 +110,7 @@ public class RhythmMapsManager : MonoBehaviour
                 return;
             }
         }
+        OnAllSongsFinished();
         GoToState(LevelState.FAILSCREEN);
     }
 

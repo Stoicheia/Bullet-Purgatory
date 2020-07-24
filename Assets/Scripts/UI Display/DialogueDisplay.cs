@@ -18,11 +18,6 @@ public class DialogueDisplay : MonoBehaviour
         UpdateInfo();
     }
 
-    void Update()
-    {
-
-    }
-
     public void SetDialogue(DialogueSentence d)
     {
     	dialogue = d;

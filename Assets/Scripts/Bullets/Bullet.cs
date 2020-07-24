@@ -25,10 +25,11 @@ public class Bullet : MonoBehaviour
     static ObjectPooler pooler;
 	SpriteRenderer render;
 
+    const float FRIENDLY_TRANSPARENCY = 0.6f;
 
-    void Start()
+
+    void Awake()
     {
-        gameObject.layer = friendly? 8:9;
         if(poolTag=="")
             poolTag = name;
         render = GetComponent<SpriteRenderer>();
@@ -79,6 +80,8 @@ public class Bullet : MonoBehaviour
 
     public void SetFriendly(bool f){
     	friendly = f;
+        gameObject.layer = friendly? 8:9;
+        if(friendly) render.color = new Color(1,1,1,FRIENDLY_TRANSPARENCY);
     }
 
     public static void SetStage(MeshCollider s){

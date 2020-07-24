@@ -12,7 +12,7 @@ public class OnscreenBullets : MonoBehaviour
 
     void Start()
     {
-        
+        Bullet.UniversalSpeedModifier = Bullet.PauseZoom = 1;
     }
 
     void OnEnable()

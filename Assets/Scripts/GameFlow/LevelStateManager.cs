@@ -31,7 +31,7 @@ public class LevelStateManager : MonoBehaviour
 		SetLevelState(LevelState.DIALOGUE);
 
         Bullet.SetStage(GameObject.FindGameObjectWithTag("Stage").GetComponent<MeshCollider>());
-        Bullet.SetPooler(FindObjectOfType(typeof(ObjectPooler)) as ObjectPooler);
+        Bullet.SetPooler(FindObjectOfType<ObjectPooler>());
 	}
 
 	void Update(){

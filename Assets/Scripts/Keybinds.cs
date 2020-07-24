@@ -24,8 +24,8 @@ public class Keybinds : MonoBehaviour
         keys.Add("Left", KeyCode.A);
         keys.Add("Right", KeyCode.D);
         keys.Add("Down", KeyCode.S);
-    	keys.Add("Sprint", KeyCode.LeftShift);
-    	keys.Add("Strafe", KeyCode.Space);
+    	keys.Add("Sprint", KeyCode.RightShift);
+    	keys.Add("Strafe", KeyCode.LeftShift);
     	keys.Add("Enchant", KeyCode.G);
         keys.Add("SkipDialogue", KeyCode.Space);
         keys.Add("Pause", KeyCode.Escape);
