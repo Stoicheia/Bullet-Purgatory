@@ -7714,7 +7714,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8559741258431468166}
   m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: -7.96, y: 3.97, z: 0}
   m_LocalScale: {x: 1.1929817, y: 1.1929817, z: 1.1929817}
   m_Children: []
   m_Father: {fileID: 0}
@@ -7750,12 +7750,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9232d02d21c61e54fb40c8fa59d26839, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootEnabled: 0
+  shootEnabled: 1
   toSpawn:
-  - {fileID: 1322996619459143980, guid: 9635f0903a6b7e044a953dde390de808, type: 3}
-  - {fileID: 5956105185810958928, guid: 43ac29b9d244d4d4697903b418e25a96, type: 3}
+  - {fileID: 6044408016063265481, guid: 417612ef51c278e448f34c89dc1f8f72, type: 3}
+  - {fileID: 6044408016063265481, guid: e62674bd56448854c8571f4672dc340f, type: 3}
+  - {fileID: 6044408016063265481, guid: a6aeb050947fb6043a4b63a0749e4d23, type: 3}
+  - {fileID: 6044408016063265481, guid: 7c892bffe817ebd4da20b7aae8d3ab39, type: 3}
   bulletSpeed: 4
-  friendly: 1
+  friendly: 0
   shotAngles:
   - angle: 0
     angularVel: 60
@@ -7766,6 +7768,8 @@ MonoBehaviour:
   - angle: 180
     angularVel: 60
   - angle: 240
+    angularVel: 60
+  - angle: 300
     angularVel: 60
 --- !u!114 &8811993398718264290
 MonoBehaviour:

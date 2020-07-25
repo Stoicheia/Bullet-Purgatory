@@ -6,7 +6,7 @@ using UnityEngine;
 public class RotatingBullet : MonoBehaviour
 {
     Bullet bullet;
-    [Range(0.1f,10)]
+    [Range(0.1f,600)]
     public float period;
 
     void Awake()
