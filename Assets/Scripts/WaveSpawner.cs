@@ -6,7 +6,10 @@ using UnityEngine;
 public class WaveSpawner : RhythmicObject
 {
 	public delegate void StateChangeAction(LevelState state);
-	public static event StateChangeAction GoToState; 
+	public static event StateChangeAction GoToState;
+
+    public delegate void WaveSpawnAction(int[] waveInfo);
+    public static event WaveSpawnAction OnNextWave;
 
 	RhythmListener listener;
 	int enemiesOnScreen = 0;
@@ -41,6 +44,8 @@ public class WaveSpawner : RhythmicObject
     {
     	currentWave = -1;
         nextWave = 0;
+        if(OnNextWave!=null)
+            OnNextWave(GetWaveInfo());
     }
 
 
@@ -63,6 +68,8 @@ public class WaveSpawner : RhythmicObject
     	activeWave = waves[currentWave%totalWaves];
     	StartCoroutine(SpawnActiveWaveAfter(listener.BeatsToSeconds(2)));
     	enemiesOnScreen += activeWave.GetEnemyCount();
+        if(OnNextWave!=null)
+            OnNextWave(GetWaveInfo());
     }
 
     IEnumerator SpawnActiveWaveAfter(float wait)
@@ -91,5 +98,8 @@ public class WaveSpawner : RhythmicObject
     	spawnStarted = false;
     }
 
+    public int[] GetWaveInfo(){
+        return new int[] {currentWave+1,totalWaves};
+    }
 
 }

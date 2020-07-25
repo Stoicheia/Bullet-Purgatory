@@ -20,6 +20,7 @@ public class SelfDestructBullet : MonoBehaviour
 
     void OnEnable()
     {
+        col.enabled = true;
 		StartCoroutine(SDSequence(lifetime, sdTime));       
     }
 

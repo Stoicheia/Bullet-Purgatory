@@ -36,7 +36,6 @@ public class LivesUI : MonoBehaviour
     void Refresh()
     {
     	int lives = trackedPlayer.Lives;
-    	Debug.Log(lives);
     	for(int i=0; i<hearts.Count; i++){
     		hearts[i].SetActive(i<lives);
     	}

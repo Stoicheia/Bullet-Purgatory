@@ -58,6 +58,7 @@ public class ObjectPooler : MonoBehaviour
     }
 
     public void Despawn(GameObject g, string t){
+        g.transform.Translate(Vector3.up*1000);
         if(!pools.ContainsKey(t))
             CreatePool(t, g);    	
     	pools[t].ReturnToPool(g);

@@ -145,4 +145,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sdAnimator: {fileID: 0}
   lifetime: 2
-  sdTime: 0.5
+  sdTime: 0

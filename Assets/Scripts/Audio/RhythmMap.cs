@@ -138,4 +138,8 @@ public class RhythmMap : MonoBehaviour
         }
     }
 
+    public float[] GetSongProgressInfo(){
+        return new float[] {songPlayer.time, songPlayer.clip.length};
+    }
+
 }

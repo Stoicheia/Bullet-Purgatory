@@ -139,6 +139,10 @@ public class Enemy : MonoBehaviour, IDamageable
         return false;
     }
 
+    public bool IsSolid(){
+        return true;
+    }
+
     public bool IsSpawning(){
         return spawnState.IsName("Spawning");
     }

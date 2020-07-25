@@ -9,16 +9,17 @@ public class EndScreenDisplay : MonoBehaviour
 	StatsManager stats;
 
 	public TextMeshProUGUI killCount;
+    public TextMeshProUGUI grazing;
+    public TextMeshProUGUI livesLeft;
+    public TextMeshProUGUI timeTaken;
 
     void Start()
     {
         stats = FindObjectOfType<StatsManager>();
-        killCount.text = stats.kills.ToString(); 
-    }
 
-
-    void Update()
-    {
-        
+        killCount.text = stats.kills.ToString();
+        grazing.text = Mathf.Round(stats.grazing).ToString();
+        livesLeft.text = stats.lives.ToString();
+        timeTaken.text = (Mathf.Round(stats.totalSongTime*100)/100).ToString() + " seconds";
     }
 }

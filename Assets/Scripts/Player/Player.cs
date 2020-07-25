@@ -10,7 +10,9 @@ public class Player : MonoBehaviour, IDamageable
     public delegate void DieAction();
     public static event DieAction OnPlayerHit;
     public static event DieAction OnPlayerDeath;
-    public static event DieAction OnLivesChange;
+
+    public delegate void LifeChangeAction(int l);
+    public static event LifeChangeAction OnLivesChange;
 
 	Controller controller;
     Collider2D hitbox;
@@ -158,10 +160,14 @@ public class Player : MonoBehaviour, IDamageable
     void ChangeLives(int lv){
         lives=Mathf.Max(lives+lv,0);
         if(OnLivesChange!=null)
-            OnLivesChange();
+            OnLivesChange(lives);
     }
 
     public bool IsFriendly(){
+        return true;
+    }
+
+    public bool IsSolid(){
         return true;
     }
 

@@ -333,6 +333,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cause: {fileID: 2776785466344287124}
+  deathMessage: You Died!
+  timeoutMessage: The Songpower has been Depleted
 --- !u!114 &469053906785828928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -610,8 +612,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 50.300037, y: 263.1}
-  m_SizeDelta: {x: 634.8888, y: 158.7222}
+  m_AnchoredPosition: {x: 26.8, y: 263.18}
+  m_SizeDelta: {x: 1278.3285, y: 158.7222}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7752502738875440446
 CanvasRenderer:
@@ -640,9 +642,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Cause
-
-'
+  m_text: You lost!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d019b207ef53ccb46ae3b30213d3c4ef, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 80f5eb2c0e0b67a4ea14131f2c9cc6da, type: 2}
@@ -670,8 +670,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 80
-  m_fontSizeBase: 80
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -711,10 +711,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 2776785466344287124}
-    characterCount: 6
+    characterCount: 9
     spriteCount: 0
     spaceCount: 1
-    wordCount: 1
+    wordCount: 2
     linkCount: 0
     lineCount: 1
     pageCount: 1

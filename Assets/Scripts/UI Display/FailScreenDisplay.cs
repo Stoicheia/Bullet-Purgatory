@@ -8,6 +8,17 @@ public class FailScreenDisplay : MonoBehaviour
 	StatsManager stats;
 	public TextMeshProUGUI cause;
 
+    public string deathMessage;
+    public string timeoutMessage;
+
+    Dictionary<CauseOfFail, string> causeText;
+
+    void Awake(){
+        causeText = new Dictionary<CauseOfFail, string>();
+        causeText.Add(CauseOfFail.DEATH, deathMessage);
+        causeText.Add(CauseOfFail.TIMEOUT, timeoutMessage);
+    }
+
     void Start()
     {
         stats = FindObjectOfType<StatsManager>();
@@ -16,6 +27,6 @@ public class FailScreenDisplay : MonoBehaviour
 
     void UpdateInfo()
     {
-    	cause.text = stats.causeOfFail;
+    	cause.text = causeText[stats.causeOfFail];
     }
 }

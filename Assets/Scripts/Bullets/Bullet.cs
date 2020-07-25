@@ -35,7 +35,6 @@ public class Bullet : MonoBehaviour
         render = GetComponent<SpriteRenderer>();
     }
 
-
     void Update()
     {
         actualSpeed = speed*speedModifier*universalSpeedModifier*pauseZoom;
@@ -52,8 +51,14 @@ public class Bullet : MonoBehaviour
     	}
     }
 
+
     void OnCollisionEnter2D(Collision2D collision){
         OnHit(collision);
+        OnOverlapEnter(collision);
+    }
+
+    void OnCollisionExit2D(Collision2D collision){
+        OnOverlapExit(collision);
     }
 
     void OnHit(Collision2D hit){
@@ -65,6 +70,25 @@ public class Bullet : MonoBehaviour
             }
         }
     }
+
+    void OnOverlapEnter(Collision2D hit){
+        IOverlap overObject = hit.gameObject.GetComponent<IOverlap>();
+        if(overObject!=null){
+            if(overObject.IsFriendly()!=friendly){
+                overObject.Enter(hit);
+            }
+        }
+    }
+
+    void OnOverlapExit(Collision2D hit){
+        IOverlap overObject = hit.gameObject.GetComponent<IOverlap>();
+        if(overObject!=null){
+            if(overObject.IsFriendly()!=friendly){
+                overObject.Exit(hit);
+            }
+        }
+    }
+
     
     public void AddSpeed(float a){
         speed += a;

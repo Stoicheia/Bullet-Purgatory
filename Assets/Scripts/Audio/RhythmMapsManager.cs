@@ -136,6 +136,25 @@ public class RhythmMapsManager : MonoBehaviour
         return activeMap;
     }
 
+    public bool IsStartingMap(){
+        return activeMap == startingMap;
+    }
+
+    public float[] GetCurrentMapInfo(){
+        if(activeMap==null) return new float[] {0,1};
+        return activeMap.GetSongProgressInfo();
+    }
+
+    public float[] GetAllMapsInfo(){
+        float elapsed = 0;
+        float total = 0;
+        foreach(var b in mapsFinished){
+            elapsed += b.Key.GetSongProgressInfo()[0];
+            total += b.Key.GetSongProgressInfo()[1];
+        }
+        return new float[] {elapsed, total};
+    }
+
     public RhythmMap AddMap(RhythmMap map){
         RhythmMap myMap = Instantiate(map);
         myMap.transform.parent = transform;
