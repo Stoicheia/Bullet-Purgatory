@@ -13,6 +13,7 @@ public class DistortOnPlayerHit : MonoBehaviour
 
     void OnEnable()
     {
+        audioMixer.SetFloat("pitch", 1);
     	Player.OnPlayerHit += Distort;
     }
 

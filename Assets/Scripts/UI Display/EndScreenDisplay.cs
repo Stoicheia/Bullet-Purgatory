@@ -20,6 +20,6 @@ public class EndScreenDisplay : MonoBehaviour
         killCount.text = stats.kills.ToString();
         grazing.text = Mathf.Round(stats.grazing).ToString();
         livesLeft.text = stats.lives.ToString();
-        timeTaken.text = (Mathf.Round(stats.totalSongTime*100)/100).ToString() + " seconds";
+        timeTaken.text = Mathf.Floor(stats.totalSongTime/60).ToString() +":"+ Mathf.Round(stats.totalSongTime%60).ToString();
     }
 }

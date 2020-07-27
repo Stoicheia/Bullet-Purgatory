@@ -42,13 +42,14 @@ public class RhythmMap : MonoBehaviour
 
     void Start()
     {
+        masterVolume = SFXManager.instance.masterVolume;
         theManager = transform.parent.GetComponent<RhythmMapsManager>();
-        theManager.audioMixer.GetFloat("masterVol", out masterVolume);
         //RestartSongAfter(0.5f);
     }
 
     void Update()
     {
+        masterVolume = SFXManager.instance.masterVolume;
         if(theManager.GetActiveMap()==this)
             ApplyFadeEffects();
         //Debug.Log(songPlayer.name + ": " + songPlayer.time + "("+(songPlayer.time+Time.deltaTime)+")"+ "... " + songPlayer.clip.length);
@@ -128,6 +129,7 @@ public class RhythmMap : MonoBehaviour
     void ApplyFadeEffects(){
         if(songPlayer.time>=songPlayer.clip.length-fadeOutTime){
             theManager.audioMixer.SetFloat("vol", -80*Mathf.Pow((1-(songPlayer.clip.length-songPlayer.time)/fadeOutTime),2));
+            theManager.audioMixer.SetFloat("masterVol", masterVolume);
         }
         else if(songPlayer.time<=fadeInTime){
             theManager.audioMixer.SetFloat("vol", -80*Mathf.Pow((1-songPlayer.time/fadeInTime),2));
@@ -135,6 +137,7 @@ public class RhythmMap : MonoBehaviour
         }
         else{
             theManager.audioMixer.SetFloat("vol", 0);
+            theManager.audioMixer.SetFloat("masterVol", masterVolume);
         }
     }
 

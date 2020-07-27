@@ -11,6 +11,7 @@ public class SFXManager : MonoBehaviour
 	public static SFXManager instance;
     [Range(0,1)]
     public float sfxVolume = 0.5f;
+    public float masterVolume = 0;
 
     void PlayShot () => Play("Shot");
     void PlayHit () => Play("OnHit");
@@ -61,6 +62,6 @@ public class SFXManager : MonoBehaviour
     }
 
     public void ChangeMasterVolume(float v){
-        mixer.SetFloat("masterVol", Mathf.Log10(Mathf.Max(v,0.001f))*20);
+        masterVolume = Mathf.Log10(Mathf.Max(v,0.001f))*20;
     }
 }

@@ -21,10 +21,12 @@ public class RhythmMapsManager : MonoBehaviour
     bool loopCurrent = false;
     public bool startImmediately;
 
+    public float activeTime {get; private set;}
+
     Dictionary<RhythmMap, bool> mapsFinished;
 
     void Awake(){
-
+        activeTime = 0;
     }
 
     void OnEnable()
@@ -45,6 +47,12 @@ public class RhythmMapsManager : MonoBehaviour
         mapsFinished = new Dictionary<RhythmMap, bool>();
         foreach(var map in startingMaps)
             mapsFinished.Add(map, false);  
+    }
+
+    void Update()
+    {
+        if(activeMap!=null)
+            activeTime += Time.deltaTime;
     }
 
     public void ChangeSong(RhythmMap map, float delay){
@@ -143,16 +151,6 @@ public class RhythmMapsManager : MonoBehaviour
     public float[] GetCurrentMapInfo(){
         if(activeMap==null) return new float[] {0,1};
         return activeMap.GetSongProgressInfo();
-    }
-
-    public float[] GetAllMapsInfo(){
-        float elapsed = 0;
-        float total = 0;
-        foreach(var b in mapsFinished){
-            elapsed += b.Key.GetSongProgressInfo()[0];
-            total += b.Key.GetSongProgressInfo()[1];
-        }
-        return new float[] {elapsed, total};
     }
 
     public RhythmMap AddMap(RhythmMap map){

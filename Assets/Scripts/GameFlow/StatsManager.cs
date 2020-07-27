@@ -18,7 +18,6 @@ public class StatsManager : MonoBehaviour
     public float currentSongTime {get; private set;}
     public float currentSongLength {get; private set;}
     public float totalSongTime {get; private set;}
-    public float totalSongLength {get; private set;}
     public bool isMainSong {get; private set;}
 
     void Start()
@@ -58,9 +57,7 @@ public class StatsManager : MonoBehaviour
         float[] songInfo = rhythmMaps.GetCurrentMapInfo();
         currentSongTime = songInfo[0];
         currentSongLength = songInfo[1];
-        float[] allSongInfo = rhythmMaps.GetAllMapsInfo();
-        totalSongTime = allSongInfo[0];
-        totalSongLength = allSongInfo[1];
+        totalSongTime = rhythmMaps.activeTime;
         isMainSong = rhythmMaps.IsStartingMap();
     }
     void SetFailFromDeath () => causeOfFail = CauseOfFail.DEATH;
