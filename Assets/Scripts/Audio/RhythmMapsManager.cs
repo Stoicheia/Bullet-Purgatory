@@ -23,7 +23,7 @@ public class RhythmMapsManager : MonoBehaviour
 
     public float activeTime {get; private set;}
 
-    Dictionary<RhythmMap, bool> mapsFinished;
+    Dictionary<RhythmMap, bool> mapsFinished = new Dictionary<RhythmMap, bool>();
 
     void Awake(){
         activeTime = 0;
@@ -44,9 +44,8 @@ public class RhythmMapsManager : MonoBehaviour
         if(startImmediately)
             EnterRhythm();
         RhythmMap[] startingMaps = GetComponentsInChildren<RhythmMap>();
-        mapsFinished = new Dictionary<RhythmMap, bool>();
         foreach(var map in startingMaps)
-            mapsFinished.Add(map, false);  
+            mapsFinished[map] = false;
     }
 
     void Update()

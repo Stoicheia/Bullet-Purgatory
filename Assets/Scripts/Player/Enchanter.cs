@@ -10,7 +10,8 @@ public class Enchanter : MonoBehaviour
 	LevelStateManager stateManager;
 	RhythmMapsManager rhythmMaps;
 
-	public RhythmMap[] enchantSongs;
+    [SerializeField]
+	public List<RhythmMap> enchantSongs;
 	List<RhythmMap> myEnchantSongs;
 
     int currentEnchantment;
@@ -25,19 +26,15 @@ public class Enchanter : MonoBehaviour
 	{
         currentEnchantment = 0;
         nextEnchantTime = 0;
+        enchantSongs = new List<RhythmMap>();
         myEnchantSongs = new List<RhythmMap>();
+        stateManager = FindObjectOfType<LevelStateManager>();
+        rhythmMaps = FindObjectOfType<RhythmMapsManager>();
 	}
 
     void Start()
     {
-        stateManager = FindObjectOfType<LevelStateManager>();
-        rhythmMaps = FindObjectOfType<RhythmMapsManager>();
-
-        foreach(RhythmMap enchantSong in enchantSongs){
-            RhythmMap myEnchantSong = rhythmMaps.AddMap(enchantSong);
-            myEnchantSongs.Add(myEnchantSong);
-        }
-        totalEnchantments = myEnchantSongs.Count;
+        
     }
 
     void OnEnable(){
@@ -80,5 +77,19 @@ public class Enchanter : MonoBehaviour
                 break;
             }
         }
+    }
+
+    public void UpdateSongs()
+    {
+        foreach(RhythmMap enchantSong in enchantSongs){
+            RhythmMap myEnchantSong = rhythmMaps.AddMap(enchantSong);
+            myEnchantSongs.Add(myEnchantSong);
+        }
+        totalEnchantments = myEnchantSongs.Count;
+    }
+
+    public void AddSong(RhythmMap map)
+    {
+        enchantSongs.Add(map);
     }
 }

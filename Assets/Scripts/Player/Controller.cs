@@ -5,12 +5,13 @@ using UnityEngine;
 [RequireComponent(typeof(CircleCollider2D))]
 public class Controller : MonoBehaviour
 {
-	public MeshCollider stage;
+	MeshCollider stage;
 	CircleCollider2D myCollider;
 	Bounds stageBounds;
 	Bounds myBounds;
 
     void Start(){
+        stage = GameObject.FindWithTag("Stage").GetComponent<MeshCollider>();
     	stageBounds = stage.bounds;
     	myCollider = GetComponent<CircleCollider2D>();
     	myBounds = myCollider.bounds;

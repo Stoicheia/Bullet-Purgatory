@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PowerUI : MonoBehaviour
+public class EnchantUI : MonoBehaviour
 {
 	List<Image> powers = new List<Image>();
-	public Enchanter trackedEnchanter;
+	Enchanter trackedEnchanter;
 
 	void Awake()
 	{
@@ -18,9 +18,7 @@ public class PowerUI : MonoBehaviour
 
     void Start()
     {
-    	if(trackedEnchanter==null)
-    		trackedEnchanter = FindObjectOfType<Enchanter>();
-    	Refresh();
+
     }
 
     void OnEnable()
@@ -33,6 +31,15 @@ public class PowerUI : MonoBehaviour
     void OnDisable()
     {
     	Enchanter.OnUsePower -= Refresh;
+    }
+
+    void Update()
+    {
+        if(trackedEnchanter==null){
+            trackedEnchanter = FindObjectOfType<Enchanter>();
+            if(trackedEnchanter!=null)
+                Refresh();
+        }
     }
 
     

@@ -25,7 +25,7 @@ public class Bullet : MonoBehaviour
     static ObjectPooler pooler;
 	SpriteRenderer render;
 
-    const float FRIENDLY_TRANSPARENCY = 0.6f;
+    const float FRIENDLY_TRANSPARENCY = 0.5f;
 
 
     void Awake()
@@ -100,6 +100,10 @@ public class Bullet : MonoBehaviour
 
     public void Rotate(float r){
     	transform.rotation *= Quaternion.Euler(0,0,r);
+    }
+
+    public bool IsFriendly(){
+        return friendly;
     }
 
     public void SetFriendly(bool f){

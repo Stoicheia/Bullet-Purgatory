@@ -49,7 +49,7 @@ public class Player : MonoBehaviour, IDamageable
     private bool godMode = true;
 
 	//public RhythmicObject startingShooter;
-    public RhythmicObject[] shooters;
+    public List<RhythmicObject> shooters = new List<RhythmicObject>();
 
     void Awake(){
         lives = maxLives;
@@ -157,7 +157,7 @@ public class Player : MonoBehaviour, IDamageable
         gameObject.SetActive(false);
     }
 
-    void ChangeLives(int lv){
+    public void ChangeLives(int lv){
         lives=Mathf.Max(lives+lv,0);
         if(OnLivesChange!=null)
             OnLivesChange(lives);
@@ -173,5 +173,12 @@ public class Player : MonoBehaviour, IDamageable
 
     public int GetMoveState(){
         return moveState;
+    }
+
+    public void AddShooter(RhythmicObject shooter)
+    {
+        RhythmicObject myShooter = Instantiate(shooter, transform.position, transform.rotation);
+        myShooter.transform.parent = transform;
+        shooters.Add(myShooter);
     }
 }

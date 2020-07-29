@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class LivesUI : MonoBehaviour
 {
     List<GameObject> hearts = new List<GameObject>();
-    public Player trackedPlayer;
+    Player trackedPlayer;
 
     void Awake()
     {
@@ -16,9 +16,16 @@ public class LivesUI : MonoBehaviour
 
     void Start()
     {
-    	if(trackedPlayer==null)
-    		trackedPlayer = FindObjectOfType<Player>();
-    	Refresh();
+
+    }
+
+    void Update()
+    {
+        if(trackedPlayer==null){
+            trackedPlayer = FindObjectOfType<Player>();
+            if(trackedPlayer!=null)
+                Refresh();
+        }
     }
 
     void OnEnable()
