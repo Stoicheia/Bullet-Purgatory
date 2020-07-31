@@ -47,6 +47,8 @@ public class EnchantUI : MonoBehaviour
     {
     	int powerCount = powers.Count/2;
         for(int i=0; i<powerCount; i++){
+            powers[i+powerCount].sprite = PowerIcons.instance.GetSongIconInactive(trackedEnchanter.GetSong(i));
+            powers[i].sprite = PowerIcons.instance.GetSongIcon(trackedEnchanter.GetSong(i));
         	bool upToMe = i<trackedEnchanter.CurrentEnchantment;
         	powers[i+powerCount].gameObject.SetActive(upToMe);
         	powers[i].gameObject.SetActive(!upToMe);

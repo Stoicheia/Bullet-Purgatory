@@ -251,6 +251,16 @@ PrefabInstance:
       propertyPath: m_Bounds.m_Extent.y
       value: 0.46022987
       objectReference: {fileID: 0}
+    - target: {fileID: -3815594451372987092, guid: 93d78ec7d1ae5fa499ba6966164ef1a1,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -564099801
+      objectReference: {fileID: 0}
+    - target: {fileID: -3815594451372987092, guid: 93d78ec7d1ae5fa499ba6966164ef1a1,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: -1743138917296209780, guid: 93d78ec7d1ae5fa499ba6966164ef1a1,
         type: 3}
       propertyPath: m_Name
@@ -360,6 +370,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SpriteSortPoint
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5631639672286635244, guid: 93d78ec7d1ae5fa499ba6966164ef1a1,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -564099801
+      objectReference: {fileID: 0}
+    - target: {fileID: 5631639672286635244, guid: 93d78ec7d1ae5fa499ba6966164ef1a1,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6272380619422832989, guid: 93d78ec7d1ae5fa499ba6966164ef1a1,
         type: 3}

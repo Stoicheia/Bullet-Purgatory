@@ -27,6 +27,7 @@ public class Keybinds : MonoBehaviour
     	keys.Add("Sprint", KeyCode.RightShift);
     	keys.Add("Strafe", KeyCode.LeftShift);
     	keys.Add("Enchant", KeyCode.G);
+        keys.Add("Power", KeyCode.F);
         keys.Add("SkipDialogue", KeyCode.Space);
         keys.Add("Pause", KeyCode.Escape);
 
@@ -70,6 +71,7 @@ public class Keybinds : MonoBehaviour
     public void SetDialogueBinds(){
         EnableAll();
         Disable("Enchant");
+        Disable("Power");
     }
 
     public void SetPlayBinds(){

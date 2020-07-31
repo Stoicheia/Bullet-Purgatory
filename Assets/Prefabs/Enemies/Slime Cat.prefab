@@ -286,6 +286,16 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7837758272268841828, guid: c225cc62443f60744a372c2147f1c681,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -564099801
+      objectReference: {fileID: 0}
+    - target: {fileID: -7837758272268841828, guid: c225cc62443f60744a372c2147f1c681,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: -7060069350793361005, guid: c225cc62443f60744a372c2147f1c681,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -335,6 +345,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SortingOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -6837975033936840112, guid: c225cc62443f60744a372c2147f1c681,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -564099801
+      objectReference: {fileID: 0}
+    - target: {fileID: -6837975033936840112, guid: c225cc62443f60744a372c2147f1c681,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -5605555590023371223, guid: c225cc62443f60744a372c2147f1c681,
         type: 3}
@@ -486,6 +506,16 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -316766853985172232, guid: c225cc62443f60744a372c2147f1c681,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -564099801
+      objectReference: {fileID: 0}
+    - target: {fileID: -316766853985172232, guid: c225cc62443f60744a372c2147f1c681,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 773283316730305195, guid: c225cc62443f60744a372c2147f1c681,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -535,6 +565,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SortingOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2417478407351935689, guid: c225cc62443f60744a372c2147f1c681,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -564099801
+      objectReference: {fileID: 0}
+    - target: {fileID: 2417478407351935689, guid: c225cc62443f60744a372c2147f1c681,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2899988310159364862, guid: c225cc62443f60744a372c2147f1c681,
         type: 3}

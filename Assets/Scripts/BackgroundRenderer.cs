@@ -30,6 +30,7 @@ public class BackgroundRenderer : MonoBehaviour
 	        myBackground.transform.Translate(new Vector3(0,(i*(1-GAP_FILL))*myBackground.bounds.size.y,10));
             myBackground.color = new Color(SPRITE_DIM, SPRITE_DIM, SPRITE_DIM);
 	        scrollingImages.Add(myBackground);
+            myBackground.sortingLayerName = "Background";
    		}
     }
 

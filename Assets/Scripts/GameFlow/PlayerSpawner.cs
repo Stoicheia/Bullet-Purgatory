@@ -7,6 +7,7 @@ public class PlayerSpawner : MonoBehaviour
     Player selectedPlayer;
     Player player;
     Enchanter enchanter;
+    PowerUser powerUser;
     PlayerLoadoutManager playerLoadout;
     PlayerLoadout selectedLoadout;
 
@@ -17,6 +18,7 @@ public class PlayerSpawner : MonoBehaviour
     	selectedLoadout = playerLoadout.loadouts[selectedPlayer];
     	player = Instantiate(selectedPlayer, transform.position, transform.rotation);
     	enchanter = player.GetComponent<Enchanter>();
+    	powerUser = player.GetComponent<PowerUser>();
     	foreach(var shooter in selectedLoadout.GetShooters()){
     		player.AddShooter(shooter);
     	}
@@ -24,7 +26,9 @@ public class PlayerSpawner : MonoBehaviour
     		enchanter.AddSong(song);
     	}
     	enchanter.UpdateSongs();
-    	//powers
+    	foreach(var power in selectedLoadout.GetPowers()){
+    		powerUser.AddPower(power);
+    	}
     	foreach(var upgrade in selectedLoadout.GetUpgrades()){
     		upgrade.Activate(player);
     	}

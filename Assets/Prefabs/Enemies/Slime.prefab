@@ -197,7 +197,7 @@ GameObject:
   - component: {fileID: 7279982920132978748}
   - component: {fileID: 633670809432105785}
   m_Layer: 9
-  m_Name: Slime 1
+  m_Name: Slime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -397,8 +397,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -564099801
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: -5008570643317787617, guid: 42a510987ffe1744c904f223ce42fff2,
     type: 3}
@@ -831,8 +831,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -564099801
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: 7385464813564080411, guid: 42a510987ffe1744c904f223ce42fff2,
     type: 3}
@@ -865,7 +865,7 @@ MonoBehaviour:
   - {fileID: 4268211311293715585}
   - {fileID: 4862342674298469076}
   m_Bounds:
-    m_Center: {x: 0.00000047683716, y: -0.0021197796, z: 0}
+    m_Center: {x: 0, y: -0.002120018, z: 0}
     m_Extent: {x: 4.3949995, y: 2.09788, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 0

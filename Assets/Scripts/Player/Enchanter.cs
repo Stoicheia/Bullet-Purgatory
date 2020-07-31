@@ -92,4 +92,8 @@ public class Enchanter : MonoBehaviour
     {
         enchantSongs.Add(map);
     }
+
+    public RhythmMap GetSong(int i){
+        return enchantSongs[i];
+    }
 }

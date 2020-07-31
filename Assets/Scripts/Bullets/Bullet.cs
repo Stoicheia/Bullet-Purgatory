@@ -35,6 +35,11 @@ public class Bullet : MonoBehaviour
         render = GetComponent<SpriteRenderer>();
     }
 
+    void OnEnable()
+    {
+        GetComponent<Collider2D>().enabled = true;
+    }
+
     void Update()
     {
         actualSpeed = speed*speedModifier*universalSpeedModifier*pauseZoom;
@@ -109,7 +114,9 @@ public class Bullet : MonoBehaviour
     public void SetFriendly(bool f){
     	friendly = f;
         gameObject.layer = friendly? 8:9;
+        render.sortingLayerName = friendly? "Player_Bullets":"Bullets";
         if(friendly) render.color = new Color(1,1,1,FRIENDLY_TRANSPARENCY);
+        else render.color = new Color(1,1,1,1);
     }
 
     public static void SetStage(MeshCollider s){

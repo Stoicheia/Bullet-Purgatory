@@ -48,9 +48,9 @@ public class PlayerLoadout
 	[SerializeField]
 	List<RhythmMap> enchantSongs = new List<RhythmMap>();
 
-	/*public int allowedPowers = 1;
+	public int allowedPowers = 1;
 	[SerializeField]
-	public List<IPower> powers = new List<IPower>();*/
+	public List<Power> powers = new List<Power>();
 
 	[SerializeField]
 	List<Upgrade> upgrades = new List<Upgrade>();
@@ -69,13 +69,13 @@ public class PlayerLoadout
 		enchantSongs[0] = map;
 	}
 
-	/*public void AddPower(IPower power)
+	public void AddPower(Power power)
 	{
 		for(int i=1; i<allowedPowers; i++){
 			powers[i] = powers[i-1];
 		}
 		powers[0] = power;
-	}*/
+	}
 
 	public void AddUpgrade(Upgrade upgrade)
 	{
@@ -103,10 +103,10 @@ public class PlayerLoadout
 		return enchantSongs;
 	}
 
-	/*public List<Power> GetPowers()
+	public List<Power> GetPowers()
 	{
 		return powers;
-	}*/
+	}
 
 	public List<Upgrade> GetUpgrades()
 	{
