@@ -107,8 +107,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 477040617
+  m_SortingLayer: 4
   m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 14247ba8320f61d429183ce35edb58dd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -286,7 +286,7 @@ MonoBehaviour:
   strafeMod: 0.4
   invulnerabilityPeriod: 2
   maxLives: 3
-  godMode: 1
+  godMode: 0
   shooters: []
 --- !u!58 &1445623937382464693
 CircleCollider2D:
