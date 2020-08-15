@@ -9,6 +9,7 @@ public class StatsManager : MonoBehaviour
     public int kills {get; private set;}
     public int lives {get; private set;} 
     public float grazing {get; private set;}
+    public int coins {get; private set;}
     public CauseOfFail causeOfFail {get; private set;}
 
     public int currentWave {get; private set;}
@@ -35,6 +36,7 @@ public class StatsManager : MonoBehaviour
         RhythmMapsManager.OnAllSongsFinished += SetFailFromTimeout;
         WaveSpawner.OnNextWave += UpdateWaveInfo;
         Player.OnLivesChange += ChangeLives;
+        ItemPicker.OnCoinPickup += UpdateCoins;
     }
 
     void OnDisable()
@@ -60,6 +62,7 @@ public class StatsManager : MonoBehaviour
         totalSongTime = rhythmMaps.activeTime;
         isMainSong = rhythmMaps.IsStartingMap();
     }
+    void UpdateCoins (int c) => coins = c;
     void SetFailFromDeath () => causeOfFail = CauseOfFail.DEATH;
     void SetFailFromTimeout () => causeOfFail = CauseOfFail.TIMEOUT;
 }

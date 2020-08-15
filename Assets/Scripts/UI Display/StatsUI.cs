@@ -20,14 +20,19 @@ public class StatsUI : MonoBehaviour
 	Color ALT_PROGRESS_COLOR = new Color(60f/255f, 180f/255f, 220f/255f, 0.8f);
 	void UpdateSongProgress(){
 		float songProgress = stats.currentSongTime/(0.001f+stats.currentSongLength);
-		progress.transform.localScale = new Vector3(songProgress,1,1);
+		progress.transform.localScale = new Vector3(1-songProgress,1,1);
 		progress.color = stats.isMainSong? DEF_PROGRESS_COLOR:ALT_PROGRESS_COLOR;
 	}
+
+	public TextMeshProUGUI coins;
+	void UpdateCoins() => coins.text = stats.coins.ToString();
+
 
     void Update()
     {
     	UpdateGrazing();
     	UpdateWave();
     	UpdateSongProgress();
+    	UpdateCoins();
     }
 }

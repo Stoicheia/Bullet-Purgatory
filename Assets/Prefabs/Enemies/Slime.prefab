@@ -603,6 +603,7 @@ GameObject:
   - component: {fileID: 525394018025043249}
   - component: {fileID: 3220397451308189234}
   - component: {fileID: 8060454360134628671}
+  - component: {fileID: 8848278806694247075}
   m_Layer: 9
   m_Name: Enemy
   m_TagString: Untagged
@@ -732,6 +733,21 @@ PolygonCollider2D:
       - {x: 4.0774717, y: 4.5187387}
       - {x: 2.036262, y: 3.3425198}
       - {x: 1.3343005, y: 1.6407903}
+--- !u!114 &8848278806694247075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6952943651546268882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0602ce3b8f070d14a9259bba8dc447d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  droppedItems:
+  - {fileID: 3503589402550358394, guid: dafa16478dc65a74e97a297ff37bfdd9, type: 3}
+  - {fileID: 3503589402550358394, guid: dafa16478dc65a74e97a297ff37bfdd9, type: 3}
 --- !u!1 &7118551702245583528
 GameObject:
   m_ObjectHideFlags: 0
