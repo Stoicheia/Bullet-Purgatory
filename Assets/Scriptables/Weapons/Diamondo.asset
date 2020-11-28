@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44d4f624a62fcb34eb2236afd32cde97, type: 3}
+  m_Name: Diamondo
+  m_EditorClassIdentifier: 
+  id: diamond
+  itemName: Diamondo
+  description: the classic...
+  icon: {fileID: 2822054338469214157, guid: 6130fd715298b1e40a823126e14c9b3e, type: 3}
+  cost: 100
+  shooter: {fileID: -2615233402773865145, guid: a5599719cbc5a6c4c86d342edfeee906,
+    type: 3}
+  rating: 1

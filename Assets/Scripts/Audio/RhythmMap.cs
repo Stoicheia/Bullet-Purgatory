@@ -127,10 +127,11 @@ public class RhythmMap : MonoBehaviour
     }
 
     void ApplyFadeEffects(){
-        if(songPlayer.time>=songPlayer.clip.length-fadeOutTime){
+        if (songPlayer.time>=songPlayer.clip.length-fadeOutTime){
             theManager.audioMixer.SetFloat("vol", -80*Mathf.Pow((1-(songPlayer.clip.length-songPlayer.time)/fadeOutTime),2));
             theManager.audioMixer.SetFloat("masterVol", masterVolume);
         }
+
         else if(songPlayer.time<=fadeInTime){
             theManager.audioMixer.SetFloat("vol", -80*Mathf.Pow((1-songPlayer.time/fadeInTime),2));
             theManager.audioMixer.SetFloat("masterVol", masterVolume+(masterVolume-80)*Mathf.Pow((1-songPlayer.time/fadeInTime),2));

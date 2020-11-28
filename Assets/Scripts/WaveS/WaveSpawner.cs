@@ -11,16 +11,19 @@ public class WaveSpawner : RhythmicObject
     public delegate void WaveSpawnAction(int[] waveInfo);
     public static event WaveSpawnAction OnNextWave;
 
+    public Power powerBetweenWaves;
+
 	RhythmListener listener;
 	int enemiesOnScreen = 0;
 	public Wave[] waves;
 	int currentWave;
 	int nextWave;
 	int totalWaves;
-
+    
 	Wave activeWave;
 
 	bool spawnStarted = false;
+    
 
 	protected override void Awake(){
 		base.Awake();
@@ -51,8 +54,11 @@ public class WaveSpawner : RhythmicObject
 
     void Update()
     {
-        if(enemiesOnScreen <= 0 && spawnStarted)
+        if(enemiesOnScreen <= 0 && spawnStarted){
+            if(powerBetweenWaves!=null)
+                powerBetweenWaves.Activate();
         	SpawnNextWave();
+        }
     }
 
     public override void Shoot(){

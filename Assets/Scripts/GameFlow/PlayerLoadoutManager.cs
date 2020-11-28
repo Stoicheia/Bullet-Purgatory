@@ -4,22 +4,25 @@ using UnityEngine;
 
 public class PlayerLoadoutManager : MonoBehaviour
 {
-	public Player selectedPlayer;
+	//here be code
+
+	/*public Player selectedPlayer;
 
 	public static PlayerLoadoutManager instance;
-	public PlayerLoadout[] startingLoadouts;
-	public Dictionary<Player, PlayerLoadout> loadouts = new Dictionary<Player, PlayerLoadout>();
+	public List<PlayerLoadout> startingLoadouts;
+	[SerializeField]
+	List<PlayerLoadout> loadouts = new List<PlayerLoadout>();
+	public List<PlayerLoadout> Loadouts { get => loadouts; set => loadouts = value; }
 
 	void Awake()
 	{
 		if(instance==null)
 			instance = this;
 		else{
-			Destroy(gameObject);
+			Destroy(this);
 			return;
 		}
 		DontDestroyOnLoad(gameObject);
-		UseStartingLoadouts(); //read from save later
 	}
 
 	void Start()
@@ -27,89 +30,59 @@ public class PlayerLoadoutManager : MonoBehaviour
 
 	}
 
-	void UseStartingLoadouts()
+	public void UseStartingLoadouts()
 	{
-		foreach(var load in startingLoadouts){
-			loadouts[load.player] = load;
+		for (int i= 0; i<startingLoadouts.Count; i++){
+			if (loadouts.Count <= i) loadouts.Add(startingLoadouts[i]);
+			loadouts[i] = startingLoadouts[i];
 		}
 	}
-}
 
-[System.Serializable]
-public class PlayerLoadout
-{
-	public Player player;
-
-	public int allowedShooters = 1;
-	[SerializeField]
-	List<RhythmicObject> shooters = new List<RhythmicObject>();
-
-	public int allowedSongs = 1;
-	[SerializeField]
-	List<RhythmMap> enchantSongs = new List<RhythmMap>();
-
-	public int allowedPowers = 1;
-	[SerializeField]
-	public List<Power> powers = new List<Power>();
-
-	[SerializeField]
-	List<Upgrade> upgrades = new List<Upgrade>();
-
-	public void AddShooter(RhythmicObject shooter, int i)
+	public PlayerLoadout GetLoadout(Player player)
 	{
-		if(i>=allowedShooters) return;
-		shooters[i] = shooter;
+		return loadouts[player.id];
 	}
 
-	public void AddSong(RhythmMap map)
+	public void AddToLoadout(Player player, Song toAdd)
 	{
-		for(int i=1; i<allowedSongs; i++){
-			enchantSongs[i] = enchantSongs[i-1];
-		}
-		enchantSongs[0] = map;
+		loadouts[player.id].AddSong(toAdd);
 	}
 
-	public void AddPower(Power power)
+	public void AddToLoadout(Player player, PowerObject toAdd)
 	{
-		for(int i=1; i<allowedPowers; i++){
-			powers[i] = powers[i-1];
-		}
-		powers[0] = power;
+		loadouts[player.id].AddPower(toAdd);
 	}
 
-	public void AddUpgrade(Upgrade upgrade)
+	public void AddToLoadout(Player player, Weapon toAdd)
 	{
-		bool flag = true;
-		List<Upgrade> newUpgrades = new List<Upgrade>(upgrades);
-		for(int i=0; i<upgrades.Count; i++){
-			if(upgrades[i].GetSignature()==upgrade.GetSignature()){
-				newUpgrades[i] = upgrade;
-				flag = false;
+		loadouts[player.id].AddShooter(toAdd);
+	}
+	public void AddToLoadout(Player player, Weapon toAdd, int i)
+	{
+		loadouts[player.id].AddShooter(toAdd, i);
+	}
+	public void AddToLoadout(Player player, StatModifier toAdd)
+	{
+		loadouts[player.id].AddUpgrade(toAdd);
+	}
+
+	public void AddToLoadout(Equippable item)
+	{
+		if (item is Song) AddToLoadout(selectedPlayer, (Song) item);
+		else if (item is PowerObject) AddToLoadout(selectedPlayer, (PowerObject)item);
+		else if (item is Weapon) AddToLoadout(selectedPlayer, (Weapon)item);
+		else if (item is StatModifier) AddToLoadout(selectedPlayer, (StatModifier)item);
+	}
+
+	public bool IsEquipped(Equippable e)
+	{
+		foreach(var loadout in loadouts)
+		{
+			if (loadout.GetAllEquipped().Contains(e))
+			{
+				return true;
 			}
 		}
-		if(flag){
-			newUpgrades.Add(upgrade);
-		}
-		upgrades = new List<Upgrade>(newUpgrades);
-	}
-
-	public List<RhythmicObject> GetShooters()
-	{
-		return shooters;
-	}
-
-	public List<RhythmMap> GetSongs()
-	{
-		return enchantSongs;
-	}
-
-	public List<Power> GetPowers()
-	{
-		return powers;
-	}
-
-	public List<Upgrade> GetUpgrades()
-	{
-		return upgrades;
-	}
+		return false;
+	}*/
 }

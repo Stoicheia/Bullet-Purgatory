@@ -70,7 +70,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe8c29bb89c5d58408cd34562d5f0830, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyTag: mine
+  enemyTag: Mine
   maxHP: 8
   shooting: 1
 --- !u!95 &6267912329971997425

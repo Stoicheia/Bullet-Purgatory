@@ -21,12 +21,12 @@ public class RhythmMapsManager : MonoBehaviour
     bool loopCurrent = false;
     public bool startImmediately;
 
-    public float activeTime {get; private set;}
+    public float ActiveTime {get; private set;}
 
     Dictionary<RhythmMap, bool> mapsFinished = new Dictionary<RhythmMap, bool>();
 
     void Awake(){
-        activeTime = 0;
+        ActiveTime = 0;
     }
 
     void OnEnable()
@@ -51,7 +51,7 @@ public class RhythmMapsManager : MonoBehaviour
     void Update()
     {
         if(activeMap!=null)
-            activeTime += Time.deltaTime;
+            ActiveTime += Time.deltaTime;
     }
 
     public void ChangeSong(RhythmMap map, float delay){
@@ -129,14 +129,12 @@ public class RhythmMapsManager : MonoBehaviour
         if(activeMap!=null)
             activeMap.Pause();
         else
-            Debug.LogWarning("No current active map");
+            Debug.LogWarning("No current active map to pause");
     }
 
     public void UnpauseActive(){
         if(activeMap!=null)
-            activeMap.Unpause();
-        else
-            Debug.LogWarning("No current active map");            
+            activeMap.Unpause();        
     }
     
     public RhythmMap GetActiveMap(){

@@ -5,7 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(Enemy))]
 public class ItemDropper : MonoBehaviour
 {
-    public DroppedItem[] droppedItems;
+	[SerializeField]
+    public ItemChancePair[] droppedItems;
     Enemy thisEnemy;
 
     void Start(){
@@ -23,7 +24,14 @@ public class ItemDropper : MonoBehaviour
 
     void SpawnItem(){
     	foreach(var droppedItem in droppedItems){
-    		Instantiate(droppedItem.gameObject, transform.position, Quaternion.Euler(0,0,-180));
+    		if(droppedItem.chance>=Random.Range(0,100))
+    			Instantiate(droppedItem.item.gameObject, transform.position, Quaternion.Euler(0,0,-180));
     	}
     }
+}
+
+[System.Serializable]
+public class ItemChancePair{
+	public DroppedItem item;
+	public float chance;
 }

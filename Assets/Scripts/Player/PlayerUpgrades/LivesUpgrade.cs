@@ -8,8 +8,4 @@ public class LivesUpgrade : Upgrade
     public override void Activate(Player player){
     	player.ChangeLives(livesIncrease);
     }
-
-    public override string GetSignature(){
-    	return "lives";
-    }
 }

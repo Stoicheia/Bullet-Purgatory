@@ -8,13 +8,14 @@ public class PowerUser : MonoBehaviour
 	public static event PowerAction OnActivate;
 
 	[SerializeField]
-	List<Power> powers = new List<Power>();
-	int currentPower;
-	public int CurrentPower{get{return currentPower;}}
+	List<PowerObject> powers = new List<PowerObject>();
 
-	void Awake()
+    public int CurrentPower { get; private set; }
+    public int PowersRemaining { get { return powers.Count - CurrentPower; } }
+
+    void Awake()
 	{
-		currentPower = 0;
+		CurrentPower = 0;
 	}
 
     void Start()
@@ -26,23 +27,25 @@ public class PowerUser : MonoBehaviour
     void Update()
     {
         if(Keybinds.instance.GetInputDown("Power")){
-        	if(currentPower>=powers.Count) return;
-        	powers[currentPower].Activate();
-        	currentPower++;
+        	if(CurrentPower>=powers.Count) return;
+            powers[CurrentPower].UseEffect();
+        	CurrentPower++;
         	if(OnActivate!=null)
         		OnActivate();
         }
     }
 
-    public void AddPower(Power p){
+    public void AddPower(PowerObject p){
     	powers.Add(p);
     }
 
-    public Power GetPower(int i){
+    public PowerObject GetPower(int i){
+        if (powers.Count == 0)
+            return null;
     	return powers[i];
     }
 
     public void Reset(){
-    	currentPower = 0;
+    	CurrentPower = 0;
     }
 }

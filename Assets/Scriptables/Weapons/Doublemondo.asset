@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44d4f624a62fcb34eb2236afd32cde97, type: 3}
+  m_Name: Doublemondo
+  m_EditorClassIdentifier: 
+  id: diamond2
+  itemName: Doublemondo
+  description: the super classic...
+  icon: {fileID: 2339286239466785919, guid: c225cc62443f60744a372c2147f1c681, type: 3}
+  cost: 200
+  shooter: {fileID: 9068037534296819017, guid: f36560678ca9a2445a66064651db3ee7, type: 3}
+  rating: 2

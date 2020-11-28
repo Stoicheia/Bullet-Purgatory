@@ -18,14 +18,13 @@ public class PowersUI : MonoBehaviour
 
     void Start()
     {
-
+        trackedPoweruser = FindObjectOfType<PowerUser>();
+        Refresh();
     }
 
     void OnEnable()
     {
     	PowerUser.OnActivate += Refresh;
-    	if(trackedPoweruser!=null)
-    		Refresh();
     }
 
     void OnDisable()
@@ -45,11 +44,14 @@ public class PowersUI : MonoBehaviour
     
     void Refresh()
     {
-    	int powerCount = powers.Count;
+    	int powerCount = trackedPoweruser.PowersRemaining;
         for(int i=0; i<powerCount; i++){
-        	powers[i].sprite = PowerIcons.instance.GetPowerIcon(trackedPoweruser.GetPower(i));
-        	bool upToMe = i<trackedPoweruser.CurrentPower;
-        	powers[i].gameObject.SetActive(!upToMe);
+        	powers[i].sprite = trackedPoweruser.GetPower(i).Icon;
+        	powers[i].gameObject.SetActive(true);
+        }
+        for(int i=powerCount; i<powers.Count; i++)
+        {
+            powers[i].gameObject.SetActive(false);
         }
     }
 }

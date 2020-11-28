@@ -660,7 +660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe8c29bb89c5d58408cd34562d5f0830, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyTag: green slime
+  enemyTag: Epic Green Slime
   maxHP: 4
   shooting: 1
 --- !u!95 &525394018025043249
@@ -746,8 +746,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   droppedItems:
-  - {fileID: 3503589402550358394, guid: dafa16478dc65a74e97a297ff37bfdd9, type: 3}
-  - {fileID: 3503589402550358394, guid: dafa16478dc65a74e97a297ff37bfdd9, type: 3}
+  - item: {fileID: 3503589402550358394, guid: dafa16478dc65a74e97a297ff37bfdd9, type: 3}
+    chance: 50
+  - item: {fileID: 3503589402550358394, guid: dafa16478dc65a74e97a297ff37bfdd9, type: 3}
+    chance: 50
 --- !u!1 &7118551702245583528
 GameObject:
   m_ObjectHideFlags: 0

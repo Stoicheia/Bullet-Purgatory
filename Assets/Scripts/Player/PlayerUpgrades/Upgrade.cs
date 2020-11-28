@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public abstract class Upgrade : MonoBehaviour
 {
     public abstract void Activate(Player player);
-    public abstract string GetSignature();
 }

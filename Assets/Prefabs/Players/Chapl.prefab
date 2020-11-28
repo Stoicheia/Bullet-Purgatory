@@ -339,7 +339,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enchantSongs: []
-  enchantCooldown: 5
+  enchantCooldown: 2
 --- !u!114 &1445623937382464703
 MonoBehaviour:
   m_ObjectHideFlags: 0

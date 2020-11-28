@@ -12,6 +12,7 @@ public class Boss : MonoBehaviour
 
 	Enemy enemyInfo;
 	string bossTag;
+    public string BossTag { get => bossTag; }
 
 	void Awake(){
 		enemyInfo = GetComponent<Enemy>();

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum CauseOfFail{DEATH, TIMEOUT}
 
@@ -59,10 +60,17 @@ public class StatsManager : MonoBehaviour
         float[] songInfo = rhythmMaps.GetCurrentMapInfo();
         currentSongTime = songInfo[0];
         currentSongLength = songInfo[1];
-        totalSongTime = rhythmMaps.activeTime;
+        totalSongTime = rhythmMaps.ActiveTime;
         isMainSong = rhythmMaps.IsStartingMap();
     }
     void UpdateCoins (int c) => coins = c;
     void SetFailFromDeath () => causeOfFail = CauseOfFail.DEATH;
     void SetFailFromTimeout () => causeOfFail = CauseOfFail.TIMEOUT;
+
+    public void FeedToGlobal()
+    {
+        GlobalStats gstats = GlobalStats.instance;
+        gstats.AddCoins(coins);
+        gstats.PassLevel(SceneManager.GetActiveScene().buildIndex);
+    }
 }

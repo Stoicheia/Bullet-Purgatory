@@ -27,7 +27,6 @@ public class StatsUI : MonoBehaviour
 	public TextMeshProUGUI coins;
 	void UpdateCoins() => coins.text = stats.coins.ToString();
 
-
     void Update()
     {
     	UpdateGrazing();

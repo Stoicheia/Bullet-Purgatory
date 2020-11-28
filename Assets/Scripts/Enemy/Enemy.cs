@@ -48,13 +48,17 @@ public class Enemy : MonoBehaviour, IDamageable
     }
 
     void InvokeHitEvent(){
-        if(OnHit!=null) OnHit(enemyTag);
+        if(OnHit!=null && !dead) OnHit(enemyTag);
     }
 
+    void Awake()
+    {
+        hp = maxHP;
+    }
     void Start()
     {
         dead = false;
-    	hp = maxHP;
+    	
 
     	myShooters = GetComponentsInChildren<RhythmicObject>();
 
@@ -86,6 +90,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public void TakeHit(float damage, Collision2D col){
         hp -= damage;
+        if (dead) return;
         if(OnThisHit!=null)
             OnThisHit();
         if(hp<=0){
@@ -98,6 +103,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public void Die(){
         if(dead) return;
+        dead = true;
     	if(OnThisDeath!=null)
     		OnThisDeath();
         StartCoroutine(DeathSequence());

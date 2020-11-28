@@ -16,6 +16,7 @@ public class LevelStateManager : MonoBehaviour
 	RhythmMapsManager rhythmManager;
 	DialogueManager dialogueManager;
 	UIManager uiManager;
+    StatsManager statsManager;
 
 	void Awake()
 	{
@@ -24,6 +25,7 @@ public class LevelStateManager : MonoBehaviour
 		rhythmManager = FindObjectOfType<RhythmMapsManager>();
 		dialogueManager = FindObjectOfType<DialogueManager>();
 		uiManager = FindObjectOfType<UIManager>();
+        statsManager = FindObjectOfType<StatsManager>();
 	}
 
 	void Start()
@@ -123,6 +125,7 @@ public class LevelStateManager : MonoBehaviour
                 Bullet.PauseZoom = 2;
                 break;
     		case LevelState.ENDSCREEN:
+                statsManager.FeedToGlobal();
     			uiManager.EnterEndscreen();
     			break;
     		case LevelState.FAILSCREEN:

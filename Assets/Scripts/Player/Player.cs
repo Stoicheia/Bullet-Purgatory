@@ -14,6 +14,8 @@ public class Player : MonoBehaviour, IDamageable
     public delegate void LifeChangeAction(int l);
     public static event LifeChangeAction OnLivesChange;
 
+    public string id;
+
 	Controller controller;
     Collider2D hitbox;
     HitboxDisplay hitboxDisplay;
@@ -76,6 +78,7 @@ public class Player : MonoBehaviour, IDamageable
         UpdateInvulnerability();
         UpdateAnimatorParams();
 
+        if (moveVector==null) moveVector = Vector3.zero;
         controller.Move(moveVector);
     }
 

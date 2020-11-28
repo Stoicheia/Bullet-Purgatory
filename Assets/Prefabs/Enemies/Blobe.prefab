@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe8c29bb89c5d58408cd34562d5f0830, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyTag: green slime
+  enemyTag: Blobe
   maxHP: 6
   shooting: 1
 --- !u!95 &8182072510382680038
