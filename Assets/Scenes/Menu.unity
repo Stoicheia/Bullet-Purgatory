@@ -2574,37 +2574,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e539512041868914ea214248ca907211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  database: {fileID: 11400000, guid: cf508906ab25e8e48a4410a599be20d4, type: 2}
+  global: {fileID: 357581116}
   initialPlayerData:
     coins: 200
     lastLevelPassed: 0
     ownedItems:
-    - {fileID: 0}
-    - {fileID: 0}
-    mySong: {fileID: 11400000, guid: 576cc191d1a36284ca22767a83e0e1e9, type: 2}
-    myBomb: {fileID: 11400000, guid: 6e58fb4c1f1d79a4cb4eb42afc8665b3, type: 2}
+    - 
+    - 
+    mySong: ranman
+    myBomb: bomb1
     allowedWeapons: 2
     myWeapons:
-    - {fileID: 11400000, guid: 94c62b6bbc66f724a9e6ff27c68143be, type: 2}
+    - diamond2
     totalBombs: 2
     totalLives: 3
     statModifiers:
-    - {fileID: 11400000, guid: 71cc7ca4c31981f428206bed08171b0f, type: 2}
-    selectedPlayer: {fileID: 1445623937382464697, guid: 6c1c8b86b21cd0d4b9c6901f2e7f1a18,
-      type: 3}
+    - lifeup
+    selectedPlayer: chapl
   playerData:
     coins: 0
     lastLevelPassed: 0
     ownedItems: []
-    mySong: {fileID: 0}
-    myBomb: {fileID: 0}
+    mySong: 
+    myBomb: 
     allowedWeapons: 0
     myWeapons: []
     totalBombs: 2
     totalLives: 3
     statModifiers: []
-    selectedPlayer: {fileID: 1445623937382464697, guid: 6c1c8b86b21cd0d4b9c6901f2e7f1a18,
-      type: 3}
+    selectedPlayer: 
 --- !u!4 &357581119
 Transform:
   m_ObjectHideFlags: 0

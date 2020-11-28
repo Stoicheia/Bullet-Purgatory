@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GlobalManager : MonoBehaviour
 {
     public static GlobalManager instance;
-    public ItemDatabase itemDatabase;
+    ItemDatabase itemDatabase;
+    public ItemDatabase ItemDatabase { get => itemDatabase; }
     private void Awake()
     {
         if (instance != null)
@@ -16,6 +18,12 @@ public class GlobalManager : MonoBehaviour
         }
         instance = this;
         DontDestroyOnLoad(this);
+    }
+
+    private void OnEnable()
+    {
+        itemDatabase = (ItemDatabase)AssetDatabase.LoadAssetAtPath("Assets/Scriptables/Item Database.asset", typeof(ItemDatabase));
+        itemDatabase.UpdateReferences();
     }
 
     private void Start()

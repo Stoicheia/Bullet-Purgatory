@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Untitled", menuName = "Song")]
+[System.Serializable]
 public class Song : Equippable
 {
     [SerializeField] Sprite inactiveIcon;

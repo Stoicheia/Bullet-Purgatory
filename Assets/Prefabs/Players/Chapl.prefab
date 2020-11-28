@@ -281,6 +281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2560a7887899c7045ac5d981a395d7b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: chapl
   animator: {fileID: 1445623937205446223}
   defSpeed: 6
   moveSmoothing: 45

@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class GlobalStats : MonoBehaviour
 {
-	public ItemDatabase database;
+	GlobalManager global;
+	ItemDatabase itemDatabase;
 	public PlayerData initialPlayerData;
 	[SerializeField]
 	PlayerData playerData;
@@ -14,17 +16,59 @@ public class GlobalStats : MonoBehaviour
 	public int LastLevelPassed{get{return playerData.lastLevelPassed;} private set{playerData.lastLevelPassed = value;}}
 	
 	
-	public List<Equippable> OwnedItems { get => playerData.ownedItems; private set => playerData.ownedItems = value; }
+	public List<Equippable> OwnedItems
+	{
+		get
+		{
+			return global.ItemDatabase.GetItems(playerData.ownedItems);
+		}
+		private set
+		{
+			playerData.ownedItems = Equippable.GetIDs(value);
+		}
+	}
 
-	public Song MySong { get => playerData.mySong; private set => playerData.mySong = value; }
-	public PowerObject MyBomb { get => playerData.myBomb; private set => playerData.myBomb = value; }
 
-	public List<Weapon> MyWeapons { get => playerData.myWeapons; private set => playerData.myWeapons = value; }
+	public Song MySong { get => (Song)global.ItemDatabase.GetItem(playerData.mySong); private set => playerData.mySong = value==null? "" : value.ID; }
+	public PowerObject MyBomb { get => (PowerObject)global.ItemDatabase.GetItem(playerData.myBomb); private set => playerData.myBomb = value==null? "" : value.ID; }
+
+	public List<Weapon> MyWeapons
+	{
+		get
+		{
+			List<Weapon> weapons = new List<Weapon>();
+			foreach(string id in playerData.myWeapons)
+			{
+				weapons.Add((Weapon)global.ItemDatabase.GetItem(id));
+			}
+			return weapons;
+		}
+		private set
+		{
+			playerData.myWeapons = Equippable.GetIDs(value.ConvertAll<Equippable>(x => (Equippable)x));
+		}
+	}
+
 	public int TotalBombs { get => playerData.totalBombs; private set => playerData.totalBombs = value; }
 	public int TotalLives { get => playerData.totalLives; private set => playerData.totalLives = value; }
 
-	public List<StatModifier> StatModifiers { get => playerData.statModifiers; private set => playerData.statModifiers = value; }
-	public Player SelectedPlayer { get => playerData.selectedPlayer; private set => playerData.selectedPlayer = value; }
+	public List<StatModifier> StatModifiers
+	{
+		get
+		{
+			List<StatModifier> stats = new List<StatModifier>();
+			foreach (string id in playerData.statModifiers)
+			{
+				stats.Add((StatModifier)global.ItemDatabase.GetItem(id));
+			}
+			return stats;
+		}
+		private set
+		{
+			playerData.myWeapons = Equippable.GetIDs(value.ConvertAll<Equippable>(x => (Equippable)x));
+		}
+	}
+	public Player SelectedPlayer { get => global.ItemDatabase.GetPlayer(playerData.selectedPlayer); private set => playerData.selectedPlayer = value.id; }
 	public int AllowedWeapons { get => playerData.allowedWeapons; private set => playerData.allowedWeapons = value; }
 
 
@@ -33,9 +77,10 @@ public class GlobalStats : MonoBehaviour
 	public int FinalLevelIndex { get { return finalLevelIndex; } private set { finalLevelIndex = value; } }
 
 	public static GlobalStats instance;
+
 	void Awake()
 	{
-		if(instance==null){
+		if (instance==null){
 			instance = this;
 		}
 		else{
@@ -45,9 +90,14 @@ public class GlobalStats : MonoBehaviour
 		DontDestroyOnLoad(gameObject);
 	}
 
+	private void OnEnable()
+	{
+		global = GlobalManager.instance;
+	}
+
 	private void Start()
 	{
-		database = GlobalManager.instance.itemDatabase;
+		print(global.name);
 	}
 
 	public void ResetStats(){
@@ -69,14 +119,16 @@ public class GlobalStats : MonoBehaviour
 
 	public void AddItem(Equippable equip)
 	{
-		if(!playerData.ownedItems.Contains(equip))
-			playerData.ownedItems.Add(equip);
+		if (!OwnedItems.Contains(equip) && equip != null)
+		{
+			playerData.ownedItems.Add(equip.ID);
+		}
 	}
 
 	public void RemoveItem(Equippable equip)
 	{
-		if(playerData.ownedItems.Contains(equip))
-			playerData.ownedItems.Remove(equip);
+		if(OwnedItems.Contains(equip) && equip != null)
+			playerData.ownedItems.Remove(equip.ID);
 	}
 
 	public ItemUIStatus GetItemStatus(Equippable item)
@@ -113,10 +165,10 @@ public class GlobalStats : MonoBehaviour
 	{
 		if (item is Weapon)
 		{
-			MyWeapons.Add((Weapon)item);
+			playerData.myWeapons.Add(item.ID);
 			while(MyWeapons.Count>AllowedWeapons)
 			{
-				MyWeapons.RemoveAt(0);
+				playerData.myWeapons.RemoveAt(0);
 			}
 		}
 		if (item is Song)
@@ -129,7 +181,7 @@ public class GlobalStats : MonoBehaviour
 		}
 		if (item is StatModifier)
 		{
-			StatModifiers.Add((StatModifier)item);
+			playerData.statModifiers.Add(item.ID);
 		}
 	}
 
@@ -137,7 +189,7 @@ public class GlobalStats : MonoBehaviour
 	{
 		if (item is Weapon)
 		{
-			MyWeapons.Remove((Weapon)item);
+			playerData.myWeapons.Remove(item.ID);
 		}
 		if (item is Song)
 		{
@@ -149,7 +201,7 @@ public class GlobalStats : MonoBehaviour
 		}
 		if (item is StatModifier)
 		{
-			StatModifiers.Remove((StatModifier)item);
+			playerData.statModifiers.Remove(item.ID);
 		}
 	}
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Empty Shooter", menuName = "Shooter")]
+[System.Serializable]
 public class Weapon : Equippable
 {
     [SerializeField] RhythmicObject shooter;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Upgrade", menuName = "Upgrade")]
+[System.Serializable]
 public class StatModifier : Equippable
 {
     [SerializeField] Upgrade effect;

@@ -7,15 +7,15 @@ public class PlayerData
 {
     public int coins;
     public int lastLevelPassed;
-    public List<Equippable> ownedItems;
-    public Song mySong;
-    public PowerObject myBomb;
+    public List<string> ownedItems;
+    public string mySong;
+    public string myBomb;
     public int allowedWeapons;
-    public List<Weapon> myWeapons;
+    public List<string> myWeapons;
     public int totalBombs;
     public int totalLives;
-    public List<StatModifier> statModifiers;
-    public Player selectedPlayer;
+    public List<string> statModifiers;
+    public string selectedPlayer;
 
     public PlayerData(PlayerData toCopy)
     {

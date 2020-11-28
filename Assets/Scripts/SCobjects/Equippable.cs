@@ -23,6 +23,7 @@ public abstract class Equippable : ScriptableObject
         List<string> IDs = new List<string>();
         foreach(var equip in equips)
         {
+            if (equip == null) continue;
             IDs.Add(equip.ID);
         }
         return IDs;
