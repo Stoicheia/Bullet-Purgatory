@@ -28,10 +28,10 @@ public class GlobalManager : MonoBehaviour
 
     private void Start()
     {
-        //if (!LoadGame())
-        //{
+        if (!LoadGame())
+        {
             GlobalStats.instance.ResetStats();
-        //}
+        }
     }
     public void PlayGame()
     {
@@ -67,4 +67,6 @@ public class GlobalManager : MonoBehaviour
         GlobalStats.instance.PlayerData = SaveData.current.playerData;
         return SaveData.current != null;
     }
+
+
 }

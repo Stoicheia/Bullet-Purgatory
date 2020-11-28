@@ -45,7 +45,7 @@ public class ItemDatabase : ScriptableObject
         List<Equippable> myItems = new List<Equippable>();
         foreach(var itemID in itemIDs)
         {
-            if (itemID == "" || itemID == null) continue;
+            if (itemID == "" || itemID == null || !getItem.ContainsKey(itemID)) continue;
             Equippable item = getItem[itemID];
             if(item!=null)
                 myItems.Add(item);
