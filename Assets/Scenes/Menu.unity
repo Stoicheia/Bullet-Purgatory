@@ -2574,12 +2574,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e539512041868914ea214248ca907211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  database: {fileID: 11400000, guid: cf508906ab25e8e48a4410a599be20d4, type: 2}
   initialPlayerData:
     coins: 200
     lastLevelPassed: 0
     ownedItems:
-    - {fileID: 11400000, guid: 576cc191d1a36284ca22767a83e0e1e9, type: 2}
-    - {fileID: 11400000, guid: 6e58fb4c1f1d79a4cb4eb42afc8665b3, type: 2}
+    - {fileID: 0}
+    - {fileID: 0}
     mySong: {fileID: 11400000, guid: 576cc191d1a36284ca22767a83e0e1e9, type: 2}
     myBomb: {fileID: 11400000, guid: 6e58fb4c1f1d79a4cb4eb42afc8665b3, type: 2}
     allowedWeapons: 2
@@ -2599,10 +2600,11 @@ MonoBehaviour:
     myBomb: {fileID: 0}
     allowedWeapons: 0
     myWeapons: []
-    totalBombs: 0
-    totalLives: 0
+    totalBombs: 2
+    totalLives: 3
     statModifiers: []
-    selectedPlayer: {fileID: 0}
+    selectedPlayer: {fileID: 1445623937382464697, guid: 6c1c8b86b21cd0d4b9c6901f2e7f1a18,
+      type: 3}
 --- !u!4 &357581119
 Transform:
   m_ObjectHideFlags: 0

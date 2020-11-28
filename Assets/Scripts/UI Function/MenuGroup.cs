@@ -30,7 +30,7 @@ public class MenuGroup : MonoBehaviour
     {
         if (!menus.Contains(newMenu))
         {
-            Debug.LogWarning("Not a valid menu, attempting to resolve", this);
+            //Debug.LogWarning("Not a valid menu, attempting to resolve", this);
             menus.Add(newMenu);
         }
         if(activeMenu!=null)

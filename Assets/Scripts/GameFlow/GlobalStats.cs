@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GlobalStats : MonoBehaviour
 {
-	public ItemDatabase database = GlobalManager.instance.itemDatabase;
+	public ItemDatabase database;
 	public PlayerData initialPlayerData;
 	[SerializeField]
 	PlayerData playerData;
@@ -14,58 +14,17 @@ public class GlobalStats : MonoBehaviour
 	public int LastLevelPassed{get{return playerData.lastLevelPassed;} private set{playerData.lastLevelPassed = value;}}
 	
 	
-	public List<Equippable> OwnedItems { get => database.GetItems(playerData.ownedItems); private set => playerData.ownedItems = Equippable.GetIDs(value); }
+	public List<Equippable> OwnedItems { get => playerData.ownedItems; private set => playerData.ownedItems = value; }
 
-	public Song MySong { get => (Song)database.GetItem[playerData.mySong]; private set => playerData.mySong = value.ID; }
-	public PowerObject MyBomb { get => (PowerObject)database.GetItem[playerData.myBomb]; private set => playerData.myBomb = value.ID; }
+	public Song MySong { get => playerData.mySong; private set => playerData.mySong = value; }
+	public PowerObject MyBomb { get => playerData.myBomb; private set => playerData.myBomb = value; }
 
-	public List<Weapon> MyWeapons { 
-		get {
-			List<Equippable> weaponEquips = database.GetItems(playerData.myWeapons);
-			List<Weapon> weaponsList = new List<Weapon>();
-			foreach(var equip in weaponEquips)
-			{
-				if (equip is Weapon)
-					weaponsList.Add((Weapon)equip);
-			}
-			return weaponsList;
-		}
-		private set {
-			List<Equippable> wepsToEquips = new List<Equippable>();
-			foreach(var wep in value)
-			{
-				wepsToEquips.Add((Equippable)wep);
-			}
-			playerData.myWeapons = Equippable.GetIDs(wepsToEquips);
-		}
-	}
+	public List<Weapon> MyWeapons { get => playerData.myWeapons; private set => playerData.myWeapons = value; }
 	public int TotalBombs { get => playerData.totalBombs; private set => playerData.totalBombs = value; }
 	public int TotalLives { get => playerData.totalLives; private set => playerData.totalLives = value; }
 
-	public List<StatModifier> StatModifiers
-	{
-		get
-		{
-			List<Equippable> statEquips = database.GetItems(playerData.statModifiers);
-			List<StatModifier> statsList = new List<StatModifier>();
-			foreach (var equip in statEquips)
-			{
-				if (equip is StatModifier)
-					statsList.Add((StatModifier)equip);
-			}
-			return statsList;
-		}
-		private set
-		{
-			List<Equippable> statsToEquips = new List<Equippable>();
-			foreach (var wep in value)
-			{
-				statsToEquips.Add((Equippable)wep);
-			}
-			playerData.myWeapons = Equippable.GetIDs(statsToEquips);
-		}
-	}
-	public Player SelectedPlayer { get => database.GetPlayer[playerData.selectedPlayer]; private set => playerData.selectedPlayer = value.id; }
+	public List<StatModifier> StatModifiers { get => playerData.statModifiers; private set => playerData.statModifiers = value; }
+	public Player SelectedPlayer { get => playerData.selectedPlayer; private set => playerData.selectedPlayer = value; }
 	public int AllowedWeapons { get => playerData.allowedWeapons; private set => playerData.allowedWeapons = value; }
 
 
@@ -86,7 +45,12 @@ public class GlobalStats : MonoBehaviour
 		DontDestroyOnLoad(gameObject);
 	}
 
-    public void ResetStats(){
+	private void Start()
+	{
+		database = GlobalManager.instance.itemDatabase;
+	}
+
+	public void ResetStats(){
 		playerData = new PlayerData(initialPlayerData);
     }
 
@@ -105,14 +69,14 @@ public class GlobalStats : MonoBehaviour
 
 	public void AddItem(Equippable equip)
 	{
-		if(!OwnedItems.Contains(equip))
-			OwnedItems.Add(equip);
+		if(!playerData.ownedItems.Contains(equip))
+			playerData.ownedItems.Add(equip);
 	}
 
 	public void RemoveItem(Equippable equip)
 	{
-		if(OwnedItems.Contains(equip))
-			OwnedItems.Remove(equip);
+		if(playerData.ownedItems.Contains(equip))
+			playerData.ownedItems.Remove(equip);
 	}
 
 	public ItemUIStatus GetItemStatus(Equippable item)
