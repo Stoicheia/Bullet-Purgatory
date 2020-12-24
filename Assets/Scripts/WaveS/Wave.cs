@@ -18,4 +18,12 @@ public class Wave : MonoBehaviour
 			numberOfEnemies++;
     	return numberOfEnemies;
     }
+
+    public List<string> GetEnemyTags()
+    {
+        List<string> enemies = new List<string>();
+        foreach (var enemy in GetComponentsInChildren<Spawnable>())
+            enemies.Add(enemy.GetComponentInChildren<Enemy>().enemyTag);
+        return enemies;
+    }
 }

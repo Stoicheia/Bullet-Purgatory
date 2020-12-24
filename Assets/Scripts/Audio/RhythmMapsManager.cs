@@ -113,7 +113,7 @@ public class RhythmMapsManager : MonoBehaviour
         foreach(var b in mapsFinished){
             Debug.Log(b.Key + ": " + b.Value);
             if(!b.Value) {
-                ChangeSong(b.Key, 0.5f, 1f);
+                ChangeSong(b.Key, 0.1f, 2f);
                 return;
             }
         }
@@ -122,7 +122,7 @@ public class RhythmMapsManager : MonoBehaviour
     }
 
     public void EnterRhythm(){
-        ChangeSongRestart(startingMap, 0.5f, 1f);
+        ChangeSongRestart(startingMap, 0.1f, 2f);
     }
 
     public void PauseActive(){

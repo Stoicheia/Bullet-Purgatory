@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class GlobalManager : MonoBehaviour
 {
+    public GameObject LevelLoadingScreen;
+
     public static GlobalManager instance;
     ItemDatabase itemDatabase;
     public ItemDatabase ItemDatabase { get => itemDatabase; }
@@ -13,7 +15,7 @@ public class GlobalManager : MonoBehaviour
     {
         if (instance != null)
         {
-            Destroy(this);
+            Destroy(this.gameObject);
             return;
         }
         instance = this;
@@ -39,9 +41,24 @@ public class GlobalManager : MonoBehaviour
         SceneManager.LoadScene(Mathf.Min(stats.FinalLevelIndex, stats.LastLevelPassed + 1));
     }
 
+    List<AsyncOperation> scenesLoading = new List<AsyncOperation>();
     public void GoToLevel(int level)
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + level);
+        LevelLoadingScreen.SetActive(true);
+        scenesLoading.Add(SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + level));
+        StartCoroutine(GetSceneLoadProgress());
+    }
+
+    IEnumerator GetSceneLoadProgress()
+    {
+        for(int i=0; i<scenesLoading.Count; i++)
+        {
+            while(!scenesLoading[i].isDone)
+            {
+                yield return null;
+            }
+        }
+        LevelLoadingScreen.SetActive(false);
     }
 
     public void GoToMenu()
