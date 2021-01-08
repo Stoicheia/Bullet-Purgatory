@@ -19,4 +19,5 @@ public class SaveData
     }
 
     public PlayerData playerData;
+    public LevelData levelData;
 }

@@ -50,7 +50,6 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField]
     private bool godMode = true;
 
-	//public RhythmicObject startingShooter;
     public List<RhythmicObject> shooters = new List<RhythmicObject>();
 
     void Awake(){
@@ -151,7 +150,7 @@ public class Player : MonoBehaviour, IDamageable
             shooter.gameObject.SetActive(false);
         }
         StartCoroutine(DisableAfterSeconds(Mathf.Max(invulnerabilityPeriod-Time.deltaTime,0)));
-        if(OnPlayerDeath!=null)
+        if (OnPlayerDeath != null)
             OnPlayerDeath();
     }
 
@@ -183,5 +182,13 @@ public class Player : MonoBehaviour, IDamageable
         RhythmicObject myShooter = Instantiate(shooter, transform.position, transform.rotation);
         myShooter.transform.parent = transform;
         shooters.Add(myShooter);
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.GetComponent<Enemy>() != null)
+        {
+            TakeHit(1, col);
+        }
     }
 }

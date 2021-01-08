@@ -11,6 +11,7 @@ public class MenuGroup : MonoBehaviour
 
     void Start()
     {
+        startingMenu = menus[GlobalManager.instance.GetMenuState()];
         foreach(GameObject menu in menus)
         {
             menu.SetActive(false);

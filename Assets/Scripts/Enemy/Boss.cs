@@ -20,7 +20,7 @@ public class Boss : MonoBehaviour
 	}
 
     void OnEnable(){
-    	OnBossSpawn(this);
+    	OnBossSpawn?.Invoke(this);
     	enemyInfo.OnThisHit += Hit;
     	enemyInfo.OnThisDeath += Die;
     }

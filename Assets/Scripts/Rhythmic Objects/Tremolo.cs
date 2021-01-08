@@ -30,11 +30,11 @@ public class Tremolo : MonoBehaviour
    		extremeUp = startPosition.y + vertTremoloDistance/2;
    		extremeDown = startPosition.y - vertTremoloDistance/2;
     	float horizontalPos = Mathf.Lerp(extremeLeft,extremeRight,HarmonicOscillation(Time.time,horzTremoloSpeed));
-    	float verticalPos = Mathf.Lerp(extremeUp,extremeDown,HarmonicOscillation(Time.time,horzTremoloSpeed));
-        transform.localPosition = new Vector3(horizontalPos,verticalPos,0);
+    	float verticalPos = Mathf.Lerp(extremeUp,extremeDown,HarmonicOscillation(Time.time,vertTremoloSpeed));
+        transform.localPosition = new Vector3(horizontalPos,verticalPos,startPosition.z);
     }
 
     float HarmonicOscillation(float t, float s){
-    	return 0.5f+Mathf.Sin(Time.time*horzTremoloSpeed)/2;
+    	return 0.5f+Mathf.Sin(t*s)/2;
     }
 }

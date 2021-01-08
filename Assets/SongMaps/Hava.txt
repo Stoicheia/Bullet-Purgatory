@@ -29,5 +29,7 @@ S,-2 2 2 2 2 S,0 1/100
 1
 #Constant_2:BPM,155 NPB,4 OFF,170
 2
+#Constant_4:BPM,155 NPB,4 OFF,170
+4
 #Wave:BPM,155 NPB,4 OFF,170
 1/4

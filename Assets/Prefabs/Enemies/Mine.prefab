@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 5657311248860047628}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6750113, y: 0.6750113, z: 0.6750113}
+  m_LocalScale: {x: 0.35248742, y: 0.35248742, z: 0.35248742}
   m_Children:
   - {fileID: 8097713033885098831}
   m_Father: {fileID: 1651650688499300525}
@@ -71,8 +71,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyTag: Mine
-  maxHP: 8
-  shooting: 1
+  maxHP: 5
+  shootersOn: 0
 --- !u!95 &6267912329971997425
 Animator:
   serializedVersion: 3
@@ -104,7 +104,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c5b5c582e24af4499ed30e5071e8751, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
+  hitColor: {r: 0.5019608, g: 0.5, b: 0.5, a: 1}
+  spriteAnimator: {fileID: 0}
 --- !u!58 &5657311248860047630
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -136,10 +137,10 @@ MonoBehaviour:
   bulletType: {fileID: 1431229177179433772, guid: c74a0e5160594eb439b7ce9695ebdd35,
     type: 3}
   bulletAmount: 24
-  minSpeed: 4
-  maxSpeed: 8
-  revolutions: 0
-  randomSpread: 1
+  minSpeed: 6
+  maxSpeed: 7
+  revolutions: 1
+  randomSpread: 0
 --- !u!1 &7235571317473074852
 GameObject:
   m_ObjectHideFlags: 0
@@ -166,7 +167,7 @@ Transform:
   m_GameObject: {fileID: 7235571317473074852}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.462, y: 0.462, z: 0.462}
+  m_LocalScale: {x: 0.55, y: 0.55, z: 0.462}
   m_Children:
   - {fileID: 6612882991825713712}
   m_Father: {fileID: 0}
@@ -254,7 +255,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -564099801
-  m_SortingLayer: 2
+  m_SortingLayer: -4
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: b661148f29074e2459265194d2e35bf2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

@@ -22,8 +22,8 @@ public abstract class Shooter : RhythmicObject
 
     protected Bullet SpawnFromPoolAtAngle(float angle){
     	Bullet toSpawn = GetBullet();
-    	Bullet b = pooler.Spawn(toSpawn.gameObject, toSpawn.poolTag, transform.position, transform.rotation*Quaternion.Euler(0,0,angle)).GetComponent<Bullet>();
-        b.Speed = bulletSpeed/3;
+    	Bullet b = pooler.Spawn(toSpawn.gameObject, toSpawn.name, transform.position, transform.rotation*Quaternion.Euler(0,0,angle)).GetComponent<Bullet>();
+        b.Speed = bulletSpeed/2.5f;
        	b.SetFriendly(friendly);  
        	return b;     	
     }

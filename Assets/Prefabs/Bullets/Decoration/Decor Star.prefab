@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 800bfbb26aadfc547ae00703d23006bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  period: 100
+  period: 60
 --- !u!58 &-4441074305445331676
 CircleCollider2D:
   m_ObjectHideFlags: 0

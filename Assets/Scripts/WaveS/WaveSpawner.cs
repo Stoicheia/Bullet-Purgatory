@@ -11,7 +11,7 @@ public class WaveSpawner : RhythmicObject
     public delegate void WaveSpawnAction(int[] waveInfo);
     public static event WaveSpawnAction OnNextWave;
 
-    public Power powerBetweenWaves;
+    public Power[] powersBetweenWaves;
 
 	RhythmListener listener;
 	List<string> enemiesOnScreen;
@@ -56,8 +56,10 @@ public class WaveSpawner : RhythmicObject
     void Update()
     {
         if(enemiesOnScreen.Count <= 0 && spawnStarted){
-            if(powerBetweenWaves!=null)
-                powerBetweenWaves.Activate();
+	        foreach (Power power in powersBetweenWaves)
+	        {
+		        power.Activate();
+	        }
         	SpawnNextWave();
         }
     }
@@ -73,7 +75,7 @@ public class WaveSpawner : RhythmicObject
     		return;
     	}
     	activeWave = waves[currentWave%totalWaves];
-    	StartCoroutine(SpawnActiveWaveAfter(listener.BeatsToSeconds(2)));
+    	StartCoroutine(SpawnActiveWaveAfter(TimeBetweenWaves()));
     	enemiesOnScreen = activeWave.GetEnemyTags();
         if(OnNextWave!=null)
             OnNextWave(GetWaveInfo());
@@ -88,11 +90,11 @@ public class WaveSpawner : RhythmicObject
     IEnumerator WinSequence()
     {
         StopSpawning();
-        yield return new WaitForSeconds(listener.BeatsToSeconds(4));
+        yield return new WaitForSeconds(TimeBetweenWaves()*2);
         GoToState(LevelState.ENDSCREEN);
     }
 
-    void KilledOneEnemy(string tagOfDead){
+    void KilledOneEnemy(string tagOfDead, Enemy e){
         enemiesOnScreen.Remove(tagOfDead);
     	Debug.Log(enemiesOnScreen.Count);
     }
@@ -109,4 +111,8 @@ public class WaveSpawner : RhythmicObject
         return new int[] {currentWave+1,totalWaves};
     }
 
+    public float TimeBetweenWaves()
+    {
+	    return listener.BeatsToSeconds(2);
+    }
 }

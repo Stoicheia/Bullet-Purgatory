@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bomb : Power
 {
 	ObjectPooler pooler;
-	const float BOMBED_TRANSPARENCY = 0.2f;
+	const float BOMBED_TRANSPARENCY = 0.15f;
 	const float BOMB_ZOOM = 3;
 
     public override void Activate(){
@@ -15,13 +15,18 @@ public class Bomb : Power
     	foreach(var obj in allActive){
     		Bullet bullet = obj.GetComponent<Bullet>();
     		if(bullet==null) return;
-			if(!bullet.IsFriendly()&&bullet.GetComponent<Collider2D>().enabled){
+			if(!bullet.IsFriendly()&&bullet.GetComponent<Collider2D>().enabled)
+			{
+					AcceleratingBullet accel = bullet.GetComponent<AcceleratingBullet>();
+					if (accel != null) accel.Disable();
 					bullet.transform.Rotate(0,0,180);
+					bullet.KillAnimator();
+					bullet.AddSpeed(BOMB_ZOOM/2);
 					bullet.MultiplySpeed(BOMB_ZOOM);
-					bullet.GetComponent<SpriteRenderer>().color = new Color(1,1,1,BOMBED_TRANSPARENCY);
+					bullet.GetRenderer().color = new Color(1,1,1,BOMBED_TRANSPARENCY);
 					bullet.GetComponent<Collider2D>().enabled = false;
-				}
-    		}
+			}
+        }
     }
 }
 

@@ -24,25 +24,25 @@ public class LivesUI : MonoBehaviour
         if(trackedPlayer==null){
             trackedPlayer = FindObjectOfType<Player>();
             if(trackedPlayer!=null)
-                Refresh();
+                Refresh(trackedPlayer.Lives);
         }
     }
 
     void OnEnable()
     {
-    	Player.OnPlayerHit += Refresh;
+    	Player.OnLivesChange += Refresh;
     	if(trackedPlayer!=null)
-    		Refresh();
+    		Refresh(trackedPlayer.Lives);
     }
 
     void OnDisable()
     {
-    	Player.OnPlayerHit -= Refresh;
+    	Player.OnLivesChange -= Refresh;
     }
 
-    void Refresh()
+    void Refresh(int l)
     {
-    	int lives = trackedPlayer.Lives;
+    	int lives = l;
     	for(int i=0; i<hearts.Count; i++){
     		hearts[i].SetActive(i<lives);
     	}

@@ -7,7 +7,7 @@ public class FailScreenUI : MonoBehaviour
 {
     public void GoHome()
     {
-    	SceneManager.LoadScene(0);
+    	GlobalManager.instance.GoToMenu(4);
     }
 
     public void Retry()

@@ -69,6 +69,7 @@ MonoBehaviour:
   oscillationPeriodSeconds: 5
   stationaryCenterOfRotation: 1
   constantRotation: 0
+  reverse: 0
 --- !u!1 &895249590521606484
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,7 +213,7 @@ Transform:
   m_GameObject: {fileID: 2575311510271754663}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.61221206, y: 0.61221206, z: 0.61221206}
+  m_LocalScale: {x: 0.55, y: 0.55, z: 0.46528116}
   m_Children:
   - {fileID: 3148162718194217332}
   m_Father: {fileID: 0}
@@ -330,6 +331,7 @@ MonoBehaviour:
   oscillationPeriodSeconds: 5
   stationaryCenterOfRotation: 1
   constantRotation: 0
+  reverse: 0
 --- !u!1 &4305149972917445983
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,7 +400,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -564099801
-  m_SortingLayer: 2
+  m_SortingLayer: -4
   m_SortingOrder: 1
   m_Sprite: {fileID: -5008570643317787617, guid: 42a510987ffe1744c904f223ce42fff2,
     type: 3}
@@ -481,6 +483,7 @@ MonoBehaviour:
   oscillationPeriodSeconds: 5
   stationaryCenterOfRotation: 1
   constantRotation: 0
+  reverse: 0
 --- !u!1 &5050790478655439407
 GameObject:
   m_ObjectHideFlags: 0
@@ -620,7 +623,7 @@ Transform:
   m_GameObject: {fileID: 6952943651546268882}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.78, z: 0}
-  m_LocalScale: {x: 0.7500125, y: 0.7500125, z: 0.7500125}
+  m_LocalScale: {x: 0.6750112, y: 0.6750112, z: 0.6750112}
   m_Children:
   - {fileID: 6122246042630526266}
   - {fileID: 5988958308497006887}
@@ -662,7 +665,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyTag: Epic Green Slime
   maxHP: 4
-  shooting: 1
+  shootersOn: 0
 --- !u!95 &525394018025043249
 Animator:
   serializedVersion: 3
@@ -694,7 +697,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c5b5c582e24af4499ed30e5071e8751, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 7373800954182740746}
+  hitColor: {r: 1, g: 0.5, b: 0.5, a: 1}
+  spriteAnimator: {fileID: 0}
 --- !u!60 &8060454360134628671
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -722,16 +726,16 @@ PolygonCollider2D:
     m_Paths:
     - - {x: -0.059038796, y: 2.157158}
       - {x: -1.3584938, y: 1.7206509}
-      - {x: -1.9966278, y: 3.3508}
-      - {x: -4.1485844, y: 4.663272}
-      - {x: -3.6713514, y: 2.2153697}
+      - {x: -1.1472458, y: 1.7855108}
+      - {x: -1.5761714, y: 1.1808066}
+      - {x: -1.8512475, y: 0.8078227}
       - {x: -1.8095443, y: 0.8076219}
       - {x: -1.7420671, y: 0.27459383}
       - {x: 1.7067318, y: 0.2745947}
       - {x: 1.7949547, y: 0.76427877}
-      - {x: 3.5379262, y: 2.0073075}
-      - {x: 4.0774717, y: 4.5187387}
-      - {x: 2.036262, y: 3.3425198}
+      - {x: 1.6935549, y: 0.890977}
+      - {x: 1.4929242, y: 1.0362735}
+      - {x: 1.1262103, y: 1.8136326}
       - {x: 1.3343005, y: 1.6407903}
 --- !u!114 &8848278806694247075
 MonoBehaviour:
@@ -850,7 +854,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -564099801
-  m_SortingLayer: 2
+  m_SortingLayer: -4
   m_SortingOrder: 1
   m_Sprite: {fileID: 7385464813564080411, guid: 42a510987ffe1744c904f223ce42fff2,
     type: 3}
@@ -883,7 +887,7 @@ MonoBehaviour:
   - {fileID: 4268211311293715585}
   - {fileID: 4862342674298469076}
   m_Bounds:
-    m_Center: {x: 0, y: -0.002120018, z: 0}
-    m_Extent: {x: 4.3949995, y: 2.09788, z: 0}
+    m_Center: {x: 0, y: -0.0021193027, z: -0.000000007450581}
+    m_Extent: {x: 4.3950005, y: 2.0978804, z: 2.220446e-16}
   m_UseBatching: 1
   m_AlwaysUpdate: 0

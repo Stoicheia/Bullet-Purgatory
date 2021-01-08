@@ -52,6 +52,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1202917464405168632}
     m_Modifications:
+    - target: {fileID: 676146968507863980, guid: ac0d632db6e724b4dab579896d999d18,
+        type: 3}
+      propertyPath: enemyTag
+      value: dum
+      objectReference: {fileID: 0}
     - target: {fileID: 3355922666208306765, guid: ac0d632db6e724b4dab579896d999d18,
         type: 3}
       propertyPath: m_Bounds.m_Center.y

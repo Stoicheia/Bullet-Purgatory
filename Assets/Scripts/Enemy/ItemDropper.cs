@@ -25,7 +25,7 @@ public class ItemDropper : MonoBehaviour
     void SpawnItem(){
     	foreach(var droppedItem in droppedItems){
     		if(droppedItem.chance>=Random.Range(0,100))
-    			Instantiate(droppedItem.item.gameObject, transform.position, Quaternion.Euler(0,0,-180));
+    			Instantiate(droppedItem.item.gameObject, transform.position, Quaternion.Euler(0,0,0));
     	}
     }
 }

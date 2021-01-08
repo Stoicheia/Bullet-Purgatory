@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7accd553cea10f547bcee3c5d2406fbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  part: Constant_2
+  part: Constant_4
 --- !u!114 &-2615233402773865145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,6 +59,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootEnabled: 1
   toSpawn:
-  - {fileID: 2983321234769858639, guid: 7df9ccd7787737e45abdf8daa254f7c0, type: 3}
+  - {fileID: 9018198663470991271, guid: 7df9ccd7787737e45abdf8daa254f7c0, type: 3}
   bulletSpeed: 10
   friendly: 1

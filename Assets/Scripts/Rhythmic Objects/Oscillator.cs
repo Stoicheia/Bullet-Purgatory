@@ -7,11 +7,12 @@ public class Oscillator : MonoBehaviour
 {
 	[Range(0,360)]
     public float oscillationMagnitude;
-    [Range(0.01f,10)]
+    [Range(0.01f,60)]
     public float oscillationPeriodSeconds;
 
     public bool stationaryCenterOfRotation;
     public bool constantRotation;
+    public bool reverse;
 
     float fixedCenterOfRotation;
 
@@ -33,7 +34,7 @@ public class Oscillator : MonoBehaviour
 	        	*Mathf.Cos(Time.fixedTime*2*Mathf.PI/oscillationPeriodSeconds); //simple calculs
     	}
 	    else{
-	    	angleToRotate = Time.fixedDeltaTime*360/oscillationPeriodSeconds;
+	    	angleToRotate = reverse?-Time.fixedDeltaTime*360/oscillationPeriodSeconds:Time.fixedDeltaTime*360/oscillationPeriodSeconds;
 	    }
 	    transform.Rotate(0,0,angleToRotate);
     }

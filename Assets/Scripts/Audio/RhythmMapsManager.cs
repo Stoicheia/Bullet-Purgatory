@@ -145,6 +145,11 @@ public class RhythmMapsManager : MonoBehaviour
         return activeMap == startingMap;
     }
 
+    public bool IsNoMap()
+    {
+        return activeMap == null;
+    }
+
     public float[] GetCurrentMapInfo(){
         if(activeMap==null) return new float[] {0,1};
         return activeMap.GetSongProgressInfo();

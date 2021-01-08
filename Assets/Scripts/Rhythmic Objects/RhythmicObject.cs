@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class RhythmicObject : MonoBehaviour 
 {
 	protected int currentStyle;
-	public bool shootEnabled;
+	public bool shootEnabled = true;
 
     protected virtual void Awake()
     {

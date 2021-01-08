@@ -7,6 +7,6 @@ public class EndScreenUI : MonoBehaviour
 {
     public void GoHome()
     {
-    	SceneManager.LoadScene(0);
+    	GlobalManager.instance.GoToMenu(4);
     }
 }

@@ -11,6 +11,15 @@ public class GlobalStats : MonoBehaviour
 	[SerializeField]
 	PlayerData playerData;
 	public PlayerData PlayerData { get=>playerData; set=>playerData=value; }
+
+	[SerializeField] private LevelData levelData;
+
+	public LevelData LevelData
+	{
+		get => levelData;
+		set => levelData = value;
+	}
+
 	public int Coins{get{return playerData.coins;} private set{playerData.coins = value;}}
 
 	public int LastLevelPassed{get{return playerData.lastLevelPassed;} private set{playerData.lastLevelPassed = value;}}
@@ -73,7 +82,7 @@ public class GlobalStats : MonoBehaviour
 
 
 
-	int finalLevelIndex = 1;
+	[SerializeField] int finalLevelIndex = 100;
 	public int FinalLevelIndex { get { return finalLevelIndex; } private set { finalLevelIndex = value; } }
 
 	public static GlobalStats instance;
@@ -95,14 +104,10 @@ public class GlobalStats : MonoBehaviour
 		global = GlobalManager.instance;
 	}
 
-	private void Start()
-	{
-		print(global.name);
-	}
-
 	public void ResetStats(){
 		playerData = new PlayerData(initialPlayerData);
-    }
+		levelData = new LevelData();
+	}
 
     public void AddCoins(int c){
     	playerData.coins += c;

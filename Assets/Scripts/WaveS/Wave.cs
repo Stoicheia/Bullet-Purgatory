@@ -26,4 +26,14 @@ public class Wave : MonoBehaviour
             enemies.Add(enemy.GetComponentInChildren<Enemy>().enemyTag);
         return enemies;
     }
+
+    public List<Enemy> GetEnemies()
+    {
+	    List<Enemy> enemies = new List<Enemy>();
+	    foreach (var enemy in GetComponentsInChildren<Spawnable>())
+	    {
+		    enemies.Add(enemy.GetComponentInChildren<Enemy>());
+	    }
+	    return enemies;
+    }
 }

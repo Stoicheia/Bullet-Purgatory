@@ -2,10 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(Collider2D))]
 public class Bullet : MonoBehaviour
 {
+    private const float HORZ_STAGE_SKIN = 2f;
+    private const float VERT_STAGE_SKIN = 2f;
+    
+    public delegate void HitAction(Transform t);
+
+    public event HitAction OnBulletHit;
+
     public float damage = 1;
     public float speedModifier = 1;
 
@@ -21,23 +27,27 @@ public class Bullet : MonoBehaviour
 	bool friendly = false;
 
 	static MeshCollider stage;
-    public string poolTag = "";
+    [HideInInspector] public string poolTag = "";
     static ObjectPooler pooler;
 	SpriteRenderer render;
 
-    const float FRIENDLY_TRANSPARENCY = 0.5f;
+    const float FRIENDLY_TRANSPARENCY = 0.45f;
 
 
     void Awake()
     {
-        if(poolTag=="")
-            poolTag = name;
+        poolTag = name;
         render = GetComponent<SpriteRenderer>();
+        if (render == null)
+            render = GetComponentInChildren<SpriteRenderer>();
     }
 
     void OnEnable()
     {
         GetComponent<Collider2D>().enabled = true;
+        Animator animator = GetComponent<Animator>();
+        if(animator!=null)
+            GetComponent<Animator>().enabled = true;
     }
 
     void Update()
@@ -50,8 +60,8 @@ public class Bullet : MonoBehaviour
 
     void Move(Vector3 v){
     	transform.Translate(v);
-    	if(Mathf.Abs(transform.position.x-stage.transform.position.x)>stage.bounds.size.x/2+render.bounds.size.x/2||
-    		Mathf.Abs(transform.position.y-stage.transform.position.y)>stage.bounds.size.y/2+render.bounds.size.y/2){
+    	if(Mathf.Abs(transform.position.x-stage.transform.position.x)>stage.bounds.size.x/2+render.bounds.size.x/2+HORZ_STAGE_SKIN||
+    		Mathf.Abs(transform.position.y-stage.transform.position.y)>stage.bounds.size.y/2+render.bounds.size.y/2+VERT_STAGE_SKIN){
     		Despawn();
     	}
     }
@@ -71,6 +81,7 @@ public class Bullet : MonoBehaviour
         if(hitObject!=null){
             if(hitObject.IsFriendly()!=friendly){
                 hitObject.TakeHit(damage, hit);
+                OnBulletHit?.Invoke(transform);
                 Despawn();
             }
         }
@@ -116,7 +127,7 @@ public class Bullet : MonoBehaviour
         gameObject.layer = friendly? 8:9;
         render.sortingLayerName = friendly? "Player_Bullets":"Bullets";
         if(friendly) render.color = new Color(1,1,1,FRIENDLY_TRANSPARENCY);
-        else render.color = new Color(1,1,1,1);
+        else render.color = new Color(1,1,1, 1);
     }
 
     public static void SetStage(MeshCollider s){
@@ -129,6 +140,18 @@ public class Bullet : MonoBehaviour
 
     public void Despawn(){
         pooler.Despawn(gameObject, poolTag);
+    }
+
+    public SpriteRenderer GetRenderer()
+    {
+        return render;
+    }
+
+    public void KillAnimator()
+    {
+        Animator animator = GetComponent<Animator>();
+        if (animator != null)
+            animator.enabled = false;
     }
 
 }

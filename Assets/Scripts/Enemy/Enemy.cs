@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using JetBrains.Annotations;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
 public class Enemy : MonoBehaviour, IDamageable
 {
-    public delegate void HitAction(string tag);
+    public delegate void HitAction(string tag, Enemy enemy);
     public static event HitAction OnDeath;
     public static event HitAction OnHit;
 
@@ -18,10 +20,11 @@ public class Enemy : MonoBehaviour, IDamageable
 	public float maxHP;
 	float hp;
     public float HP{get{return hp;} private set{hp=value;}}
-	public bool shooting;
-	RhythmicObject[] myShooters;
+	[HideInInspector] public bool shootersOn;
+    List<RhythmicObject> myShooters;
 
     bool dead;
+    bool killed;
 
 	Bounds myBounds;
 	Bounds stageBounds;
@@ -33,6 +36,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     void OnEnable()
     {
+        shootersOn = true;
         OnThisDeath += InvokeDeathEvent;
         OnThisHit += InvokeHitEvent;
     }
@@ -44,11 +48,11 @@ public class Enemy : MonoBehaviour, IDamageable
     }
 
     void InvokeDeathEvent(){
-        if(OnDeath!=null) OnDeath(enemyTag);
+        if(OnDeath!=null) OnDeath(enemyTag, this);
     }
 
     void InvokeHitEvent(){
-        if(OnHit!=null && !dead) OnHit(enemyTag);
+        if(OnHit!=null && !dead) OnHit(enemyTag, this);
     }
 
     void Awake()
@@ -58,9 +62,13 @@ public class Enemy : MonoBehaviour, IDamageable
     void Start()
     {
         dead = false;
-    	
+        killed = false;	
 
-    	myShooters = GetComponentsInChildren<RhythmicObject>();
+    	myShooters = GetComponentsInChildren<RhythmicObject>().ToList();
+        foreach (Transform t in transform)
+        {
+            myShooters.AddRange(t.GetComponentsInChildren<RhythmicObject>().ToList());
+        }
 
         myBounds = GetComponent<Collider2D>().bounds;
         stageBounds = GameObject.FindGameObjectWithTag("Stage").GetComponent<MeshCollider>().bounds;
@@ -73,7 +81,7 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         spawnState = animator.GetCurrentAnimatorStateInfo(0);
         foreach(RhythmicObject shooter in myShooters)
-            shooter.shootEnabled = shooting;
+            shooter.shootEnabled = shootersOn;
         if(!spawnState.IsName("Spawning"))
         	CheckOutOfBounds();
     }
@@ -104,6 +112,7 @@ public class Enemy : MonoBehaviour, IDamageable
     public void Die(){
         if(dead) return;
         dead = true;
+        killed = true;
     	if(OnThisDeath!=null)
     		OnThisDeath();
         StartCoroutine(DeathSequence());
@@ -126,7 +135,9 @@ public class Enemy : MonoBehaviour, IDamageable
         Deactivate();
     }
 
-    void DisableCollisions(){
+    void DisableCollisions()
+    {
+        shootersOn = false;
         GetComponent<Collider2D>().enabled = false;
         foreach(Transform child in transform){
             if(child.GetComponent<RhythmicObject>()!=null){
@@ -151,5 +162,10 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public bool IsSpawning(){
         return spawnState.IsName("Spawning");
+    }
+
+    public bool WasKilled()
+    {
+        return killed;
     }
 }

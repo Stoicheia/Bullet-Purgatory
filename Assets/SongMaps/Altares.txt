@@ -16,5 +16,7 @@ S,-1 1/100
 1
 #Constant_2:BPM,92 NPB,4 OFF,310
 2
+#Constant_4:BPM,92 NPB,4 OFF,310
+4
 #Wave:BPM,92 NPB,4 OFF,310
 1/4

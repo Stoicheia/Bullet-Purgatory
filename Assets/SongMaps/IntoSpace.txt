@@ -13,5 +13,7 @@ S,3 1/1000
 1
 #Constant_2:BPM,135 NPB,4 OFF,605
 2
+#Constant_4:BPM,135 NPB,4 OFF,605
+4
 #Wave:BPM,135 NPB,4 OFF,605
 1/4

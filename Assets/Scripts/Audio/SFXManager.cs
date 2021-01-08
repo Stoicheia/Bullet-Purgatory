@@ -18,15 +18,15 @@ public class SFXManager : MonoBehaviour
 
     void OnEnable()
     {
-        SpreadShooter.OnShoot += PlayShot;
-        CustomSpreadShooter.OnShoot += PlayShot;
+        //SpreadShooter.OnShoot += PlayShot;
+        //CustomSpreadShooter.OnShoot += PlayShot;
         Player.OnPlayerHit += PlayHit;
     }
 
     void OnDisable()
     {
-        SpreadShooter.OnShoot -= PlayShot;
-        CustomSpreadShooter.OnShoot -= PlayShot;
+        //SpreadShooter.OnShoot -= PlayShot;
+        //CustomSpreadShooter.OnShoot -= PlayShot;
         Player.OnPlayerHit -= PlayHit;
     }    
 

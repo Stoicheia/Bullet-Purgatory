@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Grazebox : MonoBehaviour, IOverlap
 {
-	public delegate void GrazeAction(float s);
+	public delegate void GrazeAction(float s, Transform grazePos);
 	public static event GrazeAction OnGraze;
+	private const float GRAZE_SCORE_BASE = 1;
 
 	Player myPlayer;
 	SpriteRenderer mySprite;
@@ -35,7 +36,7 @@ public class Grazebox : MonoBehaviour, IOverlap
 	{
 		mySprite.enabled = grazeCount>0;
 		if(grazeCount>0){
-			OnGraze(Time.deltaTime*grazeRate*grazeCount);
+			OnGraze(Time.deltaTime*grazeRate*grazeCount*GRAZE_SCORE_BASE, transform);
 		}
 	}
 

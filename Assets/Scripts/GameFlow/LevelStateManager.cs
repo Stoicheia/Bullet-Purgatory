@@ -12,11 +12,12 @@ public class LevelStateManager : MonoBehaviour
 	public LevelState levelState {get; private set;}
     public LevelState lastState {get; private set;}
 
-	WaveSpawner waveSpawner;
-	RhythmMapsManager rhythmManager;
-	DialogueManager dialogueManager;
-	UIManager uiManager;
+    private WaveSpawner waveSpawner;
+    private RhythmMapsManager rhythmManager;
+    private DialogueManager dialogueManager;
+    private UIManager uiManager;
     StatsManager statsManager;
+    
 
 	void Awake()
 	{
@@ -122,7 +123,7 @@ public class LevelStateManager : MonoBehaviour
                 waveSpawner.StopSpawning();
                 rhythmManager.PauseActive();
                 uiManager.EnterPause();
-                Bullet.PauseZoom = 2;
+                Bullet.PauseZoom = 0;
                 break;
     		case LevelState.ENDSCREEN:
                 statsManager.FeedToGlobal();
