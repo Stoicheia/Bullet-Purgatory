@@ -37,9 +37,10 @@ public class DeathBurst : MonoBehaviour
 
  	void Burst()
  	{
+	    print(bulletType.pooltag);
  		for(int i=0; i<bulletAmount; i++)
  		{
- 			Bullet b = pooler.Spawn(bulletType.gameObject, bulletType.poolTag
+ 			Bullet b = pooler.Spawn(bulletType.gameObject, bulletType.name
  				,transform.position, transform.rotation*Quaternion.Euler(0,0,GetAngle(i))).GetComponent<Bullet>();
  			b.Speed = Random.Range(minSpeed,maxSpeed);
  			b.SetFriendly(false);

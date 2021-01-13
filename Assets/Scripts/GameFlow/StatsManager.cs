@@ -31,6 +31,7 @@ public class StatsManager : MonoBehaviour
 
     public int currentWave {get; private set;}
     public int totalWaves {get; private set;}
+    public int totalNormalWaves { get; private set; }
 
     RhythmMapsManager rhythmMaps;
     public float currentSongTime {get; private set;}
@@ -83,7 +84,9 @@ public class StatsManager : MonoBehaviour
     void ChangeLives (int l) => lives = l;
     void AddGraze (float s, Transform t) => grazing += s*(1+killCombo);
     void UpdateWaveInfo(int[] waveInfo) {
-        currentWave = waveInfo[0]; totalWaves = waveInfo[1];
+        currentWave = waveInfo[0]; 
+        totalWaves = waveInfo[1];
+        totalNormalWaves = waveInfo[2];
     }
     void UpdateSongProgress(){
         float[] songInfo = rhythmMaps.GetCurrentMapInfo();

@@ -31,7 +31,7 @@ public class Orbiter : MonoBehaviour
         	startTime = Time.time;
         }
         float t = Time.time-startTime;
-        float angle = reverse? startingAngle-t*2*Mathf.PI/rotationPeriod:startingAngle+t*2*Mathf.PI/rotationPeriod;
+        float angle = reverse ? startingAngle-t*2*Mathf.PI/rotationPeriod:startingAngle+t*2*Mathf.PI/rotationPeriod;
         Vector3 newPos = new Vector3(radius*Mathf.Sin(angle),radius*Mathf.Cos(angle),0);
         newPos += rotationCenter.position;
         transform.position = newPos;

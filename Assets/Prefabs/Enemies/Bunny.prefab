@@ -244,7 +244,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6952943651546268882}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.78, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.7500125, y: 0.7500125, z: 0.7500125}
   m_Children:
   - {fileID: 7582521048150072352}
@@ -335,7 +335,7 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -1.11}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -516,7 +516,7 @@ PrefabInstance:
     - target: {fileID: 188204696652625001, guid: e0d14e971181b9a499723dd9100077ca,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.7199545
+      value: 1.59
       objectReference: {fileID: 0}
     - target: {fileID: 188204696652625001, guid: e0d14e971181b9a499723dd9100077ca,
         type: 3}
@@ -586,7 +586,7 @@ PrefabInstance:
     - target: {fileID: 820844669371639002, guid: e0d14e971181b9a499723dd9100077ca,
         type: 3}
       propertyPath: m_Bounds.m_Center.y
-      value: -0.027578652
+      value: -0.027578712
       objectReference: {fileID: 0}
     - target: {fileID: 820844669371639002, guid: e0d14e971181b9a499723dd9100077ca,
         type: 3}

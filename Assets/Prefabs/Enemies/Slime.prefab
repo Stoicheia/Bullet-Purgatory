@@ -96,7 +96,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 895249590521606484}
   m_LocalRotation: {x: -0, y: -0, z: -1, w: 0}
-  m_LocalPosition: {x: 0.007, y: 0.95, z: 0}
+  m_LocalPosition: {x: 0.007, y: -0.000000059604645, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 628838048226396891}
@@ -158,7 +158,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2424270938705198531}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.95, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3248274240282564325}
@@ -622,7 +622,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6952943651546268882}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.78, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.6750112, y: 0.6750112, z: 0.6750112}
   m_Children:
   - {fileID: 6122246042630526266}
@@ -665,7 +665,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyTag: Epic Green Slime
   maxHP: 4
-  shootersOn: 0
+  shooting: 0
 --- !u!95 &525394018025043249
 Animator:
   serializedVersion: 3
@@ -712,7 +712,7 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -1.01}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -888,6 +888,6 @@ MonoBehaviour:
   - {fileID: 4862342674298469076}
   m_Bounds:
     m_Center: {x: 0, y: -0.0021193027, z: -0.000000007450581}
-    m_Extent: {x: 4.3950005, y: 2.0978804, z: 2.220446e-16}
+    m_Extent: {x: 4.3950005, y: 2.0978801, z: 2.220446e-16}
   m_UseBatching: 1
   m_AlwaysUpdate: 0

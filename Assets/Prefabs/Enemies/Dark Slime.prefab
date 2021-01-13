@@ -71,7 +71,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3353591514799086862}
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: 0.02, y: 0.89, z: 0}
+  m_LocalPosition: {x: 0.02, y: -0.06336874, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3148162718194217332}
@@ -349,7 +349,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6952943651546268882}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.78, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.6068261, y: 0.6068261, z: 0.6068261}
   m_Children:
   - {fileID: 3343985940404273852}
@@ -393,7 +393,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyTag: Dark Slime
   maxHP: 6.5
-  shootersOn: 0
+  shooting: 0
 --- !u!95 &525394018025043249
 Animator:
   serializedVersion: 3
@@ -440,7 +440,7 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.97}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -515,7 +515,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7996829807270649155}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.78058845, y: 2.0433686, z: -45.736465}
+  m_LocalPosition: {x: -0.78058845, y: 1.09, z: -45.736465}
   m_LocalScale: {x: 2.177858, y: 2.177858, z: 2.177858}
   m_Children:
   - {fileID: 2677287289080675412}
@@ -606,7 +606,7 @@ PrefabInstance:
     - target: {fileID: -2786285008904620888, guid: f45ce5cd14d57174d845776fb9d44401,
         type: 3}
       propertyPath: m_Bounds.m_Center.y
-      value: -0.0013613701
+      value: -0.0013618469
       objectReference: {fileID: 0}
     - target: {fileID: -2786285008904620888, guid: f45ce5cd14d57174d845776fb9d44401,
         type: 3}
@@ -626,7 +626,7 @@ PrefabInstance:
     - target: {fileID: 2549345623731360087, guid: f45ce5cd14d57174d845776fb9d44401,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.7599705
+      value: 0.8066018
       objectReference: {fileID: 0}
     - target: {fileID: 2549345623731360087, guid: f45ce5cd14d57174d845776fb9d44401,
         type: 3}

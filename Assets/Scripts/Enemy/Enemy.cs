@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour, IDamageable
 	public float maxHP;
 	float hp;
     public float HP{get{return hp;} private set{hp=value;}}
-	[HideInInspector] public bool shootersOn;
+	[HideInInspector] public bool shooting;
     List<RhythmicObject> myShooters;
 
     bool dead;
@@ -36,7 +36,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     void OnEnable()
     {
-        shootersOn = true;
+        shooting = true;
         OnThisDeath += InvokeDeathEvent;
         OnThisHit += InvokeHitEvent;
     }
@@ -81,7 +81,7 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         spawnState = animator.GetCurrentAnimatorStateInfo(0);
         foreach(RhythmicObject shooter in myShooters)
-            shooter.shootEnabled = shootersOn;
+            shooter.shootEnabled = shooting;
         if(!spawnState.IsName("Spawning"))
         	CheckOutOfBounds();
     }
@@ -137,7 +137,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     void DisableCollisions()
     {
-        shootersOn = false;
+        shooting = false;
         GetComponent<Collider2D>().enabled = false;
         foreach(Transform child in transform){
             if(child.GetComponent<RhythmicObject>()!=null){

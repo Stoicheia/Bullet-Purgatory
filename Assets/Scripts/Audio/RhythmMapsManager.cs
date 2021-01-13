@@ -5,8 +5,6 @@ using UnityEngine.Audio;
 
 public class RhythmMapsManager : MonoBehaviour
 {
-    public delegate void StateChangeAction(LevelState state);
-    public static event StateChangeAction GoToState;
 
     public delegate void SongChangeAction();
     public static event SongChangeAction NewSong;
@@ -118,7 +116,7 @@ public class RhythmMapsManager : MonoBehaviour
             }
         }
         OnAllSongsFinished();
-        GoToState(LevelState.FAILSCREEN);
+        
     }
 
     public void EnterRhythm(){

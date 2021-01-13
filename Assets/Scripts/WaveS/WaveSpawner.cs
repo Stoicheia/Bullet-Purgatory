@@ -1,10 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 
 public class WaveSpawner : RhythmicObject
 {
+	public delegate void VoidAction();
+
+	public static event VoidAction NormalWavesCompleted;
 	public delegate void StateChangeAction(LevelState state);
 	public static event StateChangeAction GoToState;
 
@@ -16,14 +20,24 @@ public class WaveSpawner : RhythmicObject
 	RhythmListener listener;
 	List<string> enemiesOnScreen;
 	public Wave[] waves;
+	public Wave[] bonusWaves;
+	private List<Wave> allWaves;
 	int currentWave;
 	int nextWave;
-	int totalWaves;
+	int totalNormalWaves;
+	private int totalWaves;
     
 	Wave activeWave;
 
 	bool spawnStarted = false;
-    
+	private bool finishedNormalWaves;
+
+	public bool FinishedNormalWaves
+	{
+		get => finishedNormalWaves;
+		private set => finishedNormalWaves = value;
+	}
+
 
 	protected override void Awake(){
 		base.Awake();
@@ -32,20 +46,27 @@ public class WaveSpawner : RhythmicObject
 			listener = gameObject.AddComponent<RhythmListener>();
 			listener.part = "Wave";
 		}
-		totalWaves = waves.Length;
+		totalNormalWaves = waves.Length;
+		allWaves = new List<Wave>();
 	}
 
 	void OnEnable(){
 		Enemy.OnDeath += KilledOneEnemy;
+		RhythmMapsManager.OnAllSongsFinished += End;
 	}
 
 	void OnDisable(){
 		Enemy.OnDeath -= KilledOneEnemy;
+		RhythmMapsManager.OnAllSongsFinished += End;
 	}
 
     void Start()
     {
-        enemiesOnScreen = new List<string>();
+	    finishedNormalWaves = false;
+	    allWaves = waves.ToList();
+	    allWaves.AddRange(bonusWaves);
+	    totalWaves = allWaves.Count;
+	    enemiesOnScreen = new List<string>();
     	currentWave = -1;
         nextWave = 0;
         if(OnNextWave!=null)
@@ -70,15 +91,33 @@ public class WaveSpawner : RhythmicObject
 
     public void SpawnNextWave(){
     	currentWave++; nextWave++;
-    	if(currentWave==totalWaves){
+        if (currentWave == totalNormalWaves)
+        {
+	        finishedNormalWaves = true;
+	        NormalWavesCompleted?.Invoke();
+        }
+    	if(currentWave==totalWaves)
+        {
     		StartCoroutine(WinSequence());
     		return;
     	}
-    	activeWave = waves[currentWave%totalWaves];
+    	activeWave = allWaves[currentWave%totalWaves];
     	StartCoroutine(SpawnActiveWaveAfter(TimeBetweenWaves()));
     	enemiesOnScreen = activeWave.GetEnemyTags();
         if(OnNextWave!=null)
             OnNextWave(GetWaveInfo());
+    }
+
+    void End()
+    {
+	    if (finishedNormalWaves)
+	    {
+		    GoToState(LevelState.ENDSCREEN);
+	    }
+	    else
+	    {
+		    GoToState(LevelState.FAILSCREEN);
+	    }
     }
 
     IEnumerator SpawnActiveWaveAfter(float wait)
@@ -108,7 +147,7 @@ public class WaveSpawner : RhythmicObject
     }
 
     public int[] GetWaveInfo(){
-        return new int[] {currentWave+1,totalWaves};
+        return new int[] {currentWave+1,totalWaves,totalNormalWaves};
     }
 
     public float TimeBetweenWaves()

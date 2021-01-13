@@ -50,7 +50,6 @@ public class LevelStateManager : MonoBehaviour
 	void OnEnable()
 	{
 		DialogueManager.GoToState += SetLevelState;
-		RhythmMapsManager.GoToState += SetLevelState;
 		WaveSpawner.GoToState += SetLevelState;
         Player.OnPlayerDeath += Fail;
 	}
@@ -58,13 +57,19 @@ public class LevelStateManager : MonoBehaviour
 	void OnDisable()
 	{
 		DialogueManager.GoToState -= SetLevelState;
-		RhythmMapsManager.GoToState -= SetLevelState;
 		WaveSpawner.GoToState -= SetLevelState;
         Player.OnPlayerDeath -= Fail;
 	}
 
     void Fail(){
-        SetLevelState(LevelState.FAILSCREEN);
+	    if (waveSpawner.FinishedNormalWaves)
+	    {
+		    SetLevelState(LevelState.ENDSCREEN);
+	    }
+	    else
+	    {
+		    SetLevelState(LevelState.FAILSCREEN);
+	    }
     }
 
     public void SetLevelState(LevelState newState){

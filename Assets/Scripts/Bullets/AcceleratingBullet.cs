@@ -52,6 +52,7 @@ public class AcceleratingBullet : MonoBehaviour
     public void Disable()
     {
 	    disabled = true;
+	    bullet.AddSpeed(0.5f);
     }
 
     public void Enable()

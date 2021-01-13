@@ -314,7 +314,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1071243173487573033}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.78, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.19966598, y: 0.19966598, z: 0.19966598}
   m_Children:
   - {fileID: 5120163327716931989}
@@ -356,7 +356,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyTag: Bosspig
   maxHP: 58
-  shootersOn: 0
+  shooting: 0
 --- !u!95 &7632074728056785354
 Animator:
   serializedVersion: 3
@@ -802,7 +802,7 @@ PrefabInstance:
     - target: {fileID: -5424160168870017220, guid: c9205e403d116624c9e780e5490b9439,
         type: 3}
       propertyPath: m_Bounds.m_Center.y
-      value: 0.0011484623
+      value: 0.0011489391
       objectReference: {fileID: 0}
     - target: {fileID: -5424160168870017220, guid: c9205e403d116624c9e780e5490b9439,
         type: 3}
@@ -922,7 +922,7 @@ PrefabInstance:
     - target: {fileID: 182981897485871323, guid: c9205e403d116624c9e780e5490b9439,
         type: 3}
       propertyPath: m_Bounds.m_Center.y
-      value: 0.010000706
+      value: 0.010000467
       objectReference: {fileID: 0}
     - target: {fileID: 182981897485871323, guid: c9205e403d116624c9e780e5490b9439,
         type: 3}
@@ -977,7 +977,7 @@ PrefabInstance:
     - target: {fileID: 6496783688669062909, guid: c9205e403d116624c9e780e5490b9439,
         type: 3}
       propertyPath: m_Bounds.m_Extent.y
-      value: 1.2055807
+      value: 1.2055812
       objectReference: {fileID: 0}
     - target: {fileID: 7644188819791097079, guid: c9205e403d116624c9e780e5490b9439,
         type: 3}
@@ -987,7 +987,7 @@ PrefabInstance:
     - target: {fileID: 7644188819791097079, guid: c9205e403d116624c9e780e5490b9439,
         type: 3}
       propertyPath: m_Bounds.m_Center.y
-      value: -0.0011692047
+      value: -0.001168251
       objectReference: {fileID: 0}
     - target: {fileID: 7644188819791097079, guid: c9205e403d116624c9e780e5490b9439,
         type: 3}
@@ -997,7 +997,7 @@ PrefabInstance:
     - target: {fileID: 7644188819791097079, guid: c9205e403d116624c9e780e5490b9439,
         type: 3}
       propertyPath: m_Bounds.m_Extent.y
-      value: 5.320511
+      value: 5.320512
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: -863184655134126780, guid: c9205e403d116624c9e780e5490b9439,

@@ -27,7 +27,7 @@ public class Bullet : MonoBehaviour
 	bool friendly = false;
 
 	static MeshCollider stage;
-    [HideInInspector] public string poolTag = "";
+    [HideInInspector] public string pooltag = "";
     static ObjectPooler pooler;
 	SpriteRenderer render;
 
@@ -36,7 +36,7 @@ public class Bullet : MonoBehaviour
 
     void Awake()
     {
-        poolTag = name;
+        pooltag = name;
         render = GetComponent<SpriteRenderer>();
         if (render == null)
             render = GetComponentInChildren<SpriteRenderer>();
@@ -139,7 +139,7 @@ public class Bullet : MonoBehaviour
     }
 
     public void Despawn(){
-        pooler.Despawn(gameObject, poolTag);
+        pooler.Despawn(gameObject, pooltag);
     }
 
     public SpriteRenderer GetRenderer()

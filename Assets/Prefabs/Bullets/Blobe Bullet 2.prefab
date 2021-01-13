@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 1329262107811376685}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.235, y: 0.13635623, z: 0}
-  m_LocalScale: {x: 0.0630031, y: 0.0630031, z: 0.0630031}
+  m_LocalScale: {x: 0.056969926, y: 0.056969926, z: 0.056969926}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   speedModifier: 1
-  poolTag: blobe2
+  pooltag: 
 --- !u!61 &3620627973714985996
 BoxCollider2D:
   m_ObjectHideFlags: 0

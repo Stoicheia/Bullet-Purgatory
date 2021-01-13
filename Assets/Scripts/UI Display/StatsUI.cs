@@ -14,7 +14,18 @@ public class StatsUI : MonoBehaviour
 	void UpdateGrazing() => grazing.text = Mathf.Round(stats.grazing).ToString();
 
 	public TextMeshProUGUI wave;
-	void UpdateWave() => wave.text = stats.currentWave.ToString() + "/" + stats.totalWaves.ToString();
+
+	void UpdateWave()
+	{
+		if (stats.currentWave > stats.totalNormalWaves)
+		{
+			wave.text = "Bonus" + " " + (stats.currentWave - stats.totalNormalWaves) + "!";
+		}
+		else
+		{
+			wave.text = stats.currentWave.ToString() + "/" + stats.totalNormalWaves.ToString();
+		}
+	}
 
 	public Image loadingBar;
 	public Image progress;

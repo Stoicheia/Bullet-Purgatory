@@ -48,14 +48,14 @@ public class ExplodingBullet : MonoBehaviour
             Bullet shotBullet;
             if (!randomSpread)
             {
-                shotBullet = pooler.Spawn(bulletToShoot.gameObject, bulletToShoot.poolTag, epicenter,
+                shotBullet = pooler.Spawn(bulletToShoot.gameObject, bulletToShoot.pooltag, epicenter,
                     zeroRotation * Quaternion.AngleAxis(i * 360 / numberOfBullets, Vector3.forward)).GetComponent<Bullet>();
                 shotBullet.Speed = explodedBulletSpeed/2.5f;
                 shotBullet.SetFriendly(myBullet.IsFriendly());
             }
             else
             {
-                shotBullet = pooler.Spawn(bulletToShoot.gameObject, bulletToShoot.poolTag, epicenter,
+                shotBullet = pooler.Spawn(bulletToShoot.gameObject, bulletToShoot.pooltag, epicenter,
                     zeroRotation * Quaternion.AngleAxis(UnityEngine.Random.Range(0, 360.0f), Vector3.forward)).GetComponent<Bullet>();
                 shotBullet.Speed = explodedBulletSpeed;
                 shotBullet.SetFriendly(myBullet.IsFriendly());

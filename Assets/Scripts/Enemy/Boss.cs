@@ -30,8 +30,8 @@ public class Boss : MonoBehaviour
     	enemyInfo.OnThisDeath -= Die;
     }
 
-    void Hit()=>OnBossHit(this);
-    void Die()=>OnBossKilled(this);
+    void Hit()=>OnBossHit?.Invoke(this);
+    void Die()=>OnBossKilled?.Invoke(this);
 
     public Enemy GetEnemyInfo(){
     	return enemyInfo;

@@ -72,7 +72,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyTag: Mine
   maxHP: 5
-  shootersOn: 0
+  shooting: 0
 --- !u!95 &6267912329971997425
 Animator:
   serializedVersion: 3

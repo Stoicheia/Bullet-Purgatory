@@ -396,7 +396,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6952943651546268882}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.78, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5756646, y: 0.5756646, z: 0.5756646}
   m_Children:
   - {fileID: 6146486904248645310}
@@ -438,7 +438,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyTag: Oniusagi
   maxHP: 45
-  shootersOn: 0
+  shooting: 0
 --- !u!95 &525394018025043249
 Animator:
   serializedVersion: 3
@@ -485,7 +485,7 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.9}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -722,7 +722,7 @@ PrefabInstance:
     - target: {fileID: -5686964891568628840, guid: 0d8050b670647da458c108e4d7fd2fc8,
         type: 3}
       propertyPath: m_Bounds.m_Center.y
-      value: -0.0021550655
+      value: -0.002155304
       objectReference: {fileID: 0}
     - target: {fileID: -5686964891568628840, guid: 0d8050b670647da458c108e4d7fd2fc8,
         type: 3}
@@ -772,7 +772,7 @@ PrefabInstance:
     - target: {fileID: -4151329405501696257, guid: 0d8050b670647da458c108e4d7fd2fc8,
         type: 3}
       propertyPath: m_Bounds.m_Extent.y
-      value: 2.2250001
+      value: 2.2250004
       objectReference: {fileID: 0}
     - target: {fileID: -3544995185472798021, guid: 0d8050b670647da458c108e4d7fd2fc8,
         type: 3}
@@ -887,7 +887,7 @@ PrefabInstance:
     - target: {fileID: 1491295043416696782, guid: 0d8050b670647da458c108e4d7fd2fc8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.55
+      value: 3.71
       objectReference: {fileID: 0}
     - target: {fileID: 1491295043416696782, guid: 0d8050b670647da458c108e4d7fd2fc8,
         type: 3}
@@ -997,7 +997,7 @@ PrefabInstance:
     - target: {fileID: 2892780275636815858, guid: 0d8050b670647da458c108e4d7fd2fc8,
         type: 3}
       propertyPath: m_Bounds.m_Center.y
-      value: -0.0000008940697
+      value: -0.0000006556511
       objectReference: {fileID: 0}
     - target: {fileID: 2892780275636815858, guid: 0d8050b670647da458c108e4d7fd2fc8,
         type: 3}

@@ -33,5 +33,6 @@ public class ItemDropper : MonoBehaviour
 [System.Serializable]
 public class ItemChancePair{
 	public DroppedItem item;
+	[Range(0,100)]
 	public float chance;
 }

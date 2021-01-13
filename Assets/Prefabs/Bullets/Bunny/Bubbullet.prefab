@@ -131,7 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   speedModifier: 1
-  poolTag: mine
+  poolTag: bubol
 --- !u!58 &171295358614105281
 CircleCollider2D:
   m_ObjectHideFlags: 0

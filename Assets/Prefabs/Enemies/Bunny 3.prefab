@@ -155,7 +155,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6952943651546268882}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.78, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.65575844, y: 0.65575844, z: 0.65575844}
   m_Children:
   - {fileID: 676069779539694283}
@@ -245,7 +245,7 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.98}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -471,7 +471,7 @@ PrefabInstance:
     - target: {fileID: -2091733994098051724, guid: 417fc4a74eb08114cbc3f8427c927d8a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.2666118
+      value: 2.29
       objectReference: {fileID: 0}
     - target: {fileID: -2091733994098051724, guid: 417fc4a74eb08114cbc3f8427c927d8a,
         type: 3}
@@ -556,7 +556,7 @@ PrefabInstance:
     - target: {fileID: 670285720738153693, guid: 417fc4a74eb08114cbc3f8427c927d8a,
         type: 3}
       propertyPath: m_Bounds.m_Center.y
-      value: 0.00000047683716
+      value: 0.00000023841858
       objectReference: {fileID: 0}
     - target: {fileID: 670285720738153693, guid: 417fc4a74eb08114cbc3f8427c927d8a,
         type: 3}
@@ -566,7 +566,7 @@ PrefabInstance:
     - target: {fileID: 670285720738153693, guid: 417fc4a74eb08114cbc3f8427c927d8a,
         type: 3}
       propertyPath: m_Bounds.m_Extent.y
-      value: 2.4700007
+      value: 2.4700005
       objectReference: {fileID: 0}
     - target: {fileID: 2217210811865914832, guid: 417fc4a74eb08114cbc3f8427c927d8a,
         type: 3}
@@ -676,7 +676,7 @@ PrefabInstance:
     - target: {fileID: 8014075860582540888, guid: 417fc4a74eb08114cbc3f8427c927d8a,
         type: 3}
       propertyPath: m_Bounds.m_Center.y
-      value: -0.00000023841858
+      value: -0.00000029802322
       objectReference: {fileID: 0}
     - target: {fileID: 8014075860582540888, guid: 417fc4a74eb08114cbc3f8427c927d8a,
         type: 3}
@@ -686,7 +686,7 @@ PrefabInstance:
     - target: {fileID: 8014075860582540888, guid: 417fc4a74eb08114cbc3f8427c927d8a,
         type: 3}
       propertyPath: m_Bounds.m_Extent.y
-      value: 0.73500013
+      value: 0.7350002
       objectReference: {fileID: 0}
     - target: {fileID: 8768762017799773986, guid: 417fc4a74eb08114cbc3f8427c927d8a,
         type: 3}

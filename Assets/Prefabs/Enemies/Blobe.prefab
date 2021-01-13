@@ -111,7 +111,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7634261128125830171}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.86, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.494871, y: 0.494871, z: 0.494871}
   m_Children:
   - {fileID: 1835583530054872593}
@@ -156,7 +156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyTag: Blobe
   maxHP: 6
-  shooting: 1
+  shootersOn: 0
 --- !u!95 &8182072510382680038
 Animator:
   serializedVersion: 3
@@ -203,7 +203,7 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -2.26}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -261,7 +261,7 @@ PrefabInstance:
     - target: {fileID: -4463013248691819955, guid: 93d78ec7d1ae5fa499ba6966164ef1a1,
         type: 3}
       propertyPath: m_Bounds.m_Center.y
-      value: -0.004850179
+      value: -0.0048500896
       objectReference: {fileID: 0}
     - target: {fileID: -4463013248691819955, guid: 93d78ec7d1ae5fa499ba6966164ef1a1,
         type: 3}
@@ -306,7 +306,7 @@ PrefabInstance:
     - target: {fileID: 2500796270421931764, guid: 93d78ec7d1ae5fa499ba6966164ef1a1,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -2.53
       objectReference: {fileID: 0}
     - target: {fileID: 2500796270421931764, guid: 93d78ec7d1ae5fa499ba6966164ef1a1,
         type: 3}
@@ -466,7 +466,7 @@ PrefabInstance:
     - target: {fileID: 6932092717219035719, guid: 93d78ec7d1ae5fa499ba6966164ef1a1,
         type: 3}
       propertyPath: m_Bounds.m_Center.y
-      value: 0.0004797578
+      value: 0.0004799366
       objectReference: {fileID: 0}
     - target: {fileID: 6932092717219035719, guid: 93d78ec7d1ae5fa499ba6966164ef1a1,
         type: 3}
@@ -671,12 +671,12 @@ PrefabInstance:
     - target: {fileID: 2910794019690692724, guid: 0ca7808be5d45824ba6e262a0c252724,
         type: 3}
       propertyPath: maxAngle
-      value: 0
+      value: 360
       objectReference: {fileID: 0}
     - target: {fileID: 2910794019690692724, guid: 0ca7808be5d45824ba6e262a0c252724,
         type: 3}
       propertyPath: bulletSpeed
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2910794019690692724, guid: 0ca7808be5d45824ba6e262a0c252724,
         type: 3}
@@ -808,12 +808,12 @@ PrefabInstance:
     - target: {fileID: 2910794019690692724, guid: 0ca7808be5d45824ba6e262a0c252724,
         type: 3}
       propertyPath: maxAngle
-      value: 0
+      value: 360
       objectReference: {fileID: 0}
     - target: {fileID: 2910794019690692724, guid: 0ca7808be5d45824ba6e262a0c252724,
         type: 3}
       propertyPath: bulletSpeed
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2910794019690692724, guid: 0ca7808be5d45824ba6e262a0c252724,
         type: 3}
