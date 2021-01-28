@@ -15,6 +15,7 @@ public class Player : MonoBehaviour, IDamageable
     public static event LifeChangeAction OnLivesChange;
 
     public string id;
+    public const float INITIAL_INTANGIBILITY_SECONDS = 1.2f;
 
 	Controller controller;
     Collider2D hitbox;
@@ -43,6 +44,14 @@ public class Player : MonoBehaviour, IDamageable
     float invulnTimeLeft;
     public float invulnerabilityPeriod = 2f;
 
+    private bool intangible;
+
+    public bool Intangible
+    {
+        get => intangible;
+        set => intangible = value;
+    }
+
     public int maxLives = 3;
     int lives;
     public int Lives {get{return lives;} private set{lives = value;}}
@@ -66,6 +75,7 @@ public class Player : MonoBehaviour, IDamageable
         moveState = 0;
 
         invulnerable = false;
+        intangible = false;
     }
 
     void Update()
@@ -128,7 +138,7 @@ public class Player : MonoBehaviour, IDamageable
 
     public void TakeHit(float damage, Collision2D col){
         invulnTimeLeft = invulnerabilityPeriod;
-        if(!invulnerable)
+        if(!invulnerable && !intangible)
             GetHit();
         if(lives<=0&&!godMode)
             GetKilled();
@@ -190,5 +200,17 @@ public class Player : MonoBehaviour, IDamageable
         {
             TakeHit(1, col);
         }
+    }
+
+    public void GiveIntagibility(float t)
+    {
+        StartCoroutine(IntangibilitySequence(t));
+    }
+
+    IEnumerator IntangibilitySequence(float t)
+    {
+        intangible = true;
+        yield return new WaitForSeconds(t);
+        intangible = false;
     }
 }

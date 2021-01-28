@@ -20,6 +20,10 @@ public class EnemyAnimations : MonoBehaviour
         if(spriteAnimator==null)
         	spriteAnimator = GetComponentsInChildren<Animator>()[1];
         sprites = spriteAnimator.GetComponentsInChildren<SpriteRenderer>().ToList();
+        foreach (var s in sprites)
+        {
+	        s.sortingLayerName = "Enemies";
+        }
     }
 
     public void PlayHit()

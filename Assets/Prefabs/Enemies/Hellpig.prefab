@@ -763,6 +763,16 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -4015165058372263845, guid: 0a75a3d713d08a5449bfacdde79130ab,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -564099801
+      objectReference: {fileID: 0}
+    - target: {fileID: -4015165058372263845, guid: 0a75a3d713d08a5449bfacdde79130ab,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: -4
+      objectReference: {fileID: 0}
     - target: {fileID: -3782533539063703312, guid: 0a75a3d713d08a5449bfacdde79130ab,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -873,6 +883,16 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -473484415083856238, guid: 0a75a3d713d08a5449bfacdde79130ab,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -564099801
+      objectReference: {fileID: 0}
+    - target: {fileID: -473484415083856238, guid: 0a75a3d713d08a5449bfacdde79130ab,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: -4
+      objectReference: {fileID: 0}
     - target: {fileID: 183537789704644166, guid: 0a75a3d713d08a5449bfacdde79130ab,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -953,6 +973,16 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2705397975020518879, guid: 0a75a3d713d08a5449bfacdde79130ab,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -564099801
+      objectReference: {fileID: 0}
+    - target: {fileID: 2705397975020518879, guid: 0a75a3d713d08a5449bfacdde79130ab,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: -4
+      objectReference: {fileID: 0}
     - target: {fileID: 3503137175749501108, guid: 0a75a3d713d08a5449bfacdde79130ab,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -967,6 +997,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.a
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4860457429633646159, guid: 0a75a3d713d08a5449bfacdde79130ab,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -564099801
+      objectReference: {fileID: 0}
+    - target: {fileID: 4860457429633646159, guid: 0a75a3d713d08a5449bfacdde79130ab,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 8202643615107578966, guid: 0a75a3d713d08a5449bfacdde79130ab,
         type: 3}

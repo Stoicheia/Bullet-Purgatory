@@ -76,7 +76,8 @@ public class DroppedItem : MonoBehaviour
 
     void Move()
     {
-	    magnetIntensity = magnet.magnetStrength;
+	    if(magnet!=null)
+			magnetIntensity = magnet.magnetStrength;
     	currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, acceleration*Time.deltaTime);
     	transform.Translate(-Vector3.up*currentSpeed*Time.deltaTime);
     	Vector3 vectorToMagnet = new Vector3(attractTo.position.x-transform.position.x,attractTo.position.y-transform.position.y,0);

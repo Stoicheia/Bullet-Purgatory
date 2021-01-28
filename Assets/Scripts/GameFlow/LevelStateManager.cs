@@ -12,6 +12,8 @@ public class LevelStateManager : MonoBehaviour
 	public LevelState levelState {get; private set;}
     public LevelState lastState {get; private set;}
 
+    private Player player;
+
     private WaveSpawner waveSpawner;
     private RhythmMapsManager rhythmManager;
     private DialogueManager dialogueManager;
@@ -31,6 +33,7 @@ public class LevelStateManager : MonoBehaviour
 
 	void Start()
 	{
+		player = FindObjectOfType<Player>();
 		SetLevelState(LevelState.DIALOGUE);
 
         Bullet.SetStage(GameObject.FindGameObjectWithTag("Stage").GetComponent<MeshCollider>());
@@ -119,7 +122,8 @@ public class LevelStateManager : MonoBehaviour
                 Keybinds.instance.SetDialogueBinds();
     			break;
     		case LevelState.PLAYING:
-                Keybinds.instance.SetPlayBinds();
+	            player.GiveIntagibility(Player.INITIAL_INTANGIBILITY_SECONDS);
+	            Keybinds.instance.SetPlayBinds();
     			waveSpawner.StartSpawning();    
                 rhythmManager.UnpauseActive();		
     			break;
