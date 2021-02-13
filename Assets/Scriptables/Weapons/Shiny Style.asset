@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44d4f624a62fcb34eb2236afd32cde97, type: 3}
+  m_Name: Shiny Style
+  m_EditorClassIdentifier: 
+  id: shiny
+  itemName: Shiny Style
+  description: "We did our best and jumped, covered in sweat\r, it's a stage forever
+    bursting with smiles\r, the world's most wonderful stage! Shoots to the chorus!"
+  icon: {fileID: 21300000, guid: 8fd82b057e6c7144386dd1824906d497, type: 3}
+  cost: 1500
+  shooter: {fileID: 9068037534296819017, guid: f939a58d1b06978469d328c43e52195c, type: 3}
+  rating: 4

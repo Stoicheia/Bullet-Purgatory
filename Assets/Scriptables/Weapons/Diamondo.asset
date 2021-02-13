@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Diamondo
   m_EditorClassIdentifier: 
   id: diamond
-  itemName: Diamondo
-  description: the classic...
-  icon: {fileID: 2822054338469214157, guid: 6130fd715298b1e40a823126e14c9b3e, type: 3}
-  cost: 100
+  itemName: Triple Diamond
+  description: Enhance your firepower with another stream of diamonds! Shoots to
+    the beat of the music.
+  icon: {fileID: 21300000, guid: 4d91b99cc9709c4439e9581285449156, type: 3}
+  cost: 800
   shooter: {fileID: -2615233402773865145, guid: a5599719cbc5a6c4c86d342edfeee906,
     type: 3}
   rating: 1

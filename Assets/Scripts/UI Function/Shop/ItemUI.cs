@@ -20,7 +20,7 @@ public class ItemUI : MonoBehaviour
     public static event ClickAction OnClick;
 
     public Equippable item;
-    public TextMeshProUGUI itemName;
+    public Image itemIcon;
 
     [SerializeField] ItemUIStatus status;
     public ItemUIStatus Status { get => status; }
@@ -71,7 +71,7 @@ public class ItemUI : MonoBehaviour
             status = ItemUIStatus.LOCKED;
         this.item = item;
         //itemName.text = item.Name;
-        itemName.text = status.ToString();
+        itemIcon.sprite = item.Icon;
         image.sprite = buttonStatusImage[status];
     }   
 }

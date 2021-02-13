@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: jana
   itemName: Jana
-  description: Jai Hind
-  icon: {fileID: 21300000, guid: c5fa6e240112f354a9e7967f2449f145, type: 3}
-  cost: 200
-  inactiveIcon: {fileID: 21300000, guid: 55aa8e947dae32f449dd6902f8b9d5bf, type: 3}
+  description: Thou art the ruler of the minds of all people, dispenser of India's
+    destiny!
+  icon: {fileID: 21300000, guid: f4c2afe63d4b2d543a3ff76f1725a2d6, type: 3}
+  cost: 1000
+  inactiveIcon: {fileID: 21300000, guid: f58c1b9019f3ed1418c65a14ad925372, type: 3}
   rhythmMap: {fileID: 5785200509432423350, guid: e4ea4f67ffb6cf8419dd30fc28f50ada,
     type: 3}

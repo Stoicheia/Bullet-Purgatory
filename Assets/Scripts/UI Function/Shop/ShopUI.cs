@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class ShopUI : MonoBehaviour
@@ -11,6 +12,10 @@ public class ShopUI : MonoBehaviour
     [SerializeField] ItemUI itemUIPrefab;
     [SerializeField] ShopActionButton myButton;
     [SerializeField] GoldIndicatorUI goldText;
+
+    [SerializeField] private TextMeshProUGUI itemCostField;
+    [SerializeField] private TextMeshProUGUI itemNameField;
+    [SerializeField] private TextMeshProUGUI itemDescField;
     ItemUI activeItemUI;
 
     private void Start()
@@ -72,8 +77,15 @@ public class ShopUI : MonoBehaviour
             button.SetStatus(stats.GetItemStatus(item));
             button.Display(item);
         }
-        if(activeItemUI!=null)
+
+        if (activeItemUI != null)
+        {
             myButton.Display(activeItemUI.Status);
+            itemCostField.text = activeItemUI.item.Cost.ToString();
+            itemNameField.text = activeItemUI.item.Name;
+            itemDescField.text = activeItemUI.item.Description;
+        }
+
         goldText.Refresh();
     }
 }

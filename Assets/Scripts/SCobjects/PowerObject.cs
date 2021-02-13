@@ -7,11 +7,12 @@ using UnityEngine;
 public class PowerObject : Equippable
 {
     [SerializeField]
-    Power effect;
+    List<Power> effects;
 
-    public Power Effect { get => effect; }
+    public List<Power> Effect { get => effects; }
     public void UseEffect()
     {
-        effect.Activate();
+        foreach(var p in effects)
+            p.Activate();
     }
 }

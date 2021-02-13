@@ -20,5 +20,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 71cc7ca4c31981f428206bed08171b0f, type: 2}
   - {fileID: 11400000, guid: 6e58fb4c1f1d79a4cb4eb42afc8665b3, type: 2}
   - {fileID: 11400000, guid: 40a076655d1b08c43a97aafda1dcaa0d, type: 2}
+  - {fileID: 11400000, guid: 877d38de8d27ed24c8b55546e876bf70, type: 2}
+  - {fileID: 11400000, guid: 5cef54e5e5d313b4fadcde6d3c485d2a, type: 2}
+  - {fileID: 11400000, guid: 789114d60737d6d40a85a51da3a12d01, type: 2}
+  - {fileID: 11400000, guid: a4226cb83b5739649b19a4bb46e47339, type: 2}
+  - {fileID: 11400000, guid: ede3f1eb5f7137f49bf8c8d91695a246, type: 2}
+  - {fileID: 11400000, guid: c538d5a14a2fbe845bf343fc34c4a4b1, type: 2}
+  - {fileID: 11400000, guid: cea613158c30f09479112b48a8a7491f, type: 2}
   players:
   - {fileID: 1445623937382464697, guid: 6c1c8b86b21cd0d4b9c6901f2e7f1a18, type: 3}

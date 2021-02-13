@@ -37,7 +37,6 @@ public class ItemDatabase : ScriptableObject
         {
             Debug.Log(e.Key + ": " + e.Value.name);
         }
-        Debug.Log("Updated");
     }
 
     public List<Equippable> GetItems(List<string> itemIDs)

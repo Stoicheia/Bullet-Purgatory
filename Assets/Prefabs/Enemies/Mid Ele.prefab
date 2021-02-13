@@ -119,13 +119,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   droppedItems:
-  - item: {fileID: 3503589402550358394, guid: 1f5e4124806ee854d9a8f6a73979e00e, type: 3}
+  - item: {fileID: 3503589402550358394, guid: b04a3ce7480cdf14996b55dde757e5c1, type: 3}
     chance: 100
-  - item: {fileID: 3503589402550358394, guid: dafa16478dc65a74e97a297ff37bfdd9, type: 3}
+  - item: {fileID: 3503589402550358394, guid: 2806d4295415bb243aeb2c2e15e9278c, type: 3}
     chance: 50
-  - item: {fileID: 3503589402550358394, guid: dafa16478dc65a74e97a297ff37bfdd9, type: 3}
+  - item: {fileID: 3503589402550358394, guid: 67bff1e42f7e93048a70288ddefe106b, type: 3}
     chance: 80
-  - item: {fileID: 3503589402550358394, guid: dafa16478dc65a74e97a297ff37bfdd9, type: 3}
+  - item: {fileID: 3503589402550358394, guid: 2806d4295415bb243aeb2c2e15e9278c, type: 3}
     chance: 80
 --- !u!60 &5970501008552892267
 PolygonCollider2D:

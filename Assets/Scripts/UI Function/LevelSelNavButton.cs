@@ -12,10 +12,11 @@ public class LevelSelNavButton : MonoBehaviour
     public static event SubmenuNavAction OnNav;
 
     private LevelSelectUI ui;
+    [SerializeField] private int toMenu;
 
     private void Start()
     {
-        ui = transform.parent.GetComponent<LevelSelectUI>();
+        ui = FindObjectOfType<LevelSelectUI>();
         if (ui == null)
         {
             Debug.LogError("I have no parent of type \"LevelSelectUI\"",  this);
@@ -24,6 +25,6 @@ public class LevelSelNavButton : MonoBehaviour
 
     public void Click()
     {
-        
+        OnNav?.Invoke(toMenu);
     }
 }

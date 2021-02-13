@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: diamond2
   itemName: Doublemondo
-  description: the super classic...
-  icon: {fileID: 2339286239466785919, guid: c225cc62443f60744a372c2147f1c681, type: 3}
-  cost: 200
+  description: Enhance your firepower with another stream of diamonds! Shoots to
+    the beat of the music.
+  icon: {fileID: 21300000, guid: 4d91b99cc9709c4439e9581285449156, type: 3}
+  cost: 800
   shooter: {fileID: 9068037534296819017, guid: f36560678ca9a2445a66064651db3ee7, type: 3}
   rating: 2

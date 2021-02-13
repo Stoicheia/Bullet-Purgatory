@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,7 +20,7 @@ public class LevelSelectUI : MonoBehaviour
         for(int i=0; i < levelSubMenus.Count;i++)
         {
             Transform levelContainer = levelSubMenus[i].Find("Levels");
-            worldLevelCounts[i] = levelContainer.childCount;
+            worldLevelCounts.Add(levelContainer.childCount);
         }
 
         int world = CalculateCurrentWorld(stats.LastLevelPassed);
@@ -31,6 +32,13 @@ public class LevelSelectUI : MonoBehaviour
         activeSubMenu.gameObject.SetActive(true);
         
         RefreshLevels(activeSubMenu);
+
+        LevelSelNavButton.OnNav += GoToSubmenu;
+    }
+
+    private void OnDisable()
+    {
+        LevelSelNavButton.OnNav -= GoToSubmenu;
     }
 
     public void RefreshLevels(Transform container)
@@ -57,5 +65,17 @@ public class LevelSelectUI : MonoBehaviour
         }
 
         return worldLevelCounts.Count;
+    }
+
+    void GoToSubmenu(int i)
+    {
+        if (i >= levelSubMenus.Count)
+        {
+            Debug.LogWarning("Index exceeds number of submenus. Nothing will happen.");
+            return;
+        }
+        activeSubMenu.gameObject.SetActive(false);
+        levelSubMenus[i].gameObject.SetActive(true);
+        activeSubMenu = levelSubMenus[i];
     }
 }

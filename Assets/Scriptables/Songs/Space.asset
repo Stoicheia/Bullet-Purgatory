@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2f9f1ca61214bb41a7a90dd494a9926, type: 3}
+  m_Name: Space
+  m_EditorClassIdentifier: 
+  id: space
+  itemName: Space
+  description: An ode to the wonders of space travel.
+  icon: {fileID: 21300000, guid: 6772d1b0673e9d145898a0ddcc3d4770, type: 3}
+  cost: 200
+  inactiveIcon: {fileID: 21300000, guid: 1026f852bf23c1840b014a44911eab35, type: 3}
+  rhythmMap: {fileID: 5785200509432423350, guid: 4520cc808a12fd04280f32ecfd9193be,
+    type: 3}

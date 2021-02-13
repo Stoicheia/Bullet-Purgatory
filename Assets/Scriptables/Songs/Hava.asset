@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2f9f1ca61214bb41a7a90dd494a9926, type: 3}
+  m_Name: Hava
+  m_EditorClassIdentifier: 
+  id: hava
+  itemName: Hava
+  description: The hope of two thousand years... the soul of the Jew yearns...
+  icon: {fileID: 21300000, guid: a70a7b9234fdcfa4baee4cfe578442fc, type: 3}
+  cost: 100
+  inactiveIcon: {fileID: 21300000, guid: 1492727b16112fb46861728d30ef3f14, type: 3}
+  rhythmMap: {fileID: 5785200509432423350, guid: 00c2702bb554bcd4bbcdd02486977446,
+    type: 3}

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: lifeup
   itemName: One Life Up
-  description: bing
+  description: Walao eh so noob need more life to play game sia.
   icon: {fileID: 21300000, guid: 31ed0f0ff3a2135458ce71247e03b347, type: 3}
   cost: 2000
   effect: {fileID: 6661370563365941165, guid: 09fba3914b5ab144cb2b870248daa003, type: 3}

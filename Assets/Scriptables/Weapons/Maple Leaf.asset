@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44d4f624a62fcb34eb2236afd32cde97, type: 3}
+  m_Name: Maple Leaf
+  m_EditorClassIdentifier: 
+  id: mapleleaf
+  itemName: Maple Leaf Shooter
+  description: Canada's finest! Shoots to the melody of the music.
+  icon: {fileID: 21300000, guid: 0967641a7f4a3bf429f6e58c822dfc4a, type: 3}
+  cost: 3000
+  shooter: {fileID: 9068037534296819017, guid: aafa0523dbbb0c848b87096f02b88530, type: 3}
+  rating: 3
